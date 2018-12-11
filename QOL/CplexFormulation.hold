@@ -1,0 +1,470 @@
+#ifndef __QOL_CPLEXFORMULATION__
+#define __QOL_CPLEXFORMULATION__
+/// Solve a MIP with CPLEX.
+/// this module uses the basic CPLEX C API because
+/// (a) there are less linker issues with different variants of C++ compilers
+/// (b) we already have most of the Concert functionality provided by QolFormulation
+#ifdef _USE_CPLEX_
+
+#include <ilcplex/cplex.h>
+#include "QolMIPSolver.h"
+#include "QolColFormulation.h"
+#include <iostream>
+#include <limits>
+
+namespace qol {
+  
+  class CplexFormulation : public MIPSolver  {
+  public:
+    /// environment pointer is public so user can query/modify CPLEX themselves
+    CPXENVptr env;
+    /// LP pointer is public so the user can query/modify CPLEX themselves
+    CPXLPptr LP;
+	/// Loading directly into CPLEX is too slow so load into model until we
+	/// need to load into cplex. This pointer is 0 if the data has been loaded
+	/// into CPLEX.
+	QolColFormulation *model; 
+  private:
+    /// don't allow copying of a formulation
+    //CplexFormulation(const CplexFormulation &c) : MIPSolver(), env(c.env), LP(0) {}
+    /// We store the column or variable type separately as CPLEX
+    /// doesn't really play nice with relaxation. It throws away all
+    /// variable type information. Hence we need to store this ourselves.
+    std::vector<char> varType; // column or variable type
+  public:
+	CplexFormulation (qol::SolutionType type=qol::PRIMAL) :
+		MIPSolver (type),LP(0),model(new QolColFormulation),callbackData(0)
+		  {
+			  int status;
+			  env = CPXopenCPLEX(&status);
+			  //LP=0;			   // created in load
+			  //if (env) this->LP = CPXcreateprob (env, &status, "");
+		  }
+    /// create new formulation, optionally with existing environment
+    CplexFormulation(std::string name, CPXENVptr e = 0,
+					 qol::SolutionType type=qol::PRIMAL) :
+		MIPSolver(type),LP(0),callbackData(0) {
+      int status;
+      if(e)
+        env = e;
+      else
+		  env=CPXopenCPLEX(&status);
+      //if(env) this->LP = CPXcreateprob(env,&status,name.c_str());
+	  model = new QolColFormulation;
+    }
+
+    /// create a formulation by copying all of the data in the Formulation
+    /// into CPLEX's internal solver memory
+	CplexFormulation(const qol::QolColFormulation &mip,
+					 std::string name="", CPXENVptr e=0, 
+					 qol::SolutionType type=qol::PRIMAL);
+	
+    virtual ~CplexFormulation (){
+	  if(LP) CPXfreeprob(env,&LP);
+	  if(env) CPXcloseCPLEX(&env);
+	  if(model) delete model;
+	}
+
+	virtual FormulationType getSolverType() const { return CPLEX; }
+	
+	/// load data into cplex (will load from this->model by default)
+	virtual void load(const qol::QolColFormulation *mip=0,
+					  std::string name="CplexFormulation");	
+	
+	/// is all data loaded into CPLEX's internal memory?
+	virtual bool isLoaded() const { return model == 0; } 
+	//	  { return cost.size()==0&&collb.size()==0 && colub.size()==0 && coltype.size()==0 && colname.size() == 0; } 
+
+    virtual Status solveRelaxed() {
+	  if( ! isLoaded() ) load();
+      lastErrorCode = CPXchgprobtype(env,LP,CPXPROB_LP);
+	  qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));
+	  lastErrorCode = CPXlpopt(env,LP);
+	  qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));
+	  int status = CPXgetstat(env,LP);
+      switch(status){
+        case CPX_STAT_OPTIMAL: return OPTIMAL;
+        case CPX_STAT_INFEASIBLE:
+	    case CPX_STAT_INForUNBD:  return INFEASIBLE;
+	    case CPX_STAT_UNBOUNDED: return UNBOUNDED;
+        default: break;
+      }
+      return FAILED;
+    }
+    virtual Status solveExact() {
+	  if( ! isLoaded() ) load();
+      int status;
+      switch(CPXgetprobtype(env,LP)){
+        case CPXPROB_FIXEDMILP: // can't happen but would be OK
+        case CPXPROB_MILP: break; // all OK
+        case CPXPROB_LP:
+          CPXchgprobtype(env,LP,CPXPROB_MILP);
+          break;
+        default:
+          return FAILED; // should never happen
+      }
+      //CPXcopyctype(env,LP,&varType[0]);
+      status = CPXmipopt(env,LP);
+      if (status!=0) return FAILED;
+      status = CPXgetstat(env,LP);
+      switch(CPXgetstat(env,LP)){
+	  case CPXMIP_OPTIMAL:
+	  case CPX_STAT_OPTIMAL: return OPTIMAL;
+	  case CPXMIP_UNBOUNDED:
+	  case CPX_STAT_UNBOUNDED: return UNBOUNDED;
+	  case CPXMIP_INFEASIBLE:
+	  case CPX_STAT_INFEASIBLE: return INFEASIBLE;
+	  case CPXMIP_INForUNBD:
+	  case CPX_STAT_INForUNBD:  return INFEASIBLE;
+	  default: break;			// aborted/incomplete
+      }
+      int solnmethod,solntype,primalFeas,dualFeas;
+      lastErrorCode=CPXsolninfo(env,LP,&solnmethod,&solntype,
+								&primalFeas,&dualFeas);
+	  qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));
+      if(primalFeas) return HEURISTIC; // found a solution, not necessarily optimal
+      return FAILED;
+    }
+	/// error messages: translate solver specific error codes into something
+	/// meaningful
+	/// The actual error code can be provided or will return the message
+	/// of the last error by default
+	/// Note: the ability to get the last error code is somewhat solver
+	///       specific (eg with CPLEX we need to store this explicitly so
+	///       it can't be kept for constant methods)
+	virtual std::string getErrorMessage(int error=-1) const;
+
+    virtual Index nVar() const
+	{ if(model) return model->nVar();
+	  if(!LP) return 0; return (Index)CPXgetnumcols(env,LP);}
+
+    virtual Index nConstr() const
+    { if(model) return model->nConstr();
+	  if(!LP) return 0; return (Index)CPXgetnumrows(env,LP);}
+
+    virtual void setNumVar(Index n); ///< resize to given number of variables
+
+    void setObjCoeff(qol::Variable v,double obj)
+    { if(model) model->setObjCoeff(v,obj);
+	  else{ int idx = v;
+		lastErrorCode = CPXchgobj(env,LP,1,&idx,&obj);
+		qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));
+	  }
+	}
+
+    virtual double getObjCoeff(qol::Variable v) const
+    { if(model) return model->getObjCoeff(v);
+	  double obj=0; int lastErrorCode=CPXgetobj(env,LP,&obj,v,v);
+	  qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));
+	  return obj;}
+
+    virtual void setVarUB(qol::Variable v,double ub)
+    { if(model) model->setVarUB(v,ub);
+	  else{
+		int idx = v; lastErrorCode=CPXchgbds(env,LP,1,&idx,"U",&ub);
+		qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));		
+	  }
+	}
+
+    virtual double getVarUB(qol::Variable v) const
+    { if(model) return model->getVarUB(v);
+	  double ub=0; int lastErrorCode=CPXgetub(env,LP,&ub,v,v);
+	  qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));
+	  return ub; }
+
+    virtual void setVarLB(qol::Variable v,double lb)
+    { if(model) model->setVarLB(v,lb);
+	  else{
+		int idx = v; lastErrorCode=CPXchgbds(env,LP,1,&idx,"L",&lb);
+		qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));
+	  }
+	}
+ 
+    virtual double getVarLB(qol::Variable v) const
+    { if(model) return model->getVarLB(v);
+	  double lb=0; int lastErrorCode=CPXgetlb(env,LP,&lb,v,v);
+	  qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));
+	  return lb; }
+
+    virtual void setVarType(qol::Variable v,char type) {
+      qolAssert(type==qol::Variable::CONTINUOUS ||
+				type==qol::Variable::BINARY ||
+				type==qol::Variable::INTEGER,
+				"Invalid variable type " << type << " for variable " << v);
+	  if(model) model->setVarType(v,type);
+	  else{
+		int idx = v; lastErrorCode=CPXchgctype(env,LP,1,&idx,&type);
+		qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));
+	  }
+      //varType[int (v)] = type;
+    }
+
+    virtual char getVarType(qol::Variable var) const //return varType[var];
+	{ if(model) return model->getVarType(var);
+	  char type; int lastErrorCode=CPXgetctype(env,LP,&type,var,var);
+	  qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));
+	  return type; }
+			  
+
+    virtual void setVarName (qol::Variable var, const std::string &name){
+	  if(model){ model->setVarName(var,name); return;}
+      int idx = var;
+      char *vname;
+      vname = const_cast<char*>(name.c_str());
+      lastErrorCode = CPXchgcolname(env, LP, 1, &idx, &vname);
+	  qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));
+    };
+
+    virtual const std::string getVarName (qol::Variable var) const {
+	  if(model) return model->getVarName(var);
+      std::string name;
+      int size;
+      int lastErrorCode=CPXgetcolname(env, LP, 0, 0, 0, &size, var, var);
+      if (size == 0) {
+        name.clear();
+        return name;
+      }
+
+      size *= -1;
+      std::vector<char> buf(size);
+      char *cname;
+      int tmp;
+      lastErrorCode=CPXgetcolname(env, LP, &cname, &buf.front(), size,
+        &tmp, var, var);
+	  qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));
+      name = cname;
+      return name;
+    }
+
+    // constraint modification
+    /// Adds a new constraint
+    virtual ConstraintMIP addConstraint(const Row &);
+
+    ///<summary>
+    /// Sets the sense of a constraint
+    ///</summary>
+    ///<param name="cnstrs"> index of the constraint </param>
+    ///<param name="s"> sense (Constraint::LE, Constraint::EQ, Constraint::GE) </param>
+    virtual void setSense(qol::Constraint cnstr,char s) {
+      qolAssert(s==qol::Constraint::LE ||
+				s==qol::Constraint::EQ ||
+				s==qol::Constraint::GE,"Invalid constraint sense " << s);
+	  if(model){ model->setSense(cnstr,s); return; }
+      int index=cnstr;
+      lastErrorCode = CPXchgsense(env,LP,1,&index,&s);
+	  qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));
+    }
+
+    ///<summary>
+    /// Returns the sense of a constraint
+    ///</summary>
+    ///<param name="cnstr"> index of the constraint </param>
+    virtual char getSense(const qol::Constraint cnstr) const
+    { if(model) return model->getSense(cnstr);
+	  char sense; int lastErrorCode=CPXgetsense(env,LP,&sense,cnstr,cnstr);
+	  if(lastErrorCode) qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));
+	  return sense; }
+
+    ///<summary>
+    /// Sets the RHS of a constraint
+    ///</summary>
+    ///<param name="cnstrs"> index of the constraint </param>
+    ///<param name="r"> RHS </param>
+    virtual void setRHS(qol::Constraint cnstr,double r)
+    { if(model){ model->setRHS(cnstr,r); return; }
+	  int index=cnstr; lastErrorCode = CPXchgrhs(env,LP,1,&index,&r);
+	  qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));
+	}
+	
+    virtual double getRHS(qol::Constraint cnstr) const
+    { if(model) return model->getRHS(cnstr);
+	  double rhs; int lastErrorCode=CPXgetrhs(env,LP,&rhs,cnstr,cnstr);
+	  if(lastErrorCode) qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));
+	  return rhs; }
+
+	
+    ///<summary>
+    ///sets the name of a constraint (row)
+    ///</summary>
+    ///<param name="cnstr"> constraint (index) which name will be changed</param>
+    ///<param name="name">name of the constraint</param>
+    virtual void setConstrName (qol::Constraint cnstr, const std::string &name) {
+	  if(model){ model->setConstrName(cnstr,name); return;}
+      int idx = cnstr;
+      char *cnstrname;
+      cnstrname = const_cast<char*>(name.c_str());
+      lastErrorCode=CPXchgrowname(env, LP, 1, &idx, &cnstrname);
+	  qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));	  
+    }
+
+    ///<summary>
+    ///gets the name of a constraint (row)
+    ///</summary>
+    ///<param name="cnstr"> constraint (index) which name will be retrieved</param>
+    ///<return>Empty string if the name wasn't previously set. Otherwise, string with the name of the constraint</return>
+    virtual const std::string getConstrName (qol::Constraint cnstr) const {
+	  if(model) return model->getConstrName(cnstr);
+      std::string name;
+      int size;
+      int lastErrorCode=CPXgetrowname(env, LP, 0, 0, 0, &size, cnstr, cnstr);
+      if (size == 0) {
+        name.clear();
+        return name;
+      }
+	  //if(lastErrorCode) throw Exception(getErrorMessage(lastErrorCode));
+
+      size *= -1;
+      std::vector<char> buf(size);
+      char *cname;
+      int tmp;
+      lastErrorCode=CPXgetrowname(env, LP, &cname, &buf.front(), size,
+        &tmp, cnstr, cnstr);
+	  if(lastErrorCode) throw Exception(getErrorMessage(lastErrorCode));
+      name = cname;
+      return name;
+    }
+
+    virtual bool relaxedIsExact () {return false;}
+
+    /// write formulation out to file
+    /// cplex will write a range of file types which are infered from the filename
+    /// this includes .lp.gz or .lp.bz2 (compressed LP files), .mps/.lp files
+    /// and .rmp/.rlp (MPS or LP format with all names changed to generic names)
+	/// However if the model has not been loaded we use our own simple LP
+	/// writing routine.
+    virtual void writeLP(const char *filename)
+    { if(model) { model->writeLP(filename); return; }
+      lastErrorCode=CPXwriteprob(env,LP,filename,0); // always infer type from filename
+	  qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));
+    }
+
+    ///<summary>
+    ///Inspect solution. Gets the value of the current solution (this may be a
+    ///lower bound if only the relaxed problem has been solved)
+    ///</summary>
+    ///<return>Objective, double value </return>
+    virtual double getObjective() const
+    { qolAssert(isLoaded(),"problem not loaded in "
+			 "CplexFormulation::getObjective()");
+	  // can't get objective when model not loaded
+	  double obj; int lastErrorCode=CPXgetobjval(env,LP,&obj);
+	  if(lastErrorCode) throw Exception(getErrorMessage(lastErrorCode));
+	  return obj; }
+
+    ///<summary>
+    /// Return lower bound in case branch & bound hasn't finished
+    ///</summary>
+    ///<return>Lower bound, double</return>
+    virtual double getObjectiveBound() const
+    { qolAssert(isLoaded(),"problem not loaded in "
+				"CplexFormulation::getObjectiveBound()");
+	  double obj; int lastErrorCode=CPXgetbestobjval(env,LP,&obj);
+	  if(lastErrorCode) throw Exception(getErrorMessage(lastErrorCode));
+	  return obj; }
+	  
+	///<summary>
+	///  If the LP is unbounded there must be a direction in which the
+	///  objective keeps improving infinitely. This call gives one such
+	///  direction
+	///</summary>
+	///<return>Extremal ray, a vector of length nVar()</return>
+	virtual void getRay(DblVec &ray) const
+	{ ray.resize(nVar());int status = CPXgetray(env,LP,&ray[0]);
+		if(status) throw Exception(getErrorMessage(status)); }
+	/// get an extramal ray single value
+	/// Note: for CPLEX can only do this so better to get whole ray
+	virtual double getRay(const Variable &v) const
+	{ DblVec ray; getRay(ray); return ray[v]; } // crude implementation
+
+	  
+    ///<summary>
+    ///get the variable value.
+    ///</summary>
+    ///<param name="v"> varaible of which we want to know the value</param>
+    virtual double getPrimal(const Variable &v) const
+    { qolAssert(isLoaded(),
+				"problem not loaded in CplexFormulation::getPrimal()");
+		double x; int lastErrorCode=CPXgetx(env,LP,&x,v,v);
+		if(lastErrorCode) throw Exception(getErrorMessage(lastErrorCode));
+		return x;}
+
+    /// get the reduced cost of the variable (only after relaxed solve)
+    virtual double getDual(const Variable &v) const
+	{ const int probtype = CPXgetprobtype(env,LP);
+	  if(probtype == CPXPROB_MILP) return 0.0;
+	  double redCost; int lastErrorCode=CPXgetdj(env,LP,&redCost,v,v);
+	  if(lastErrorCode) throw Exception(getErrorMessage(lastErrorCode));	  
+	  return redCost; }
+
+    /// get the constraint activity level (row * solution_vec)
+    virtual double getPrimal(const Constraint &c) const
+    { double lhs; int lastErrorCode=CPXgetax(env,LP,&lhs,c,c);
+	  if(lastErrorCode) throw Exception(getErrorMessage(lastErrorCode));
+	  return lhs;}
+
+    /// get the dual value (only after relaxed solve)
+    virtual double getDual(const Constraint &c) const
+	{ const int probtype = CPXgetprobtype(env,LP);
+	  if(probtype == CPXPROB_MILP) return 0.0;
+	  double pi; int lastErrorCode=CPXgetpi(env,LP,&pi,c,c); 
+	  if(lastErrorCode) throw Exception(getErrorMessage(lastErrorCode));
+	  return pi; }
+
+    virtual double getTolerance () const
+    { int tol; int lastErrorCode=CPXgetintparam (env, CPX_PARAM_EPINT, &tol); 
+	  if(lastErrorCode) throw Exception(getErrorMessage(lastErrorCode));
+	  return tol;}
+
+    virtual void setTolerance (int tol) {
+	  lastErrorCode = CPXsetintparam (env, CPX_PARAM_EPINT, tol);
+	  qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));
+	}
+
+    // virtual void extractSolution (); // defined in MIPSolver
+
+    virtual void setParameters (qol::Parameters p);
+
+	//----------------------- callback related ------------------------
+	/// Install callback - there can only ever be one callback
+	/// (note in future we could allow multiple callbacks to be called
+	/// in sequence)
+	virtual void setCallback(Callback *cb);
+	/// add a global cut (or local cut if isGlobal=false)
+	virtual void addCut(const Row &row,bool isGlobal=true);
+	
+	// the following function should really be private but needs to be public
+	// based on the way the CPLEX callable library interface is organised
+	void setCplexCallbackInfo(void *data,int wherefrom)
+	{ callbackData = data; callbackWherefrom = wherefrom; }
+  protected:
+	int lastErrorCode;	  // error code form last call to CPLEX
+	//current values as passed to callback function by cplex
+	void *callbackData;			// as provided by CPLEX in callback
+	int callbackWherefrom; 		// what CPLEX is currently doing
+	virtual double getNodeBound() const
+	{ double obj;
+	  int lastErrorCode=CPXgetcallbackinfo(env,callbackData,callbackWherefrom,
+										CPX_CALLBACK_INFO_BEST_REMAINING,&obj);
+	  if(lastErrorCode) qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));	  
+	  return obj;
+	}
+	virtual double getNodeBest() const
+	{ double obj;
+	  int lastErrorCode=CPXgetcallbackinfo(env,callbackData,callbackWherefrom,
+										 CPX_CALLBACK_INFO_BEST_INTEGER,&obj);
+	  if(lastErrorCode) qolAssert(lastErrorCode==0,getErrorMessage(lastErrorCode));
+	  return obj;
+	}	
+
+  };
+}
+#endif   //_USE_CPLEX_
+
+#endif
+
+/* Stuff for emacs/xemacs to conform to the "Visual Studio formatting standard"
+ * Local Variables:
+ * tab-width: 4
+ * eval: (c-set-style "stroustrup")
+ * End:
+*/

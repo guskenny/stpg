@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <!-- macros make it easy to change for all configurations -->
+  <!-- all custom macros start with lower case (to distinguish them from Windows/VisualStudio built macros -->
+  <PropertyGroup Label="UserMacros">
+    <libDir>C:\libraries</libDir>
+    <boostDir>boost_1_59_0</boostDir>
+    <gurobiDir>gurobi650</gurobiDir>
+    <gurobiLib>gurobi65.lib</gurobiLib>
+    <cplexDir>CPLEX_Studio1262/cplex</cplexDir>
+    <cplexLibDir>CPLEX_Studio1262\cplex\lib\x64_windows_vs2012\stat_mdd</cplexLibDir>
+    <cplexLib>cplex1262.lib</cplexLib>
+    <mipSolvers>_USE_GUROBI_;_USE_COIN_;_USE_CPLEX_</mipSolvers>
+    <coinDir>OptimizationSuite-1.8.0</coinDir>
+    <coinLibDir>OptimizationSuite-1.8.0\MSVisualStudio\v10</coinLibDir>
+    <coinLib>libAlps.lib;libBcps.lib;libBlis.lib;libCbc.lib;libCbcSolver.lib;libCgl.lib;libClp.lib;libCoinUtils.lib;libDecomp.lib;libDylp.lib;libDylpStd.lib;libOSCommon.lib;libOSSolvers.lib;libOsi.lib;libOsiCbc.lib;libOsiClp.lib;libOsiDylp.lib;libOsiSym.lib;libOsiVol.lib;libSymphony.lib;libVol.lib;</coinLib>
+    <boostLib>libboost_atomic-vc110-mt-1_59.lib;libboost_chrono-vc110-mt-1_59.lib;libboost_context-vc110-mt-1_59.lib;libboost_coroutine-vc110-mt-1_59.lib;libboost_date_time-vc110-mt-1_59.lib;libboost_exception-vc110-mt-1_59.lib;libboost_filesystem-vc110-mt-1_59.lib;libboost_graph-vc110-mt-1_59.lib;libboost_iostreams-vc110-mt-1_59.lib;libboost_locale-vc110-mt-1_59.lib;libboost_log-vc110-mt-1_59.lib;libboost_log_setup-vc110-mt-1_59.lib;libboost_math_c99-vc110-mt-1_59.lib;libboost_math_c99f-vc110-mt-1_59.lib;libboost_math_c99l-vc110-mt-1_59.lib;libboost_math_tr1-vc110-mt-1_59.lib;libboost_math_tr1f-vc110-mt-1_59.lib;libboost_math_tr1l-vc110-mt-1_59.lib;libboost_prg_exec_monitor-vc110-mt-1_59.lib;libboost_program_options-vc110-mt-1_59.lib;libboost_random-vc110-mt-1_59.lib;libboost_regex-vc110-mt-1_59.lib;libboost_signals-vc110-mt-1_59.lib;libboost_system-vc110-mt-1_59.lib;libboost_test_exec_monitor-vc110-mt-1_59.lib;libboost_thread-vc110-mt-1_59.lib;libboost_timer-vc110-mt-1_59.lib;libboost_unit_test_framework-vc110-mt-1_59.lib;libboost_wave-vc110-mt-1_59.lib;</boostLib>
+    <libPath>$(libDir)\$(boostDir)\stage\lib;$(libDir)\$(cplexLibDir);$(libDir)\$(coinLibDir)\$(Platform)-$(PlatformToolset)-Release;$(libDir)\$(gurobiDir)\win64\lib;$(cplexDir)</libPath>
+  </PropertyGroup>
+  <!-- generic configuration properties -->
+  <PropertyGroup Label="Configuration">
+    <IncludePath>$(libDir)\$(boostDir);$(libDir)\$(cplexDir)\include;$(libDir)\$(coinDir)\include;$(libDir)\$(coinDir)\include\coin;$(libDir)\LMX-51\include;$(libDir)\$(boostDir);$(libDir)\$(gurobiDir)\win64\include;$(VCInstallDir)\include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <boostLib>libboost_atomic-vc110-mt-gd-1_59.lib;libboost_chrono-vc110-mt-gd-1_59.lib;libboost_context-vc110-mt-gd-1_59.lib;libboost_coroutine-vc110-mt-gd-1_59.lib;libboost_date_time-vc110-mt-gd-1_59.lib;libboost_exception-vc110-mt-gd-1_59.lib;libboost_filesystem-vc110-mt-gd-1_59.lib;libboost_graph-vc110-mt-gd-1_59.lib;libboost_iostreams-vc110-mt-gd-1_59.lib;libboost_locale-vc110-mt-gd-1_59.lib;libboost_log-vc110-mt-gd-1_59.lib;libboost_log_setup-vc110-mt-gd-1_59.lib;libboost_math_c99-vc110-mt-gd-1_59.lib;libboost_math_c99f-vc110-mt-gd-1_59.lib;libboost_math_c99l-vc110-mt-gd-1_59.lib;libboost_math_tr1-vc110-mt-gd-1_59.lib;libboost_math_tr1f-vc110-mt-gd-1_59.lib;libboost_math_tr1l-vc110-mt-gd-1_59.lib;libboost_prg_exec_monitor-vc110-mt-gd-1_59.lib;libboost_program_options-vc110-mt-gd-1_59.lib;libboost_random-vc110-mt-gd-1_59.lib;libboost_regex-vc110-mt-gd-1_59.lib;libboost_signals-vc110-mt-gd-1_59.lib;libboost_system-vc110-mt-gd-1_59.lib;libboost_test_exec_monitor-vc110-mt-gd-1_59.lib;libboost_thread-vc110-mt-gd-1_59.lib;libboost_timer-vc110-mt-gd-1_59.lib;libboost_unit_test_framework-vc110-mt-gd-1_59.lib;libboost_wave-vc110-mt-gd-1_59.lib;</boostLib>
+    <AdditionalDependencies>$(coinLib);$(boostLib);$(AdditionalDependencies)</AdditionalDependencies>
+    <LibraryPath>$(libPath);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <boostLib>libboost_atomic-vc110-mt-gd-1_59.lib;libboost_chrono-vc110-mt-gd-1_59.lib;libboost_context-vc110-mt-gd-1_59.lib;libboost_coroutine-vc110-mt-gd-1_59.lib;libboost_date_time-vc110-mt-gd-1_59.lib;libboost_exception-vc110-mt-gd-1_59.lib;libboost_filesystem-vc110-mt-gd-1_59.lib;libboost_graph-vc110-mt-gd-1_59.lib;libboost_iostreams-vc110-mt-gd-1_59.lib;libboost_locale-vc110-mt-gd-1_59.lib;libboost_log-vc110-mt-gd-1_59.lib;libboost_log_setup-vc110-mt-gd-1_59.lib;libboost_math_c99-vc110-mt-gd-1_59.lib;libboost_math_c99f-vc110-mt-gd-1_59.lib;libboost_math_c99l-vc110-mt-gd-1_59.lib;libboost_math_tr1-vc110-mt-gd-1_59.lib;libboost_math_tr1f-vc110-mt-gd-1_59.lib;libboost_math_tr1l-vc110-mt-gd-1_59.lib;libboost_prg_exec_monitor-vc110-mt-gd-1_59.lib;libboost_program_options-vc110-mt-gd-1_59.lib;libboost_random-vc110-mt-gd-1_59.lib;libboost_regex-vc110-mt-gd-1_59.lib;libboost_signals-vc110-mt-gd-1_59.lib;libboost_system-vc110-mt-gd-1_59.lib;libboost_test_exec_monitor-vc110-mt-gd-1_59.lib;libboost_thread-vc110-mt-gd-1_59.lib;libboost_timer-vc110-mt-gd-1_59.lib;libboost_unit_test_framework-vc110-mt-gd-1_59.lib;libboost_wave-vc110-mt-gd-1_59.lib;</boostLib>
+    <gurobiLib>$(gurobiLib);gurobi_c++mtd2013.lib</gurobiLib>
+    <AdditionalDependencies>$(coinLib);$(gurobiLib);$(AdditionalDependencies)</AdditionalDependencies>
+    <LibraryPath>$(libPath);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <boostLib>libboost_atomic-vc110-mt-1_59.lib;libboost_chrono-vc110-mt-1_59.lib;libboost_context-vc110-mt-1_59.lib;libboost_coroutine-vc110-mt-1_59.lib;libboost_date_time-vc110-mt-1_59.lib;libboost_exception-vc110-mt-1_59.lib;libboost_filesystem-vc110-mt-1_59.lib;libboost_graph-vc110-mt-1_59.lib;libboost_iostreams-vc110-mt-1_59.lib;libboost_locale-vc110-mt-1_59.lib;libboost_log-vc110-mt-1_59.lib;libboost_log_setup-vc110-mt-1_59.lib;libboost_math_c99-vc110-mt-1_59.lib;libboost_math_c99f-vc110-mt-1_59.lib;libboost_math_c99l-vc110-mt-1_59.lib;libboost_math_tr1-vc110-mt-1_59.lib;libboost_math_tr1f-vc110-mt-1_59.lib;libboost_math_tr1l-vc110-mt-1_59.lib;libboost_prg_exec_monitor-vc110-mt-1_59.lib;libboost_program_options-vc110-mt-1_59.lib;libboost_random-vc110-mt-1_59.lib;libboost_regex-vc110-mt-1_59.lib;libboost_signals-vc110-mt-1_59.lib;libboost_system-vc110-mt-1_59.lib;libboost_test_exec_monitor-vc110-mt-1_59.lib;libboost_thread-vc110-mt-1_59.lib;libboost_timer-vc110-mt-1_59.lib;libboost_unit_test_framework-vc110-mt-1_59.lib;libboost_wave-vc110-mt-1_59.lib;</boostLib>
+    <AdditionalDependencies>$(coinLib);$(AdditionalDependencies)</AdditionalDependencies>
+    <LibraryPath>$(libPath);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <boostLib>libboost_atomic-vc110-mt-1_59.lib;libboost_chrono-vc110-mt-1_59.lib;libboost_context-vc110-mt-1_59.lib;libboost_coroutine-vc110-mt-1_59.lib;libboost_date_time-vc110-mt-1_59.lib;libboost_exception-vc110-mt-1_59.lib;libboost_filesystem-vc110-mt-1_59.lib;libboost_graph-vc110-mt-1_59.lib;libboost_iostreams-vc110-mt-1_59.lib;libboost_locale-vc110-mt-1_59.lib;libboost_log-vc110-mt-1_59.lib;libboost_log_setup-vc110-mt-1_59.lib;libboost_math_c99-vc110-mt-1_59.lib;libboost_math_c99f-vc110-mt-1_59.lib;libboost_math_c99l-vc110-mt-1_59.lib;libboost_math_tr1-vc110-mt-1_59.lib;libboost_math_tr1f-vc110-mt-1_59.lib;libboost_math_tr1l-vc110-mt-1_59.lib;libboost_prg_exec_monitor-vc110-mt-1_59.lib;libboost_program_options-vc110-mt-1_59.lib;libboost_random-vc110-mt-1_59.lib;libboost_regex-vc110-mt-1_59.lib;libboost_signals-vc110-mt-1_59.lib;libboost_system-vc110-mt-1_59.lib;libboost_test_exec_monitor-vc110-mt-1_59.lib;libboost_thread-vc110-mt-1_59.lib;libboost_timer-vc110-mt-1_59.lib;libboost_unit_test_framework-vc110-mt-1_59.lib;libboost_wave-vc110-mt-1_59.lib;</boostLib>
+    <AdditionalDependencies>$(coinLib);$(gurobiLib);gurobi_c++mt2013.lib;$(AdditionalDependencies)</AdditionalDependencies>
+    <LibraryPath>$(libPath);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <Link>
+    </Link>
+    <ClCompile>
+      <PreprocessorDefinitions>$(mipSolvers);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="libDir">
+      <Value>$(libDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="boostDir">
+      <Value>$(boostDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="gurobiDir">
+      <Value>$(gurobiDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="gurobiLib">
+      <Value>$(gurobiLib)</Value>
+    </BuildMacro>
+    <BuildMacro Include="cplexDir">
+      <Value>$(cplexDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="cplexLib">
+      <Value>$(cplexLib)</Value>
+    </BuildMacro>
+    <BuildMacro Include="cplexLibDir">
+      <Value>$(cplexLib)</Value>
+    </BuildMacro>
+    <BuildMacro Include="coinDir">
+      <Value>$(coinDir)</Value>
+    </BuildMacro>
+	<BuildMacro Include="coinLib">
+      <Value>$(coinLib)</Value>
+    </BuildMacro>
+    <BuildMacro Include="coinLibDir">
+      <Value>$(coinLibDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="libPath">
+      <Value>$(libPath)</Value>
+    </BuildMacro>
+    <BuildMacro Include="mipSolvers">
+      <Value>$(mipSolvers)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

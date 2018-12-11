@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <!-- macros make it easy to change for all configurations -->
+  <!-- all custom macros start with lower case (to distinguish them from Windows/VisualStudio built macros -->
+  <PropertyGroup Label="UserMacros">
+    <libDir>E:\Libraries</libDir>
+    <boostDir>boost_1_55_0\boost_1_55_0</boostDir>
+    <gurobiDir>gurobi602</gurobiDir>
+    <gurobiLib>gurobi60.lib</gurobiLib>
+	<cplexLib></cplexLib>
+    <cplexDir></cplexDir>
+    <coinDir>coinOsivc120\coinAll-1.6.0</coinDir>
+    <coinLibDir>Vs2013coinLibs</coinLibDir>
+	<coinLib>libAlps.lib;libBcps.lib;libBlis.lib;libCbc.lib;libCbcSolver.lib;libCgl.lib;libClp.lib;libCoinUtil.lib;libDecomp.lib;libDylp.lib;libDylpStd.lib;libOsi.lib;libOsiCbc.lib;libOsiClp.lib;libOsiDylp.lib;libOsiGrb.lib;libOsiSym.lib;libOsiVol.lib;libSymphony.lib;libVol.lib</coinLib>
+	<boostLib>libboost_atomic-vc120-mt-1_55.lib;libboost_chrono-vc120-mt-1_55.lib;libboost_context-vc120-mt-1_55.lib;libboost_coroutine-vc120-mt-1_55.lib;libboost_date_time-vc120-mt-1_55.lib;libboost_exception-vc120-mt-1_55.lib;libboost_filesystem-vc120-mt-1_55.lib;libboost_graph-vc120-mt-1_55.lib;libboost_iostreams-vc120-mt-1_55.lib;libboost_locale-vc120-mt-1_55.lib;libboost_log-vc120-mt-1_55.lib;libboost_log_setup-vc120-mt-1_55.lib;libboost_math_c99-vc120-mt-1_55.lib;libboost_math_c99f-vc120-mt-1_55.lib;libboost_math_c99l-vc120-mt-1_55.lib;libboost_math_tr1-vc120-mt-1_55.lib;libboost_math_tr1f-vc120-mt-1_55.lib;libboost_math_tr1l-vc120-mt-1_55.lib;libboost_prg_exec_monitor-vc120-mt-1_55.lib;libboost_program_options-vc120-mt-1_55.lib;libboost_random-vc120-mt-1_55.lib;libboost_regex-vc120-mt-1_55.lib;libboost_signals-vc120-mt-1_55.lib;libboost_system-vc120-mt-1_55.lib;libboost_test_exec_monitor-vc120-mt-1_55.lib;libboost_thread-vc120-mt-1_55.lib;libboost_timer-vc120-mt-1_55.lib;libboost_unit_test_framework-vc120-mt-1_55.lib;libboost_wave-vc120-mt-1_55.lib;</boostLib>
+	<libPath>$(libDir)\$(boostDir)\stage\lib;$(libDir)\$(coinLibDir)\$(Platform)\$(Configuaration)$(PlatformArchitecture);$(libDir)\$(gurobiDir)\win64\lib;$(cplexDir)</libPath>
+  </PropertyGroup>  
+  <!-- generic configuration properties -->
+  <PropertyGroup Label="Configuration">
+    <IncludePath>$(libDir)\$(boostDir);$(libDir)\$(coinDir)\include;$(libDir)\LMX-51\include;$(libDir)\$(boost);$(libDir)\$(gurobiDir)\win64\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+	<boostLib>libboost_atomic-vc120-mt-gd-1_55.lib;libboost_chrono-vc120-mt-gd-1_55.lib;libboost_context-vc120-mt-gd-1_55.lib;libboost_coroutine-vc120-mt-gd-1_55.lib;libboost_date_time-vc120-mt-gd-1_55.lib;libboost_exception-vc120-mt-gd-1_55.lib;libboost_filesystem-vc120-mt-gd-1_55.lib;libboost_graph-vc120-mt-gd-1_55.lib;libboost_iostreams-vc120-mt-gd-1_55.lib;libboost_locale-vc120-mt-gd-1_55.lib;libboost_log-vc120-mt-gd-1_55.lib;libboost_log_setup-vc120-mt-gd-1_55.lib;libboost_math_c99-vc120-mt-gd-1_55.lib;libboost_math_c99f-vc120-mt-gd-1_55.lib;libboost_math_c99l-vc120-mt-gd-1_55.lib;libboost_math_tr1-vc120-mt-gd-1_55.lib;libboost_math_tr1f-vc120-mt-gd-1_55.lib;libboost_math_tr1l-vc120-mt-gd-1_55.lib;libboost_prg_exec_monitor-vc120-mt-gd-1_55.lib;libboost_program_options-vc120-mt-gd-1_55.lib;libboost_random-vc120-mt-gd-1_55.lib;libboost_regex-vc120-mt-gd-1_55.lib;libboost_signals-vc120-mt-gd-1_55.lib;libboost_system-vc120-mt-gd-1_55.lib;libboost_test_exec_monitor-vc120-mt-gd-1_55.lib;libboost_thread-vc120-mt-gd-1_55.lib;libboost_timer-vc120-mt-gd-1_55.lib;libboost_unit_test_framework-vc120-mt-gd-1_55.lib;libboost_wave-vc120-mt-gd-1_55.lib;</boostLib>
+	<AdditionalDependencies>$(boostLib);$(AdditionalDependencies)</AdditionalDependencies>
+	<LibraryPath>$(libPath);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+	<boostLib>libboost_atomic-vc120-mt-gd-1_55.lib;libboost_chrono-vc120-mt-gd-1_55.lib;libboost_context-vc120-mt-gd-1_55.lib;libboost_coroutine-vc120-mt-gd-1_55.lib;libboost_date_time-vc120-mt-gd-1_55.lib;libboost_exception-vc120-mt-gd-1_55.lib;libboost_filesystem-vc120-mt-gd-1_55.lib;libboost_graph-vc120-mt-gd-1_55.lib;libboost_iostreams-vc120-mt-gd-1_55.lib;libboost_locale-vc120-mt-gd-1_55.lib;libboost_log-vc120-mt-gd-1_55.lib;libboost_log_setup-vc120-mt-gd-1_55.lib;libboost_math_c99-vc120-mt-gd-1_55.lib;libboost_math_c99f-vc120-mt-gd-1_55.lib;libboost_math_c99l-vc120-mt-gd-1_55.lib;libboost_math_tr1-vc120-mt-gd-1_55.lib;libboost_math_tr1f-vc120-mt-gd-1_55.lib;libboost_math_tr1l-vc120-mt-gd-1_55.lib;libboost_prg_exec_monitor-vc120-mt-gd-1_55.lib;libboost_program_options-vc120-mt-gd-1_55.lib;libboost_random-vc120-mt-gd-1_55.lib;libboost_regex-vc120-mt-gd-1_55.lib;libboost_signals-vc120-mt-gd-1_55.lib;libboost_system-vc120-mt-gd-1_55.lib;libboost_test_exec_monitor-vc120-mt-gd-1_55.lib;libboost_thread-vc120-mt-gd-1_55.lib;libboost_timer-vc120-mt-gd-1_55.lib;libboost_unit_test_framework-vc120-mt-gd-1_55.lib;libboost_wave-vc120-mt-gd-1_55.lib;</boostLib>
+	<gurobiLib>$(gurobiLib);gurobi_c++mtd2013.lib</gurobiLib>
+    <AdditionalDependencies>libCbc-d.lib;libOsi-d.lib;libClp-d.lib;libCgl-d.lib;$(gurobiLib);$(AdditionalDependencies)</AdditionalDependencies>
+	<LibraryPath>$(libPath);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+	<boostLib>libboost_atomic-vc120-mt-1_55.lib;libboost_chrono-vc120-mt-1_55.lib;libboost_context-vc120-mt-1_55.lib;libboost_coroutine-vc120-mt-1_55.lib;libboost_date_time-vc120-mt-1_55.lib;libboost_exception-vc120-mt-1_55.lib;libboost_filesystem-vc120-mt-1_55.lib;libboost_graph-vc120-mt-1_55.lib;libboost_iostreams-vc120-mt-1_55.lib;libboost_locale-vc120-mt-1_55.lib;libboost_log-vc120-mt-1_55.lib;libboost_log_setup-vc120-mt-1_55.lib;libboost_math_c99-vc120-mt-1_55.lib;libboost_math_c99f-vc120-mt-1_55.lib;libboost_math_c99l-vc120-mt-1_55.lib;libboost_math_tr1-vc120-mt-1_55.lib;libboost_math_tr1f-vc120-mt-1_55.lib;libboost_math_tr1l-vc120-mt-1_55.lib;libboost_prg_exec_monitor-vc120-mt-1_55.lib;libboost_program_options-vc120-mt-1_55.lib;libboost_random-vc120-mt-1_55.lib;libboost_regex-vc120-mt-1_55.lib;libboost_signals-vc120-mt-1_55.lib;libboost_system-vc120-mt-1_55.lib;libboost_test_exec_monitor-vc120-mt-1_55.lib;libboost_thread-vc120-mt-1_55.lib;libboost_timer-vc120-mt-1_55.lib;libboost_unit_test_framework-vc120-mt-1_55.lib;libboost_wave-vc120-mt-1_55.lib;</boostLib>
+    <AdditionalDependencies>libCbc.lib;libOsi.lib;libClp.lib;libCgl.lib;$(AdditionalDependencies)</AdditionalDependencies>
+	<LibraryPath>$(libPath);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+	<boostLib>libboost_atomic-vc120-mt-1_55.lib;libboost_chrono-vc120-mt-1_55.lib;libboost_context-vc120-mt-1_55.lib;libboost_coroutine-vc120-mt-1_55.lib;libboost_date_time-vc120-mt-1_55.lib;libboost_exception-vc120-mt-1_55.lib;libboost_filesystem-vc120-mt-1_55.lib;libboost_graph-vc120-mt-1_55.lib;libboost_iostreams-vc120-mt-1_55.lib;libboost_locale-vc120-mt-1_55.lib;libboost_log-vc120-mt-1_55.lib;libboost_log_setup-vc120-mt-1_55.lib;libboost_math_c99-vc120-mt-1_55.lib;libboost_math_c99f-vc120-mt-1_55.lib;libboost_math_c99l-vc120-mt-1_55.lib;libboost_math_tr1-vc120-mt-1_55.lib;libboost_math_tr1f-vc120-mt-1_55.lib;libboost_math_tr1l-vc120-mt-1_55.lib;libboost_prg_exec_monitor-vc120-mt-1_55.lib;libboost_program_options-vc120-mt-1_55.lib;libboost_random-vc120-mt-1_55.lib;libboost_regex-vc120-mt-1_55.lib;libboost_signals-vc120-mt-1_55.lib;libboost_system-vc120-mt-1_55.lib;libboost_test_exec_monitor-vc120-mt-1_55.lib;libboost_thread-vc120-mt-1_55.lib;libboost_timer-vc120-mt-1_55.lib;libboost_unit_test_framework-vc120-mt-1_55.lib;libboost_wave-vc120-mt-1_55.lib;</boostLib>
+    <AdditionalDependencies>libCbc.lib;libOsi.lib;libClp.lib;libCgl.lib;$(gurobiLib);gurobi_c++mt2013.lib;$(AdditionalDependencies)</AdditionalDependencies>
+	<LibraryPath>$(libPath);$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalDependencies>QOL.lib;$(ProjectDir)..\LMX-51\supporting-software\win32\LMX-$(Configuration)-$(PlatformToolset)$(PlatformTarget).lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="libDir"><Value>$(libDir)</Value></BuildMacro>
+    <BuildMacro Include="boostDir"><Value>$(boostDir)</Value></BuildMacro>
+    <BuildMacro Include="gurobiDir"><Value>$(gurobiDir)</Value></BuildMacro>
+    <BuildMacro Include="gurobiLib"><Value>$(gurobiLib)</Value></BuildMacro>
+    <BuildMacro Include="cplexDir"><Value>$(cplexDir)</Value></BuildMacro>
+    <BuildMacro Include="cplexLib"><Value>$(cplexLib)</Value></BuildMacro>
+    <BuildMacro Include="coinDir"><Value>$(coinDir)</Value></BuildMacro>
+    <BuildMacro Include="coinLibDir"><Value>$(coinLibDir)</Value></BuildMacro>
+    <BuildMacro Include="libPath"><Value>$(libPath)</Value></BuildMacro> 	
+  </ItemGroup>
+</Project>

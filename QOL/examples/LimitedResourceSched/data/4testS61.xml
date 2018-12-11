@@ -1,0 +1,84 @@
+<!-- Random generated input file for Scheduler -->
+<schedule_input>
+    <machines max_power="40">
+        <machine mach_id="1">
+            <jobs>
+                <job job_id="J1" release_date="0" processing_time="9" due_date="23" power="12" weight="0.12798140003500205" />
+                <job job_id="J2" release_date="0" processing_time="3" due_date="53" power="9" weight="0.9896281547861654" />
+                <job job_id="J3" release_date="8" processing_time="8" due_date="55" power="18" weight="0.7273639044352096" />
+                <job job_id="J4" release_date="0" processing_time="8" due_date="43" power="14" weight="0.13331481887246918" />
+                <job job_id="J5" release_date="7" processing_time="2" due_date="30" power="19" weight="0.5870786897664897" />
+                <job job_id="J6" release_date="0" processing_time="1" due_date="1" power="11" weight="0.2889853740132139" />
+                <job job_id="J7" release_date="9" processing_time="3" due_date="39" power="7" weight="0.4998124575776313" />
+                <job job_id="J8" release_date="3" processing_time="9" due_date="64" power="4" weight="0.30439170754417155" />
+                <job job_id="J9" release_date="7" processing_time="7" due_date="51" power="10" weight="3.2961906128125005" />
+                <job job_id="J10" release_date="1" processing_time="9" due_date="14" power="10" weight="0.8561558824535087" />
+                <job job_id="J11" release_date="6" processing_time="2" due_date="20" power="7" weight="1.3341158312048276" />
+                <job job_id="J12" release_date="8" processing_time="2" due_date="41" power="16" weight="0.5912493132060085" />
+            </jobs>
+        </machine>
+        <machine mach_id="2">
+            <jobs>
+                <job job_id="J13" release_date="0" processing_time="6" due_date="28" power="1" weight="1.9627905611617842" />
+                <job job_id="J14" release_date="11" processing_time="5" due_date="32" power="9" weight="0.761864317047515" />
+                <job job_id="J15" release_date="4" processing_time="1" due_date="23" power="5" weight="2.775863490881651" />
+                <job job_id="J16" release_date="0" processing_time="2" due_date="22" power="15" weight="0.788663265102867" />
+                <job job_id="J17" release_date="0" processing_time="6" due_date="7" power="20" weight="1.6111888512968493" />
+                <job job_id="J18" release_date="0" processing_time="1" due_date="4" power="7" weight="0.040859201847692955" />
+                <job job_id="J19" release_date="3" processing_time="10" due_date="33" power="3" weight="0.5747599613690234" />
+                <job job_id="J20" release_date="0" processing_time="2" due_date="15" power="9" weight="0.9164418230636362" />
+                <job job_id="J21" release_date="0" processing_time="1" due_date="9" power="16" weight="0.06013117605658689" />
+            </jobs>
+        </machine>
+        <machine mach_id="3">
+            <jobs>
+                <job job_id="J22" release_date="11" processing_time="8" due_date="84" power="10" weight="1.385082374611747" />
+                <job job_id="J23" release_date="13" processing_time="7" due_date="66" power="16" weight="1.9523275924951622" />
+                <job job_id="J24" release_date="15" processing_time="3" due_date="27" power="20" weight="5.158674382566868" />
+                <job job_id="J25" release_date="0" processing_time="6" due_date="64" power="19" weight="0.7269725848426324" />
+                <job job_id="J26" release_date="2" processing_time="9" due_date="63" power="3" weight="0.9837899064724533" />
+                <job job_id="J27" release_date="3" processing_time="4" due_date="86" power="5" weight="0.04089007330431566" />
+                <job job_id="J28" release_date="0" processing_time="10" due_date="37" power="4" weight="0.9053004968806577" />
+                <job job_id="J29" release_date="0" processing_time="1" due_date="31" power="11" weight="0.16989240323092397" />
+                <job job_id="J30" release_date="0" processing_time="9" due_date="54" power="12" weight="1.3237562621504988" />
+                <job job_id="J31" release_date="4" processing_time="9" due_date="51" power="1" weight="0.9456840351617677" />
+                <job job_id="J32" release_date="7" processing_time="2" due_date="42" power="6" weight="1.2202225515854177" />
+                <job job_id="J33" release_date="4" processing_time="4" due_date="73" power="13" weight="2.0854272872011017" />
+                <job job_id="J34" release_date="12" processing_time="10" due_date="40" power="20" weight="0.0985520724478846" />
+                <job job_id="J35" release_date="0" processing_time="7" due_date="81" power="2" weight="0.4916002918945166" />
+            </jobs>
+        </machine>
+        <machine mach_id="4">
+            <jobs>
+                <job job_id="J36" release_date="9" processing_time="8" due_date="24" power="5" weight="0.27985454775097673" />
+                <job job_id="J37" release_date="0" processing_time="6" due_date="8" power="11" weight="0.0607882553146526" />
+                <job job_id="J38" release_date="11" processing_time="2" due_date="44" power="6" weight="0.6561490902429673" />
+                <job job_id="J39" release_date="0" processing_time="4" due_date="16" power="13" weight="0.1577505085235292" />
+                <job job_id="J40" release_date="2" processing_time="6" due_date="24" power="16" weight="1.035738821300751" />
+                <job job_id="J41" release_date="0" processing_time="2" due_date="6" power="6" weight="0.5449015905437716" />
+                <job job_id="J42" release_date="0" processing_time="2" due_date="15" power="13" weight="0.5102860040474964" />
+                <job job_id="J43" release_date="11" processing_time="1" due_date="18" power="5" weight="0.5432926407964083" />
+                <job job_id="J44" release_date="5" processing_time="2" due_date="8" power="4" weight="1.5951741156319625" />
+            </jobs>
+        </machine>
+    </machines>
+    <dependancies>
+        <dep job="J4" dep_on="J8" />
+        <dep job="J8" dep_on="J2" />
+        <dep job="J9" dep_on="J4" />
+        <dep job="J11" dep_on="J1" />
+        <dep job="J12" dep_on="J2" />
+        <dep job="J12" dep_on="J5" />
+        <dep job="J21" dep_on="J19" />
+        <dep job="J22" dep_on="J25" />
+        <dep job="J27" dep_on="J30" />
+        <dep job="J31" dep_on="J23" />
+        <dep job="J34" dep_on="J25" />
+        <dep job="J36" dep_on="J41" />
+        <dep job="J38" dep_on="J36" />
+        <dep job="J41" dep_on="J39" />
+        <dep job="J41" dep_on="J40" />
+        <dep job="J42" dep_on="J36" />
+        <dep job="J42" dep_on="J37" />
+    </dependancies>
+</schedule_input>

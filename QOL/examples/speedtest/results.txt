@@ -1,0 +1,70 @@
+######################## CPLEX Concert ######################################
+zorg|examples/speedtest> qolTest 1000 C
+Testing with CPLEX Concert (native) ============================================
+Created 1000000 variables in 8.0165 sec (CPU) 8 wall-time
+Created 2000000 constraints in 4.7563 sec (CPU) 5 sec wall-time
+Extracted model with 1000001 vars & 20000 rows into cplex in 4.08826 sec (CPU) 5 sec wall-time
+Total time: 16.8611 sec (CPU) 18 sec wall-time
+
+
+######################## QOL Cplex ######################################
+zorg|examples/speedtest> qolTest 1000 c
+Testing with CPLEX ============================================
+Created 1000000 variables in 22.4894 sec (CPU) 23 wall-time
+Created 20000 constraints in 72.9366 sec (CPU) 73 sec wall-time
+Total time: 95.426 sec (CPU) 96 sec wall-time
+
+Testing with Qol Column Formulation ============================================
+Created 1000000 variables in 6.69642 sec (CPU) 7 wall-time
+Created 20000 constraints in 67.4122 sec (CPU) 68 sec wall-time
+Total time: 74.1086 sec (CPU) 75 sec wall-time
+Loaded into CPLEX from QOL in 1.08007 sec (CPU) 1 sec wall-time
+
+
+Changing to allow CoeffIdxPairs to be used like expressions:
+Testing with Qol Column Formulation ============================================
+Created 1000000 variables in 7.14045 sec (CPU) 7 wall-time
+Created 20000 constraints in 7.9285 sec (CPU) 9 sec wall-time
+Total time: 15.0689 sec (CPU) 16 sec wall-time
+Loaded into CPLEX from QOL in 1.12007 sec (CPU) 1 sec wall-time
+Wrote ccc.lp in 9.22058 sec (CPU) 13 sec wall-time
+
+#########################################################################
+version that stores everything in QolColFormulation first
+leeloo|examples/speedtest> qolTest 1000 C c G g
+Testing with CPLEX Concert (native) =======================================
+Created 1000000 variables in 3.75623 sec (CPU) 4 wall-time
+1000    simple sum constraints in 0.48803 CPU sec
+1000    coeff. sum constraints in 2.89218 CPU sec
+10      expr. sum constraints in 0.64804 CPU sec
+Created 2000000 constraints in 4.02825 sec (CPU) 5 sec wall-time
+Extracted model with 1000001 vars & 20010 rows into cplex
+Loaded in 5.37234 sec (CPU) 5 sec wall 9.40059 total CPU
+Wrote xxx.lp in 20.1093 sec (CPU) 26 sec wall-time
+Total time: 33.2701 sec (CPU) 40 sec wall-time
+Testing with CPLEX ============================================
+Created 1000000 variables in 2.78417 sec (CPU) 3 wall-time
+1000    simple sum constraints in 1.13607 CPU sec
+1000    coeff. sum constraints in 2.42415 CPU sec
+10      expression sum constraints in 0.176011 CPU sec
+Created 20010 constraints in 3.73623 sec (CPU) 4 sec wall-time
+Loaded in 0.896056 sec (CPU) 1 sec wall 4.63229 total CPU
+Wrote xxx.lp in 6.76442 sec (CPU) 10 sec wall-time
+Total time: 14.1849 sec (CPU) 18 sec wall-time
+Testing with Gurobi (native) ============================================
+Created 1000000 variables in 27.4417 sec (CPU) 28 wall-time
+1000    simple sum constraints in 2.51616 CPU sec
+1000    coeff. sum constraints in 5.04432 CPU sec
+10      expr. sum constraints in 6.08438 CPU sec
+Created 20010 constraints in 13.6449 sec (CPU) 14 sec wall-time
+Wrote GGG.lp in 43.5747 sec (CPU) 76 sec wall-time
+Total time: 84.6613 sec (CPU) 118 sec wall-time
+Testing with Gurobi ============================================
+Created 1000000 variables in 2.80017 sec (CPU) 3 wall-time
+1000    simple sum constraints in 1.13207 CPU sec
+1000    coeff. sum constraints in 2.42815 CPU sec
+10      expression sum constraints in 0.176011 CPU sec
+Created 20010 constraints in 3.73623 sec (CPU) 4 sec wall-time
+Loaded in 1.12807 sec (CPU) 2 sec wall 4.8643 total CPU
+Wrote xxx.lp in 28.5018 sec (CPU) 50 sec wall-time
+Total time: 36.1663 sec (CPU) 59 sec wall-time

@@ -1,0 +1,158 @@
+#ifndef __QOL_COLFORMULATION_H__
+#define __QOL_COLFORMULATION_H__
+
+#include "QolMIPInstance.h"
+#include <iostream>
+#include <limits>
+
+namespace qol {
+
+    //###
+	//### TODO: move the actual data like collb, rhs, etc into this class rather than qol::MIP
+	//###
+
+  /// QolColFormulation stores data in columns (no solver)
+  class QolColFormulation : public qol::MIPInstance {
+  public:
+    virtual Index nVar() const {return coltype.size();}
+
+    virtual Index nConstr() const {return rhs.size();}
+
+    void setNumVar(Index n){ ///< resize to given number of variables
+      collb.resize(n,0.0);
+      colub.resize(n,1.0);
+      coltype.resize(n,qol::Variable::BINARY);
+      colname.resize(n);
+      //rowname.resize(n);
+      cost.resize(n,0.0);
+      matrix.resize(n);
+    }
+
+    virtual void setObjCoeff(qol::Variable v,double obj) {
+      cost[int(v)] = obj; }
+
+    virtual double getObjCoeff(qol::Variable v) const {
+      return cost[int(v)]; }
+
+    virtual void setVarUB(qol::Variable v,double ub) {
+      colub[int(v)] = ub; }
+
+    virtual double getVarUB(qol::Variable v) const {
+      return colub[int(v)]; }
+
+    virtual void setVarLB(qol::Variable v,double lb) {
+      collb[int(v)] = lb; }
+
+    virtual double getVarLB(qol::Variable v) const {
+      return collb[int(v)]; }
+
+    virtual void setVarType(qol::Variable v,char type) {
+      qolAssert(type==qol::Variable::CONTINUOUS ||
+				type==qol::Variable::BINARY ||
+				type==qol::Variable::INTEGER,
+				"Invalid variable type " << type << " for variable " << v);
+      coltype[int(v)] = type;
+    }
+
+    virtual char getVarType(qol::Variable v) const {
+      return coltype[int(v)]; }
+
+    virtual void setVarName(qol::Variable v,const std::string &name) {
+      colname[int(v)] = name; }
+
+    virtual const std::string getVarName(qol::Variable v) const {
+      return colname[int(v)]; }
+
+    // constraint modification
+    virtual ConstraintMIP addConstraint(const Row &row) {
+      Index row_index = rhs.size();
+      for (Index index = 0; index<row.lhs.size(); ++index) {
+        if (fabs(row.lhs[index].first) <= eps) continue;
+        matrix[row.lhs[index].second].push_back (CoeffIdxPair (row.lhs[index].first, row_index));
+      }
+      sense.push_back (row.op);
+      rhs.push_back (row.rhs);
+	  rowname.push_back("");
+      return getConstr (row_index);
+    }
+
+    virtual void setSense(qol::Constraint cnstr,char s) {
+      qolAssert(s==qol::Constraint::LE ||
+				s==qol::Constraint::EQ ||
+				s==qol::Constraint::GE,"Invalid constraint sense " << s);
+      sense[int(cnstr)] = s;
+    }
+
+    virtual char getSense(qol::Constraint cnstr) const {
+      return sense[int(cnstr)]; }
+
+    virtual void setRHS(qol::Constraint cnstr,double r) {
+      rhs[int(cnstr)] = r; }
+
+    virtual double getRHS(qol::Constraint cnstr) const {
+      return rhs[int(cnstr)]; }
+
+    virtual void setConstrName (qol::Constraint cnstr,const std::string &name) {
+      rowname[int(cnstr)] = name;}
+
+    virtual const std::string getConstrName(qol::Constraint cnstr) const
+    { return rowname[int(cnstr)];}
+
+    /// write formulation out to file
+    // virtual void writeLP(const char *filename);
+
+    virtual double getObjectiveBound () const {return 0.0;}
+
+	virtual void load(const QolColFormulation *mip) { *this = *mip; }
+	// Extract the column formulation and store it into the given location or 
+	// return it as a new formulation object (that must be deleted by the caller
+	virtual QolColFormulation *extractColFormulation(QolColFormulation *mip=0)
+	{
+		if (!mip) mip = new QolColFormulation(*this);
+		else *mip = *this;
+		return mip;
+	}
+  }; // end QolColFormulation
+
+
+  // Like QolColFormulation but also store transpose of coefficients
+  // ie rowMatrix gives non-zero entries for each row
+  class RowColFormulation : public QolColFormulation {
+  public:// could be protected but (column) matrix is public too
+	  std::vector<std::vector<CoeffIdxPair> > rowMatrix; // for each row the columns and non-zeros	  
+	  
+	  // only override things that need to update the rowMatrix
+	  // constraint modification
+	  virtual ConstraintMIP addConstraint(const Row &row) {
+		  rowMatrix.emplace_back(row.lhs); // add the constraint to the end;
+		  return QolColFormulation::addConstraint(row);
+	  } 
+	  virtual void load(const QolColFormulation *mip=0) { 
+		  if(mip)
+			QolColFormulation::load(mip);
+		  rowMatrix.resize(nConstr());
+		  for (Index i = 0; i < nConstr(); ++i) rowMatrix[i].clear();
+		  for (Index v = 0; v < nVar(); ++v) {
+			  for (Index c = 0; c < matrix[v].size(); ++c)
+				  rowMatrix[matrix[v][c].second].push_back(CoeffIdxPair(matrix[v][c].first, v));
+		  }
+	  }
+	  // Extract the column formulation and store it into the given location or 
+	  // return it as a new formulation object (that must be deleted by the caller
+	  virtual QolColFormulation *extractColFormulation(QolColFormulation *mip = 0)
+	  {
+		  if (!mip) mip = new QolColFormulation(*this);
+		  else *mip = *this;
+		  return mip;
+	  }
+
+  };
+}
+#endif
+
+/* Stuff for emacs/xemacs to conform to the "Visual Studio formatting standard"
+ * Local Variables:
+ * tab-width: 4
+ * eval: (c-set-style "stroustrup")
+ * End:
+*/

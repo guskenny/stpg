@@ -1,0 +1,105 @@
+#include "QolMIP.h"
+#include <cstdio>
+
+namespace qol {
+  //namespace MIP {
+  /*Variable::Variable (MIP *m) : qol::Variable(m->addVar()), model(m) {}
+  Variable::Variable(MIP *m,qol::Variable v) : qol::Variable(v), model(m) {}
+
+  Variable &Variable::operator <=(double ub) 
+  { model->setVarUB(*this,ub); return *this; }
+  Variable &Variable::operator >=(double lb)
+  { model->setVarLB(*this,lb); return *this; }	
+  Variable &Variable::operator ==(double fix) ///< fix variable (set lower & upper bnd)
+  { model->setVarUB(*this,fix); model->setVarLB(*this,fix); return *this;}
+  Variable &Variable::operator <=(int ub)
+  { model->setVarUB(*this,ub); return *this; }
+  Variable &Variable::operator >=(int lb)
+  { model->setVarLB(*this,lb); return *this; }	
+  Variable &Variable::operator ==(int fix) ///< fix variable (set lower & upper bnd)
+  { model->setVarUB(*this,fix); model->setVarLB(*this,fix); return *this;}
+
+  void Variable::setObjCoeff(double cost) 
+  { model->setObjCoeff(*this,cost); }
+
+  double Variable::getObjCoeff() const { return model->getObjCoeff(*this); }
+
+  void Variable::setName(const char *fmt,...)
+  { // like printf
+  char buffer[1028];
+  va_list args;
+  va_start(args,fmt);
+  vsprintf(buffer,fmt,args);
+  va_end(args);
+  model->setVarName (*this, std::string (buffer));
+  }
+
+  void Variable::setName(const std::string &name) {
+  model->setVarName (*this, name);
+  }
+
+  const std::string Variable::getName() const {
+  return (model->getVarName (*this));
+  }
+
+  void Variable::setType(char type) { model->setVarType(*this,type); }
+
+  char Variable::getType() const { return model->getVarType(*this); }
+
+  /// make variable integer (default binary)
+  void Variable::setInteger() 
+  { setType(qol::Variable::INTEGER); }
+
+  /// makes binary & changes bounds to 0/1
+  void Variable::setBinary() 
+  { 0.0 <= *this; *this <= 1.0; setType(qol::Variable::BINARY); }
+
+  /// make variable continuous (default binary)
+  void Variable::setContinuous() { setType(qol::Variable::CONTINUOUS); }
+
+  // solution query methods
+  /// solution value of variable (0 if unsolved)
+  double Variable::primal() const 
+  { return model->getPrimal(*this); }
+
+  /// reduced cost of variable (0 if unsolved)
+  double Variable::dual() const 
+  { return model->getDual(*this); }
+
+  */
+
+  ConstraintMIP::ConstraintMIP(MIP *m,qol::Constraint c) : qol::Constraint(c),model(m) {}
+
+  void ConstraintMIP::setName(const char *fmt,...) { ///< like printf
+    char buffer[1028];
+    va_list args;
+    va_start(args,fmt);
+    vsprintf(buffer,fmt,args);
+    va_end(args);
+    model->setConstrName (*this, std::string (buffer));
+  }
+
+  void ConstraintMIP::setName(const std::string &name) {
+    model->setConstrName(*this,name); }
+
+  std::string ConstraintMIP::getName() const { 
+    return model->getConstrName(*this); }
+
+  double ConstraintMIP::getRHS() const {
+    return model->getRHS(*this); }
+  void ConstraintMIP::setRHS(double rhs)  {
+	  return model->setRHS(*this,rhs); }
+
+  char ConstraintMIP::getSense() const {
+    return model->getSense(*this); }
+
+  /*
+  // solution query methods
+  double ConstraintMIP::primal() const  /// activity level (row * solution_vec)
+  { return model->getPrimal(*this); }
+  double ConstraintMIP::dual() const // dual variable value (row price)
+  { return model->getDual(*this); }
+  */
+  //}
+}
+

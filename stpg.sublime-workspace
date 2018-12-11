@@ -1,0 +1,1561 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"groups",
+				"groups_size"
+			],
+			[
+				"prob",
+				"probModel-"
+			],
+			[
+				"getS",
+				"getSolValue"
+			],
+			[
+				"find",
+				"findKeys"
+			],
+			[
+				"pro",
+				"prob_graph"
+			],
+			[
+				"getN",
+				"getNode"
+			],
+			[
+				"INIT",
+				"INIT_SOL_TYPE"
+			],
+			[
+				"sort",
+				"sorted_edges"
+			],
+			[
+				"src",
+				"src_tgt"
+			],
+			[
+				"src_t",
+				"src_tgt_set"
+			],
+			[
+				"end",
+				"endpoints"
+			],
+			[
+				"tree",
+				"tree_nodes"
+			],
+			[
+				"getNU",
+				"getNumNodes"
+			],
+			[
+				"ST",
+				"STPGSolver"
+			],
+			[
+				"getNum",
+				"getNumNodes"
+			],
+			[
+				"DEB",
+				"debugging_enabled"
+			],
+			[
+				"hs",
+				"\\hspace*{length}                                  \tlatex-document"
+			],
+			[
+				"question",
+				"\\question                                         \tclass-exam"
+			],
+			[
+				"item",
+				"\\item                                             \tlatex-document"
+			],
+			[
+				"enumer",
+				"\\begin{enumerate}                                 \tlatex-document"
+			],
+			[
+				"beg",
+				"\\begin{tabular}{cols}                             \tlatex-document"
+			],
+			[
+				"be",
+				"\\begin{}                                          \tlatex-document"
+			],
+			[
+				"sq",
+				"\\sqrt{arg}                                        \tlatex-document"
+			],
+			[
+				"pf",
+				"pdf_solutions"
+			],
+			[
+				"big",
+				"\\bigskip                                          \ttex"
+			],
+			[
+				"np",
+				"\\newpage                                          \tlatex-document"
+			],
+			[
+				"table",
+				"\\begin{table*}                                    \tlatex-document"
+			],
+			[
+				"par",
+				"\\par                                              \ttex"
+			],
+			[
+				"h",
+				"\\hlinefill                                        \tlatex-document"
+			],
+			[
+				"bs",
+				"\\bigskip                                          \ttex"
+			],
+			[
+				"count",
+				"order_count"
+			],
+			[
+				"cpu_time",
+				"cpu_time"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "source/merge_stpg.cpp",
+			"settings":
+			{
+				"buffer_size": 832,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/STPGModel.cpp",
+			"settings":
+			{
+				"buffer_size": 10740,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/LocalSearch.cpp",
+			"settings":
+			{
+				"buffer_size": 7995,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "QOL/examples/mipTest/src/ilobendersatsp_orig.cpp",
+			"settings":
+			{
+				"buffer_size": 19459,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/gus/Documents/PhD/code/test/cut_callback/tsp.cpp",
+			"settings":
+			{
+				"buffer_size": 6097,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/gus/angus.kenny@rmit.edu.au/PhD/notes/steiner_formulation/graph.tikz",
+			"settings":
+			{
+				"buffer_size": 3039,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "QOL/CplexFormulation.cpp",
+			"settings":
+			{
+				"buffer_size": 13128,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "source/STPGMip.cpp",
+			"settings":
+			{
+				"buffer_size": 21309,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/SolutionMerger.cpp",
+			"settings":
+			{
+				"buffer_size": 3290,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "#include <SolutionMerger.h>"
+			}
+		},
+		{
+			"file": "source/STPGSolver.cpp",
+			"settings":
+			{
+				"buffer_size": 5462,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/u_graph.cpp",
+			"settings":
+			{
+				"buffer_size": 7171,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/util.cpp",
+			"settings":
+			{
+				"buffer_size": 6106,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/Solution.h",
+			"settings":
+			{
+				"buffer_size": 3657,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/SolutionMerger.h",
+			"settings":
+			{
+				"buffer_size": 657,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/STPGSolver.h",
+			"settings":
+			{
+				"buffer_size": 599,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/u_graph.h",
+			"settings":
+			{
+				"buffer_size": 4808,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "data/small_test.stp",
+			"settings":
+			{
+				"buffer_size": 560,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "data/small_test.tree",
+			"settings":
+			{
+				"buffer_size": 63,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "draw_plot.py",
+			"settings":
+			{
+				"buffer_size": 6271,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/SettingsHandler.h",
+			"settings":
+			{
+				"buffer_size": 13820,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/STPGMip.h",
+			"settings":
+			{
+				"buffer_size": 963,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "QOL/examples/mipTest/src/bendersatsp.cpp",
+			"settings":
+			{
+				"buffer_size": 17047,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "settings.ini",
+			"settings":
+			{
+				"buffer_size": 127,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/STPGModel.h",
+			"settings":
+			{
+				"buffer_size": 1400,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/LocalSearch.h",
+			"settings":
+			{
+				"buffer_size": 1255,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/debug.h",
+			"settings":
+			{
+				"buffer_size": 979,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/util.h",
+			"settings":
+			{
+				"buffer_size": 631,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					""
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Traditional"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"PdfLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"XeLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"LuaLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - PdfLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - XeLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Basic Builder - LuaLaTeX"
+				],
+				[
+					"Packages/LaTeXTools/LaTeX.sublime-build",
+					"Script Builder"
+				]
+			],
+			[
+				"Packages/LaTeXTools/LaTeX.sublime-build",
+				"Basic Builder - PdfLaTeX"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Package Control: inst",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Discover Packages"
+			],
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Install Package Control"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 137.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) ",
+			"install package"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/gus/Documents/PhD/stpg",
+		"/home/gus/Documents/PhD/stpg/include",
+		"/home/gus/Documents/PhD/stpg/QOL",
+		"/home/gus/Documents/PhD/stpg/source",
+		"/home/gus/Documents/PhD/stpg/tracking_data",
+		"/home/gus/Documents/PhD/stpg/tracking_data/B"
+	],
+	"file_history":
+	[
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/steiner_formulation/diane_formulation.tex",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/steiner_formulation/graph3.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/steiner_formulation/graph2.tikz",
+		"/home/gus/Documents/PhD/stpg/QOL/QolMIP.cpp",
+		"/home/gus/angus.kenny@rmit.edu.au/CT18_asg2_deferred(DONT_USE)/Assignment2-COSC1107-1105-CT18_deferred.pdf",
+		"/home/gus/angus.kenny@rmit.edu.au/CT18_asg2_deferred(DONT_USE)/Assignment2-COSC1107-1105-CT18_deferred.tex",
+		"/home/gus/Documents/PhD/stpg/Makefile",
+		"/home/gus/Documents/PhD/stpg/source/STPGModel.cpp",
+		"/home/gus/Documents/PhD/stpg/plot_mine.py",
+		"/home/gus/Documents/PhD/stpg/test_plot.py",
+		"/home/gus/Documents/PhD/stpg/force_graph.py",
+		"/home/gus/Documents/PhD/stpg/source/graph.cpp",
+		"/home/gus/Documents/PhD/stpg/include/SetObj.h",
+		"/home/gus/angus.kenny@rmit.edu.au/ct_17/wk11quiz/wk9_quiz_notes.tex",
+		"/home/gus/Documents/teaching_stuff/2018/ct18/notes/final_week_machine.tex",
+		"/home/gus/angus.kenny@rmit.edu.au/ct_17/2018_test/2018_test_notes.tex",
+		"/home/gus/Documents/PhD/stpg/include/graph.h",
+		"/home/gus/Documents/PhD/mine_base_code/Makefile",
+		"/home/gus/Dropbox/2018-DS18ii-TutorialSources/animation_stuff/truth_table/tangocolors.sty",
+		"/home/gus/Dropbox/2018-DS18ii-TutorialSources/animation_stuff/truth_table/blerp.sty",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_07_18-GECCO18/gecco18.tex",
+		"/home/gus/Dropbox/2018-DS18ii-TutorialSources/class_test_4/DS18_S2_test_4.tex",
+		"/home/gus/Documents/teaching_stuff/2018/ct18/asg2/old/Assignment2-COSC1107-1105-CT17.tex",
+		"/home/gus/angus.kenny@rmit.edu.au/CT18-assignment2/EmmaLemma/emma-6.tex",
+		"/home/gus/Documents/teaching_stuff/2018/ds2018/sem2/test_1/Assignment2-COSC1107-1105-CT17.tex",
+		"/home/gus/Dropbox/2018-DS18ii-TutorialSources/source/tute-DS18ii-03-logic.tex",
+		"/home/gus/Dropbox/2018-DS18ii-TutorialSources/source/tute-DS18ii-04-proofs.tex",
+		"/home/gus/Dropbox/2018-DS18ii-TutorialSources/source/tute-DS18ii-05-proofs-induction.tex",
+		"/home/gus/Dropbox/2018-DS18ii-TutorialSources/source/tute-DS18ii-06-proofs-sets.tex",
+		"/home/gus/Dropbox/2018-DS18ii-TutorialSources/source/tute-DS18ii-07-formal.tex",
+		"/home/gus/Dropbox/2018-DS18ii-TutorialSources/source/tute-DS18ii-08-arithmetic.tex",
+		"/home/gus/Dropbox/2018-DS18ii-TutorialSources/source/tute-DS18ii-09-functions.tex",
+		"/home/gus/Dropbox/2018-DS18ii-TutorialSources/source/tute-DS18ii-10-relations.tex",
+		"/home/gus/Dropbox/2018-DS18ii-TutorialSources/source/tute-DS18ii-11-graphs.tex",
+		"/home/gus/Dropbox/2018-DS18ii-TutorialSources/source/tute-DS18ii-12-trees.tex",
+		"/home/gus/Dropbox/2018-DS18ii-TutorialSources/source/tute-DS18ii-instructions.tex",
+		"/home/gus/Documents/test/source/Makefile",
+		"/home/gus/Documents/test/source/x.tex",
+		"/home/gus/Dropbox/2018-DS18ii-TutorialSources/tute-DS18ii-sheets/tute-DS18ii-00-kickoff.tex",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_07_18-GECCO18/tikz/SA02.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_07_18-GECCO18/tikz/SA03.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_07_18-GECCO18/gecco18.toc",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/reference_files/mystyle.sty",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/reference_files/mybeamer.sty",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_07_18-GECCO18/tangocolors.sty",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/posters/june_2018_poster/beamerthemeRMIT-ECML.sty",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/posters/june_2018_poster/mine_poster.tex",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_07_18-GECCO18/tikz/SA01.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_07_18-GECCO18/gecco18.sublime-project",
+		"/home/gus/Documents/PhD/mine_base_code/include/typedef.h",
+		"/home/gus/Documents/PhD/mine_base_code/source/SinglePSolver (copy).cpp",
+		"/home/gus/Documents/PhD/mine_base_code/include/graph.h",
+		"/home/gus/Documents/PhD/mine_base_code/include/MaxClosure_PP.h",
+		"/home/gus/Documents/PhD/mine_base_code/include/MergeSolver.h",
+		"/home/gus/Documents/PhD/mine_base_code/source/MaxClosureFactory.cpp",
+		"/home/gus/Documents/PhD/mine_base_code/source/MaxClosure_PP.cpp",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/theory_notes/theory_notes.sublime-project",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/orthogonal_solutions/orthogonal_solutions.tex",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/integer_points/partition.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/integer_points/integer_points.tex",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/sol_s3.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/example_blocks.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/orth_example.tikz",
+		"/home/gus/.config/sublime-text-3/Packages/LaTeXTools/Default (Linux).sublime-keymap",
+		"/home/gus/.config/sublime-text-3/Packages/User/LaTeXTools.sublime-settings",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/reference_files/full_bib.bib",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/solution_interaction/solution_interaction.tex",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/general_interaction.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/non_orth_example.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/s1_s3_merge.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/s1_s3_merge_mine.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/s1_s2_merge.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/s1_s2_merge_mine.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/sol_s2.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/init_sol.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/s0_binary.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/s1_binary.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/init_pop.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/merge02.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/merge04.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/SA01.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/SA02.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/merge05.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/merge06.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/merged_vars.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/merge03.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/merge01.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/SA04.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/tikz/SA03.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/ecml9.toc",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_06_01-ECML_9-GECCO/ecml9.sublime-project",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/reference_files/mytikz.sty",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_02_21-milestone_3/kenny_milestone3.tex",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/solution_interaction/s1_s3_merge.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/solution_interaction/s1_s2_merge.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/solution_interaction/s1_binary.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/solution_interaction/s0_binary.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/solution_interaction/s1_s3_merge_mine.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/solution_interaction/s1_s2_merge_mine.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/solution_interaction/sol_s3.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/solution_interaction/sol_s2.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/solution_interaction/init_pop.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/solution_interaction/init_sol.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/solution_interaction/interaction.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/solution_interaction/blocks.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/solution_interaction/general_interaction.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/steiner_formulation/formulation.tex",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/solution_interaction/case_1_1.tikz",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/solution_interaction/solution_interaction.sublime-project",
+		"/home/gus/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/gus/Documents/PhD/mine-project/include/SolutionMerger.h",
+		"/home/gus/Documents/PhD/mine-project/include/SinglePSolver.h",
+		"/home/gus/Documents/PhD/mine-project/source/SinglePSolver.cpp",
+		"/home/gus/Documents/PhD/mine-project/source/LocalSearch.cpp"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"Sol_Int",
+			"SinglePModel",
+			"MergeSolverCompact",
+			"repairRandom",
+			"random",
+			"terminal",
+			"del_node",
+			"std::cout",
+			"(std::cout",
+			"cout"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"Solution",
+			"STPGModel",
+			"STPGMip"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "source/merge_stpg.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 832,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								120,
+								120
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 25,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "source/STPGModel.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10740,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 18,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "source/LocalSearch.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7995,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								489,
+								489
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "QOL/examples/mipTest/src/ilobendersatsp_orig.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 19459,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								19459,
+								19459
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1620.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/home/gus/Documents/PhD/code/test/cut_callback/tsp.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6097,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3210,
+								3210
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 450.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/home/gus/angus.kenny@rmit.edu.au/PhD/notes/steiner_formulation/graph.tikz",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3039,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								313,
+								313
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "QOL/CplexFormulation.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13128,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 5401.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "source/STPGMip.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 21309,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								383,
+								383
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "source/SolutionMerger.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3290,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1900,
+								1900
+							]
+						],
+						"settings":
+						{
+							"auto_name": "#include <SolutionMerger.h>",
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 147.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 16,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "source/STPGSolver.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5462,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								943,
+								943
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 450.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 17,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "source/u_graph.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7171,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1633,
+								1633
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 270.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 24,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "source/util.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6106,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5738,
+								5738
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 26,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 9,
+			"sheets":
+			[
+				{
+					"buffer": 12,
+					"file": "include/Solution.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3657,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								46,
+								46
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "include/SolutionMerger.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 657,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								542,
+								542
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 21,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "include/STPGSolver.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 599,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								316,
+								316
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 22,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "include/u_graph.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4808,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4340,
+								4340
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1125.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 23,
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "data/small_test.stp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 560,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								282,
+								282
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "data/small_test.tree",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 63,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "draw_plot.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6271,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4234,
+								4234
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 450.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 19,
+					"file": "include/SettingsHandler.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13820,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2859,
+								2859
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1215.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 20,
+					"file": "include/STPGMip.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 963,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								347,
+								347
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 21,
+					"file": "QOL/examples/mipTest/src/bendersatsp.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 17047,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2985,
+								2985
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 2565.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 22,
+					"file": "settings.ini",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 127,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								99,
+								99
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 23,
+					"file": "include/STPGModel.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1400,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								549,
+								549
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 135.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 24,
+					"file": "include/LocalSearch.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1255,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								363,
+								363
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 25,
+					"file": "include/debug.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 979,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								85,
+								85
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 19,
+					"type": "text"
+				},
+				{
+					"buffer": 26,
+					"file": "include/util.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 631,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								538,
+								538
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 20,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 37.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.latextools":
+	{
+		"height": 109.0
+	},
+	"pinned_build_system": "",
+	"project": "stpg.sublime-project",
+	"replace":
+	{
+		"height": 69.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 1,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 227.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

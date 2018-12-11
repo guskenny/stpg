@@ -1,0 +1,7 @@
+1. mmjs_txt
+  machines
+  max power available
+  jobs in machines
+  1...n_k:   id \t release_time \t proc_time \t due_time \t power_required \t weight
+  dependencies
+
