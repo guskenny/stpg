@@ -12,6 +12,7 @@
 #if GENERAL_MESSAGES
 #  define PE(x) std::cout << x << std::endl;
 #  define PF(x) std::cout << x << std::flush;
+#  define CHECK(x) std::cout << #x << ": " << x << std::endl;
 #else
 #  define PE(x)
 #  define PF(x)
@@ -19,8 +20,8 @@
 
 // for preprocessing and reconstructing
 #if VERBOSE 
-#  define VE(x) std::cout << x << std::flush;
-#  define VF(x) std::cout << x << std::endl;
+#  define VE(x) std::cout << x << std::endl;
+#  define VF(x) std::cout << x << std::flush;
 #else
 #  define VE(x)
 #  define VF(x)

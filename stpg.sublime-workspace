@@ -4,12 +4,80 @@
 		"selected_items":
 		[
 			[
-				"groups",
-				"groups_size"
+				"callback",
+				"Callback"
+			],
+			[
+				"get",
+				"getObjective"
+			],
+			[
+				"getT",
+				"getTgtID"
 			],
 			[
 				"prob",
+				"prob_graph"
+			],
+			[
+				"getNum",
+				"getNumEdges"
+			],
+			[
+				"latex",
+				"latex_x"
+			],
+			[
+				"n",
+				"n_nodes"
+			],
+			[
+				"set",
+				"set_obj"
+			],
+			[
+				"count",
+				"countPtr"
+			],
+			[
+				"callb",
+				"callback_counter"
+			],
+			[
+				"probm",
 				"probModel-"
+			],
+			[
+				"add",
+				"addElement"
+			],
+			[
+				"prim",
+				"primal_x"
+			],
+			[
+				"prune_sub",
+				"prune_subgraph_noterm"
+			],
+			[
+				"is",
+				"is_element"
+			],
+			[
+				"ad",
+				"adj_edges"
+			],
+			[
+				"probM",
+				"probModel-"
+			],
+			[
+				"STPG",
+				"STPGCallback"
+			],
+			[
+				"groups",
+				"groups_size"
 			],
 			[
 				"getS",
@@ -58,10 +126,6 @@
 			[
 				"ST",
 				"STPGSolver"
-			],
-			[
-				"getNum",
-				"getNumNodes"
 			],
 			[
 				"DEB",
@@ -124,10 +188,6 @@
 				"\\bigskip                                          \ttex"
 			],
 			[
-				"count",
-				"order_count"
-			],
-			[
 				"cpu_time",
 				"cpu_time"
 			]
@@ -145,36 +205,11 @@
 			}
 		},
 		{
-			"file": "source/STPGModel.cpp",
-			"settings":
-			{
-				"buffer_size": 10740,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "source/LocalSearch.cpp",
 			"settings":
 			{
 				"buffer_size": 7995,
 				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "QOL/examples/mipTest/src/ilobendersatsp_orig.cpp",
-			"settings":
-			{
-				"buffer_size": 19459,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/gus/Documents/PhD/code/test/cut_callback/tsp.cpp",
-			"settings":
-			{
-				"buffer_size": 6097,
 				"line_ending": "Unix"
 			}
 		},
@@ -187,19 +222,28 @@
 			}
 		},
 		{
-			"file": "QOL/CplexFormulation.cpp",
+			"file": "source/STPGMip_cutdown.cpp",
 			"settings":
 			{
-				"buffer_size": 13128,
-				"line_ending": "Windows"
+				"buffer_size": 4203,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "source/STPGMip.cpp",
 			"settings":
 			{
-				"buffer_size": 21309,
+				"buffer_size": 9211,
 				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Makefile",
+			"settings":
+			{
+				"buffer_size": 2777,
 				"line_ending": "Unix"
 			}
 		},
@@ -207,7 +251,7 @@
 			"file": "source/SolutionMerger.cpp",
 			"settings":
 			{
-				"buffer_size": 3290,
+				"buffer_size": 3289,
 				"encoding": "UTF-8",
 				"line_ending": "Unix",
 				"name": "#include <SolutionMerger.h>"
@@ -217,7 +261,7 @@
 			"file": "source/STPGSolver.cpp",
 			"settings":
 			{
-				"buffer_size": 5462,
+				"buffer_size": 6153,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -235,16 +279,7 @@
 			"file": "source/util.cpp",
 			"settings":
 			{
-				"buffer_size": 6106,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "include/Solution.h",
-			"settings":
-			{
-				"buffer_size": 3657,
+				"buffer_size": 11485,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -253,7 +288,7 @@
 			"file": "include/SolutionMerger.h",
 			"settings":
 			{
-				"buffer_size": 657,
+				"buffer_size": 655,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -262,16 +297,7 @@
 			"file": "include/STPGSolver.h",
 			"settings":
 			{
-				"buffer_size": 599,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "include/u_graph.h",
-			"settings":
-			{
-				"buffer_size": 4808,
+				"buffer_size": 635,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -281,6 +307,15 @@
 			"settings":
 			{
 				"buffer_size": 560,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "data/tiny_test.stp",
+			"settings":
+			{
+				"buffer_size": 416,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -312,15 +347,6 @@
 			}
 		},
 		{
-			"file": "include/STPGMip.h",
-			"settings":
-			{
-				"buffer_size": 963,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "QOL/examples/mipTest/src/bendersatsp.cpp",
 			"settings":
 			{
@@ -329,10 +355,77 @@
 			}
 		},
 		{
+			"file": "QOL/CplexFormulation.h",
+			"settings":
+			{
+				"buffer_size": 17957,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "QOL/QolMIPSolver.h",
+			"settings":
+			{
+				"buffer_size": 13461,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "QOL/QolModel.h",
+			"settings":
+			{
+				"buffer_size": 7008,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "QOL/QolUtil.h",
+			"settings":
+			{
+				"buffer_size": 5257,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "QOL/QolMIP.h",
+			"settings":
+			{
+				"buffer_size": 24913,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "QOL/CplexFormulation.cpp",
+			"settings":
+			{
+				"buffer_size": 13128,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/home/gus/Documents/PhD/code/test/cut_callback/tsp.cpp",
+			"settings":
+			{
+				"buffer_size": 6097,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/STPGMip.h",
+			"settings":
+			{
+				"buffer_size": 1286,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "settings.ini",
 			"settings":
 			{
-				"buffer_size": 127,
+				"buffer_size": 136,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -341,7 +434,7 @@
 			"file": "include/STPGModel.h",
 			"settings":
 			{
-				"buffer_size": 1400,
+				"buffer_size": 1399,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -350,7 +443,7 @@
 			"file": "include/LocalSearch.h",
 			"settings":
 			{
-				"buffer_size": 1255,
+				"buffer_size": 1248,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -359,7 +452,16 @@
 			"file": "include/debug.h",
 			"settings":
 			{
-				"buffer_size": 979,
+				"buffer_size": 1041,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/u_graph.h",
+			"settings":
+			{
+				"buffer_size": 4808,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -368,7 +470,16 @@
 			"file": "include/util.h",
 			"settings":
 			{
-				"buffer_size": 631,
+				"buffer_size": 836,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/set_obj.h",
+			"settings":
+			{
+				"buffer_size": 4080,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -485,6 +596,7 @@
 	"expanded_folders":
 	[
 		"/home/gus/Documents/PhD/stpg",
+		"/home/gus/Documents/PhD/stpg/data",
 		"/home/gus/Documents/PhD/stpg/include",
 		"/home/gus/Documents/PhD/stpg/QOL",
 		"/home/gus/Documents/PhD/stpg/source",
@@ -493,14 +605,26 @@
 	],
 	"file_history":
 	[
+		"/home/gus/Documents/PhD/mine-project/source/MergeSolverCompact.cpp",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/MIP_traces/trace_2/mip_trace_2.tex",
+		"/home/gus/Documents/PhD/stpg/data/teeny_test.stp",
+		"/home/gus/Documents/PhD/stpg/source/util.cpp",
+		"/home/gus/Documents/PhD/stpg/include/Solution.h",
+		"/home/gus/Documents/PhD/stpg/QOL/QolMIP.h",
+		"/home/gus/Documents/PhD/stpg/QOL/CplexFormulation.cpp",
+		"/home/gus/Documents/PhD/stpg/source/STPGModel.cpp",
+		"/home/gus/Documents/PhD/stpg/QOL/Makefile",
+		"/home/gus/Documents/PhD/mine-project/Makefile",
+		"/home/gus/Documents/PhD/stpg/Makefile",
+		"/home/gus/Documents/PhD/stpg/QOL/examples/mipTest/src/stdafx.cpp",
+		"/home/gus/Documents/PhD/stpg/QOL/examples/mipTest/src/ilobendersatsp_orig.cpp",
+		"/home/gus/Documents/PhD/stpg/QOL/examples/mipTest/src/bendersatsp.cpp",
 		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/steiner_formulation/diane_formulation.tex",
 		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/steiner_formulation/graph3.tikz",
 		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/steiner_formulation/graph2.tikz",
 		"/home/gus/Documents/PhD/stpg/QOL/QolMIP.cpp",
 		"/home/gus/angus.kenny@rmit.edu.au/CT18_asg2_deferred(DONT_USE)/Assignment2-COSC1107-1105-CT18_deferred.pdf",
 		"/home/gus/angus.kenny@rmit.edu.au/CT18_asg2_deferred(DONT_USE)/Assignment2-COSC1107-1105-CT18_deferred.tex",
-		"/home/gus/Documents/PhD/stpg/Makefile",
-		"/home/gus/Documents/PhD/stpg/source/STPGModel.cpp",
 		"/home/gus/Documents/PhD/stpg/plot_mine.py",
 		"/home/gus/Documents/PhD/stpg/test_plot.py",
 		"/home/gus/Documents/PhD/stpg/force_graph.py",
@@ -624,6 +748,17 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"addCut",
+			"Expre",
+			"Callback",
+			"qol::Call",
+			"Row",
+			"getNo",
+			"];",
+			"prune_tree",
+			"Solution",
+			"Index",
+			"primal",
 			"Sol_Int",
 			"SinglePModel",
 			"MergeSolverCompact",
@@ -641,6 +776,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"prune_subgraph",
+			"set_obj",
 			"Solution",
 			"STPGModel",
 			"STPGMip"
@@ -654,7 +791,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 6,
 			"sheets":
 			[
 				{
@@ -684,40 +821,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 25,
+					"stack_index": 21,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "source/STPGModel.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 10740,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 18,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "source/LocalSearch.cpp",
 					"semi_transient": false,
 					"settings":
@@ -729,8 +837,8 @@
 						"selection":
 						[
 							[
-								489,
-								489
+								238,
+								238
 							]
 						],
 						"settings":
@@ -743,71 +851,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 20,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "QOL/examples/mipTest/src/ilobendersatsp_orig.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 19459,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								19459,
-								19459
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 3,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1620.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/home/gus/Documents/PhD/code/test/cut_callback/tsp.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6097,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3210,
-								3210
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 3,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 450.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
+					"buffer": 2,
 					"file": "/home/gus/angus.kenny@rmit.edu.au/PhD/notes/steiner_formulation/graph.tikz",
 					"semi_transient": false,
 					"settings":
@@ -831,52 +879,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 19,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "QOL/CplexFormulation.cpp",
+					"buffer": 3,
+					"file": "source/STPGMip_cutdown.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 13128,
+						"buffer_size": 4203,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 5401.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "source/STPGMip.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 21309,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								383,
-								383
+								2997,
+								2997
 							]
 						],
 						"settings":
@@ -887,27 +907,86 @@
 							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 735.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 17,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
-					"file": "source/SolutionMerger.cpp",
+					"buffer": 4,
+					"file": "source/STPGMip.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3290,
+						"buffer_size": 9211,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1900,
-								1900
+								7753,
+								7753
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 450.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "Makefile",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2777,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1534,
+								1534
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.sublime-syntax"
+						},
+						"translation.x": 896.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 31,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "source/SolutionMerger.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3289,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								18,
+								18
 							]
 						],
 						"settings":
@@ -919,27 +998,27 @@
 							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 147.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 16,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 7,
 					"file": "source/STPGSolver.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5462,
+						"buffer_size": 6153,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								943,
-								943
+								664,
+								664
 							]
 						],
 						"settings":
@@ -949,14 +1028,14 @@
 							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 450.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 17,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 8,
 					"file": "source/u_graph.cpp",
 					"semi_transient": false,
 					"settings":
@@ -979,27 +1058,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 270.0,
+						"translation.y": 1845.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 24,
+					"stack_index": 29,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 9,
 					"file": "source/util.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6106,
+						"buffer_size": 11485,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5738,
-								5738
+								3830,
+								3830
 							]
 						],
 						"settings":
@@ -1009,63 +1088,33 @@
 							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 5580.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 26,
+					"stack_index": 22,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 9,
+			"selected": 20,
 			"sheets":
 			[
 				{
-					"buffer": 12,
-					"file": "include/Solution.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3657,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								46,
-								46
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 13,
+					"buffer": 10,
 					"file": "include/SolutionMerger.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 657,
+						"buffer_size": 655,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								542,
-								542
+								632,
+								632
 							]
 						],
 						"settings":
@@ -1079,24 +1128,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 21,
+					"stack_index": 32,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 11,
 					"file": "include/STPGSolver.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 599,
+						"buffer_size": 635,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								316,
-								316
+								271,
+								271
 							]
 						],
 						"settings":
@@ -1108,41 +1157,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 22,
+					"stack_index": 24,
 					"type": "text"
 				},
 				{
-					"buffer": 15,
-					"file": "include/u_graph.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4808,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4340,
-								4340
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1125.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 23,
-					"type": "text"
-				},
-				{
-					"buffer": 16,
+					"buffer": 12,
 					"file": "data/small_test.stp",
 					"semi_transient": false,
 					"settings":
@@ -1166,11 +1185,39 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
+					"stack_index": 23,
 					"type": "text"
 				},
 				{
-					"buffer": 17,
+					"buffer": 13,
+					"file": "data/tiny_test.stp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 416,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								196,
+								196
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 25,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
 					"file": "data/small_test.tree",
 					"semi_transient": false,
 					"settings":
@@ -1194,11 +1241,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 26,
 					"type": "text"
 				},
 				{
-					"buffer": 18,
+					"buffer": 15,
 					"file": "draw_plot.py",
 					"semi_transient": false,
 					"settings":
@@ -1222,14 +1269,14 @@
 							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 450.0,
+						"translation.y": 210.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 30,
 					"type": "text"
 				},
 				{
-					"buffer": 19,
+					"buffer": 16,
 					"file": "include/SettingsHandler.h",
 					"semi_transient": false,
 					"settings":
@@ -1241,8 +1288,8 @@
 						"selection":
 						[
 							[
-								2859,
-								2859
+								408,
+								408
 							]
 						],
 						"settings":
@@ -1252,45 +1299,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1215.0,
+						"translation.y": 3735.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
-					"buffer": 20,
-					"file": "include/STPGMip.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 963,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								347,
-								347
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true,
-							"word_wrap": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 21,
+					"buffer": 17,
 					"file": "QOL/examples/mipTest/src/bendersatsp.cpp",
 					"semi_transient": false,
 					"settings":
@@ -1302,8 +1318,8 @@
 						"selection":
 						[
 							[
-								2985,
-								2985
+								10721,
+								10721
 							]
 						],
 						"settings":
@@ -1311,27 +1327,263 @@
 							"syntax": "Packages/C++/C++.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 2565.0,
+						"translation.y": 4725.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
-					"buffer": 22,
-					"file": "settings.ini",
+					"buffer": 18,
+					"file": "QOL/CplexFormulation.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 127,
+						"buffer_size": 17957,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								99,
-								99
+								16654,
+								16654
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 6009.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 19,
+					"file": "QOL/QolMIPSolver.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13461,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5746,
+								5746
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1674.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 20,
+					"file": "QOL/QolModel.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7008,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3575,
+								3575
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1355.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 21,
+					"file": "QOL/QolUtil.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5257,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3305,
+								3305
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 810.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 22,
+					"file": "QOL/QolMIP.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 24913,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9121,
+								9121
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5011.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 23,
+					"file": "QOL/CplexFormulation.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13128,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11961,
+								11961
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 4770.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 24,
+					"file": "/home/gus/Documents/PhD/code/test/cut_callback/tsp.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6097,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4737,
+								4737
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2475.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 16,
+					"type": "text"
+				},
+				{
+					"buffer": 25,
+					"file": "include/STPGMip.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1286,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1134,
+								1134
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 225.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 18,
+					"type": "text"
+				},
+				{
+					"buffer": 26,
+					"file": "settings.ini",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 136,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12,
+								12
 							]
 						],
 						"settings":
@@ -1342,24 +1594,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 23,
+					"buffer": 27,
 					"file": "include/STPGModel.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1400,
+						"buffer_size": 1399,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								549,
-								549
+								247,
+								247
 							]
 						],
 						"settings":
@@ -1368,27 +1620,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 135.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 24,
+					"buffer": 28,
 					"file": "include/LocalSearch.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1255,
+						"buffer_size": 1248,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								363,
-								363
+								274,
+								274
 							]
 						],
 						"settings":
@@ -1401,16 +1653,16 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 25,
+					"buffer": 29,
 					"file": "include/debug.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 979,
+						"buffer_size": 1041,
 						"regions":
 						{
 						},
@@ -1430,24 +1682,54 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 19,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 26,
-					"file": "include/util.h",
+					"buffer": 30,
+					"file": "include/u_graph.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 631,
+						"buffer_size": 4808,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								538,
-								538
+								2270,
+								2270
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 405.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 31,
+					"file": "include/util.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 836,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								157,
+								157
 							]
 						],
 						"settings":
@@ -1459,7 +1741,37 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 20,
+					"stack_index": 28,
+					"type": "text"
+				},
+				{
+					"buffer": 32,
+					"file": "include/set_obj.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4080,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3478,
+								3478
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1620.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 27,
 					"type": "text"
 				}
 			]
@@ -1545,7 +1857,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
 	},

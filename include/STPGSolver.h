@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <LocalSearch.h>
 #include <SolutionMerger.h>
+#include <sstream>
 
 class STPGSolver{
 	private:

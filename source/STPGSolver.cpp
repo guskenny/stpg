@@ -26,13 +26,18 @@ void STPGSolver::solve(){
 	PE("verifying initial solution...")
 	verify(probModel->prob_graph, probModel->getTerms(), init_sol);
 
+	CHECK(get_sol_value(probModel->prob_graph, init_sol))
 
 	STPGMip MIPsolver(sh,probModel,init_sol);
 
 	set_obj temp_sol = set_obj(probModel->n_edges());
 
+	MIPsolver.solve(init_sol);
 
-	MIPsolver.solve(temp_sol);
+	PE("verifying MIP solution...")
+	verify(probModel->prob_graph, probModel->getTerms(), init_sol);
+	
+	CHECK(get_sol_value(probModel->prob_graph, init_sol))
 
 	LocalSearch ls(sh,probModel);
 	
@@ -45,6 +50,8 @@ void STPGSolver::solve(){
 
 	std::vector<set_obj> sols;
 
+	set_obj best_sol = init_sol;
+
 	for (int swap = 0; swap < sh.NUM_MOVES; ++swap){
 		PE("\niteration: " << swap << " of " << sh.NUM_MOVES)
 		set_obj sol = init_sol;
@@ -54,13 +61,29 @@ void STPGSolver::solve(){
 
 		sols.push_back(sol);
 
-		best_val = std::min(curr_val, best_val);
+		if (best_val > curr_val){
+			best_val = curr_val;
+			best_sol = sol;
+		}
 
 		sol_vals.push_back(curr_val);
 	}
 
 	PE("\nbefore swapping: " << init_val) 
 	PE("after swapping: " << best_val)
+
+
+	std::ostringstream b;
+
+	b << "Best sol: " << std::endl << "x = { ";
+	for (int e = 0; e < best_sol.size(); ++e){
+		Edge *edge = probModel->prob_graph.getEdge(best_sol.get(e));
+		b << "(" << edge->getSrcID()+1 << "," << edge->getTgtID()+1 << ") "; 
+	}
+
+	b << "}" << std::endl;
+
+	PE(b.str())
 
 	SolutionMerger sm(sh, probModel);
 

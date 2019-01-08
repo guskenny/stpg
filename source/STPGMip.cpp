@@ -13,7 +13,8 @@ void STPGMip::solve(set_obj &sol){
    try{
     // set verbosity
     qol::Parameters param;
-    param.setParamVal(qol::VERBOSITY,1);
+    param.setParamVal(qol::VERBOSITY,2);
+    param.setParamVal(qol::RELGAP,0.001);
 
 	  mipPtr = new qol::CplexFormulation();
 
@@ -26,7 +27,7 @@ void STPGMip::solve(set_obj &sol){
     int count = 0;
     int *countPtr = &count;
 
-    STPGCallback cb = STPGCallback(probModel,x,y,countPtr);
+    STPGCallback cb = STPGCallback(probModel,x,y,countPtr,mipPtr);
 
     mip.setCallback((qol::Callback *)&cb);
     // mip.setCallback(&cb);
@@ -50,6 +51,7 @@ void STPGMip::solve(set_obj &sol){
     //masterCplex.setParam(IloCplex::MIPSearch, IloCplex::Traditional);
     CPXsetintparam(env,CPX_PARAM_MIPSEARCH,CPX_MIPSEARCH_TRADITIONAL);
   
+    CHECK(mip.nConstr())  
 
     bool solveRelaxed = false;
 
@@ -58,6 +60,60 @@ void STPGMip::solve(set_obj &sol){
     std::cout << boost::format("Completed in %.2f sec CPU / %.2f sec wall. Objective = %f\n"
 			       ) % timer.elapsedSeconds() % timer.elapsedWallTime() % (-mip.getObjective());
    
+    sol.clear();
+
+    CHECK(mip.getObjective())
+    CHECK(mip.getObjectiveBound())
+    CHECK(mip.nConstr())
+
+    for (int e = 0; e < probModel->n_edges(); ++e){
+      if (mip.getPrimal(x[e]) > 0){
+        sol.addElement(e);
+      }
+    }    
+
+    PE("*****************************************")
+    PE("MIP solution " << ++(*countPtr) << " (final)")
+    PE("*****************************************")
+
+    int cost = 0;
+
+    VF("x = { ")
+
+    std::ostringstream latex_x;
+    std::ostringstream latex_y;
+
+    set_obj test_y(probModel->n_nodes());
+
+    for (int e = 0; e < sol.size(); ++e){
+      Edge * edge = probModel->prob_graph.getEdge(sol.get(e));
+      
+      cost += edge->getWt();
+
+      VF("(" << edge->getSrcID()+1 << "," << edge->getTgtID()+1 << ") ")
+
+      latex_x << std::to_string(edge->getSrcID()+1) << "/" << std::to_string(edge->getTgtID()+1)<< ",";
+
+      test_y.addElement(edge->getTgtID());
+      test_y.addElement(edge->getSrcID());
+    }
+
+    VE("}")
+    VF("y = { ")
+
+    for (int n = 0; n < test_y.idx_size(); ++n){
+      if (test_y.is_element(n)){
+        VF(n+1 << " ")
+        latex_y << n+1 << ",";
+      }
+    }
+
+    VE("}")
+    PE("cost: " << cost << std::endl)
+
+    VE("\nx = " <<latex_x.str())
+    VE("y = " << latex_y.str()<<std::endl)
+
    } // end try statement
   catch (qol::Exception & ex) { std::cerr << "Error: " << ex.what() << std::endl; }
   catch (...) { std::cerr << "Unknown Error Occured" << std::endl;}
@@ -66,22 +122,61 @@ void STPGMip::solve(set_obj &sol){
 }
 
 qol::Callback::Status STPGCallback::callback(Progress where){
-  // PF("\rCallback: " << (*countPtr)++)
+  // PE("Callback")
 
   set_obj primal_x(probModel->n_edges());
   set_obj primal_y(probModel->n_nodes());
 
+  set_obj test_y(probModel->n_nodes());
+
+  // PE("\n*****************************************")
+  // PE("MIP solution " << ++(*countPtr))
+  // PE("*****************************************")
+
+  int cost = 0;
+
+  // PF("x = { ")
+
+  std::ostringstream latex_x;
+  std::ostringstream latex_y;
+
   for (int e = 0; e < primal_x.idx_size(); ++e){
     if (primalSolution[x[e]] > 0){
       primal_x.addElement(e);
+
+      Edge * edge = probModel->prob_graph.getEdge(e);
+
+      cost += edge->getWt();
+
+      // PF("(" << edge->getSrcID()+1 << "," << edge->getTgtID()+1 << ") ")
+
+      latex_x << std::to_string(edge->getSrcID()+1) << "/" << std::to_string(edge->getTgtID()+1)<< ",";
+
+      test_y.addElement(edge->getTgtID());
+      test_y.addElement(edge->getSrcID());
     }
   }
+
+  // PE("}")
+  // PF("y = { ")
 
   for (int n = 0; n < primal_y.idx_size(); ++n){
     if (primalSolution[y[n]] > 0){
       primal_y.addElement(n);
+      // PF(n+1 << " ")
+      // latex_y << n+1 << ",";
     }
   }
+
+  // PE("}")
+
+  // PE("cost: " << cost << std::endl)
+  // CHECK(test_y.size())
+  // CHECK(primal_y.size())
+  // CHECK(test_y.size()-primal_y.size())
+  // test_y.subtract(primal_y);
+  // CHECK(test_y.size())
+  // PE("")
 
   std::vector<set_obj> components;
 
@@ -94,6 +189,9 @@ qol::Callback::Status STPGCallback::callback(Progress where){
     qol::Expression lhs;
     qol::Expression rhs;
 
+    std::ostringstream lhs_os;
+    std::ostringstream rhs_os;
+
     // vector to make sure we dont double up on node variables
     std::vector<int> added(probModel->n_nodes(),0);
 
@@ -102,18 +200,33 @@ qol::Callback::Status STPGCallback::callback(Progress where){
 
       lhs += x[*e];
 
+      lhs_os << "x[" + std::to_string(edge->getSrcID()+1) + "," + std::to_string(edge->getTgtID()+1) + "]";
+
+      if(e != component.end()-1)
+        lhs_os << " + ";
+
       std::vector<int> endpoints{edge->getSrcID(),edge->getTgtID()};
 
       for (std::vector<int>::iterator i = endpoints.begin() ; i != endpoints.end(); ++i){
         if (!added[*i]){
           rhs += y[*i];
+          rhs_os << "y[" + std::to_string((*i)+1) + "] + ";
           added[*i] = 1;
         }
       }
     }
     rhs -= 1;
+    rhs_os << "(-1)";
+    // PE("adding cut: " << lhs_os.str() << " <= " << rhs_os.str()<< std::endl)
+
     addCut(lhs <= rhs);
+
   }
+
+  // CHECK(getBound())
+
+  // PE("x = " <<latex_x.str())
+  // PE("y = " << latex_y.str()<<std::endl)
     return OK;
 }
 
@@ -125,8 +238,13 @@ void STPGMip::initMIPModel(qol::MIPSolver &mip){
     x.clear();
     y.clear();
 
+    VE("Edges: ")
+
     for (int e = 0; e < probModel->n_edges(); ++e){
       Edge* edge = probModel->prob_graph.getEdge(e);
+
+      VE(edge->getID() << " (" << edge->getSrcID()+1 << "," << edge->getTgtID()+1 << ") = " << edge->getWt())
+
       x.push_back(mip.addVar(0,1,edge->getWt(),qol::Variable::CONTINUOUS));
       std::string var_name("x_" + e);
       mip.setVarName(x[e],var_name);
@@ -145,29 +263,29 @@ void STPGMip::initMIPModel(qol::MIPSolver &mip){
     PE("done!")
     PF("setting start values.. ")
 
-    std::vector<double> x_start_vec(x.size(),0.0);
-    std::vector<double> y_start_vec(y.size(),0.0);
-
     std::vector<int> sol_edges = best_sol.getSet();
 
-    for (std::vector<int>::iterator e = sol_edges.begin() ; e != sol_edges.end(); ++e){
+    std::ostringstream x_start;
+    std::ostringstream y_start;
+
+    x_start << "x = { ";
+
+    y_start << "y = { ";
+
+    for (std::vector<int>::iterator e = sol_edges.begin() ; e != sol_edges.end() && sh.WARM_START; ++e){
       Edge* edge = probModel->prob_graph.getEdge(*e);
 
-      x_start_vec[*e] = 1;
 
-      y_start_vec[edge->getSrcID()] = 1;
-      y_start_vec[edge->getTgtID()] = 1;
+      y_start << edge->getSrcID()+1 << ", " << edge->getTgtID()+1 << ", ";
+
+      x_start << "(" << edge->getSrcID()+1 << "," << edge->getTgtID()+1 << ") ";     
     }
 
-    // for (int e = 0; e < sol_edges.size(); ++e){
-    //   PE(e)
-    //   // Edge* edge = probModel->prob_graph.getEdge(sol_edges[e]);
+    x_start << "}";
+    y_start << "}";
 
-    //   // x_start_vec[sol_edges[e]] = 1;
-
-    //   // y_start_vec[edge->getSrcID()] = 1;
-    //   // y_start_vec[edge->getTgtID()] = 1;
-    // }
+    VE("\n" << x_start.str())
+    VE("\n" << y_start.str())
 
     PE("done!")
     PF("setting up initial constraints.. ")
@@ -176,9 +294,29 @@ void STPGMip::initMIPModel(qol::MIPSolver &mip){
     qol::Expression rhs;
     for (int e = 0; e < probModel->n_edges(); ++e){
       lhs += x[e];
+
+      // edge constraints
+      Edge * edge = probModel->prob_graph.getEdge(e);
+      qol::Expression e_lhs = 2*x[e];
+      qol::Expression e_rhs = y[edge->getTgtID()] + y[edge->getSrcID()];
+      std::string var_name("e_" + e);
+      mip.addConstraint(e_lhs <= e_rhs).setName(var_name);      
     }
     for (int n = 0; n < probModel->n_nodes(); ++n){
       rhs += y[n];
+
+      // // node constraints
+      // Node * node = probModel->prob_graph.getNode(n);
+      // qol::Expression n_lhs = y[n];
+      // qol::Expression n_rhs;
+
+      // std::vector<Edge*> adj_edges; 
+      // node->getEdges(adj_edges);
+      // for (std::vector<Edge*>::iterator e = adj_edges.begin(); e != adj_edges.end(); ++e){
+      //   n_rhs += x[(*e)->getID()];
+      // }
+      // std::string var_name("n_" + n);
+      // mip.addConstraint(n_lhs <= n_rhs).setName(var_name); 
     }
 
     rhs -= 1;

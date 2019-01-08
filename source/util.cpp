@@ -121,22 +121,173 @@ void get_mst(const U_Graph &graph, set_obj &sol){
 	}
 }
 
-void get_components(const U_Graph &graph, const set_obj &x, const set_obj &y, std::vector<set_obj> &components){
+void get_components(const U_Graph &graph, const set_obj &x,const set_obj &y, std::vector<set_obj> &components){
+
 
 	// clear components vector
 	components.clear();
 
 	// filled set_obj for visited vertices
-	set_obj visited.fill(y.idx_size());
+	set_obj visited(graph.getNumNodes());
+	// visited.fill();
 
-	while (!visited.empty()){
-		set_obj temp_x(x.idx_size());
-		set_obj temp_y(y.idx_size());
+	// set_obj y(graph.getNumNodes());
+	// for (int i = 0; i < x.size(); ++i){
+	// 	Edge *e = graph.getEdge(x.get(i));
+	// 	y.addElement(e->getSrcID());
+	// 	y.addElement(e->getSrcID());
+	// }
+
+	// find all nodes induced by the edge set
+	for (int i = 0; i < x.size(); ++i){
+		Edge *e = graph.getEdge(x.get(i));
+		int src = e->getSrcID();
+		int tgt = e->getTgtID();
+
+		set_obj temp_comp(graph.getNumEdges());
+		if (!y.is_element(src) || !y.is_element(tgt)){
+			temp_comp.addElement(x.get(i));
+			components.push_back(temp_comp);
+		}
+
+		visited.addElement(e->getSrcID());
+		visited.addElement(e->getTgtID());
 	}
 
+
+		while (!visited.empty()){
+		std::vector<int> stack;
+		// check if vertex is in solution
+		// if (y.is_element(visited.get(0))){
+		stack.push_back(visited.get(0));
+		// }
+		// else{
+		// 	visited.removeElement(visited.get(0));
+		// 	continue;
+		// }
+		
+		bool cycle = false;
+
+		// make set_obj for temporary vertices and edges
+		set_obj temp_x(x.idx_size());
+		set_obj temp_y(y.idx_size());
+
+		while(!stack.empty()){
+			// get current node
+			int curr_idx = stack.back();
+			stack.pop_back();
+
+			// mark current as visited
+			visited.removeElement(curr_idx);
+
+			// add current to temp_y
+			temp_y.addElement(curr_idx);
+
+			Node *node = graph.getNode(curr_idx);
+			std::vector<Edge*> adj_edges;
+			node->getEdges(adj_edges);
+			
+			// iterate over adjacent edges and if edge is in x, add it to component
+			for (std::vector<Edge*>::iterator e = adj_edges.begin(); e != adj_edges.end(); ++e){
+				// skip edge if not in x, else add it to component
+				if (!x.is_element((*e)->getID())){
+					continue;
+				}
+				else{
+					temp_x.addElement((*e)->getID());
+				}
+
+				// find endpoints of the edge
+				std::vector<int> endpoints;		
+				endpoints.push_back((*e)->getSrcID());
+				endpoints.push_back((*e)->getTgtID());
+
+				// if both endpoints already in temp_y, flag that cycle exists, otherwise add endpoints
+				if (temp_y.is_element(endpoints[0]) && temp_y.is_element(endpoints[1])){
+					cycle = true;
+				}
+				else{
+					for (int i = 0; i < endpoints.size(); ++i){
+						if (!temp_y.is_element(endpoints[i])){
+							stack.push_back(endpoints[i]);	
+						}
+					}
+				}
+			} // end iterator
+		} // end stack while
+
+		// if no cycles skip component
+		// if (!cycle){
+		// 	continue;
+		// }
+
+		// prune the subgraph to remove all but the cycle
+		prune_subgraph_noterm(graph,temp_x);
+
+
+		// reset temp_y to store nodes of pruned subgraph
+		temp_y.clear();
+
+		// add all nodes from new subgraph
+		for (int e=0; e < temp_x.size(); ++e){
+			Edge * edge = graph.getEdge(temp_x.get(e));
+			temp_y.addElement(edge->getSrcID());
+			temp_y.addElement(edge->getTgtID());
+		}
+
+		// find all extra edges that bridge component
+		for (int i=0; i < temp_y.size()-1; ++i){
+			for (int j=i+1; j < temp_y.size(); ++j){
+				Edge * e = graph.getEdgePair(temp_y.get(i),temp_y.get(j));
+				if (e){
+					temp_x.addElement(e->getID());
+				}
+			}
+		}		
+
+		// CHECK(temp_x.size())
+		// CHECK(temp_y.size())
+		if (temp_x.size() > 0){
+			components.push_back(temp_x);
+		}
+
+	} // end visit while
 }
 
-// removes "dangling" edges
+// removes "dangling" edges from subgraph, regardless of terminal status
+void prune_subgraph_noterm(const U_Graph &graph, set_obj &subgraph){
+
+	int subgraph_size = subgraph.size() + 1;
+	
+	std::vector<int> degree(graph.getNumNodes(), 0);
+
+	// populate degree vector
+	for (int e = 0; e < subgraph.size(); ++e){
+		int src = graph.getEdge(subgraph.get(e))->getSrcID();
+		int tgt = graph.getEdge(subgraph.get(e))->getTgtID();
+		degree[src]++;
+		degree[tgt]++;
+	}
+
+	// loop while there are still edges to remove
+	while (subgraph_size - subgraph.size() != 0){
+		subgraph_size = subgraph.size();
+
+		// delete edges with endpoint with only one degree
+		for (int e = 0; e < subgraph.size(); ++e){
+			int src = graph.getEdge(subgraph.get(e))->getSrcID();
+			int tgt = graph.getEdge(subgraph.get(e))->getTgtID();
+			if (degree[src] < 2 || degree[tgt] < 2){
+				subgraph.removeElement(subgraph.get(e));
+				degree[src]--;
+				degree[tgt]--;
+				break;
+			}
+		}
+	}
+}
+
+// removes "dangling" edges that arent terminals
 void prune_subgraph(const U_Graph &graph, set_obj &subgraph){
 
 	int subgraph_size = subgraph.size() + 1;
@@ -170,7 +321,12 @@ void prune_subgraph(const U_Graph &graph, set_obj &subgraph){
 }
 
 bool verify(const U_Graph &graph, const std::vector<int> &terms, const set_obj &sol){
-	
+
+	if (sol.empty()){
+		PE("SOLUTION EMPTY!")
+		return false;
+	}
+
 	int path_cost =0;
 	std::vector<int> v_visited(graph.getNumNodes(),0);
 	std::vector<int> e_visited(graph.getNumEdges(),0);
@@ -227,6 +383,44 @@ bool verify(const U_Graph &graph, const std::vector<int> &terms, const set_obj &
 		return false;
 	}
 
+	VE("\n*****************************************")
+    VE("heuristic solution:")
+    VE("*****************************************")
+
+    std::ostringstream latex_x;
+	std::ostringstream latex_y;
+
+    int cost = 0;
+
+    VF("x = { ")
+
+    set_obj test_y(graph.getNumNodes());
+
+    for (int e = 0; e < sol.size(); ++e){
+      Edge * edge = graph.getEdge(sol.get(e));
+      
+      cost += edge->getWt();
+
+      VF("(" << edge->getSrcID()+1 << "," << edge->getTgtID()+1 << ") ")
+      latex_x << std::to_string(edge->getSrcID()+1) << "/" << std::to_string(edge->getTgtID()+1)<< ",";
+      test_y.addElement(edge->getTgtID());
+      test_y.addElement(edge->getSrcID());
+    }
+
+    VE("}")
+    VF("y = { ")
+
+    for (int n = 0; n < test_y.idx_size(); ++n){
+      if (test_y.is_element(n)){
+        VF(n+1 << " ")
+	    latex_y << n+1 << ",";
+	  }
+    }
+
+    VE("}")
+    VE("cost: " << cost << std::endl)
+    VE("\nx = " <<latex_x.str())
+    VE("y = " << latex_y.str()<<std::endl)
 	return true;
 }
 

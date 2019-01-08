@@ -17,6 +17,7 @@ class SettingsHandler {
     int  DEAD_MOVES=1;
     bool RECORD_DATA=1;
     bool TEST_GROUPS=0;
+    bool WARM_START=false;
 
 
     int RANDOM_SEARCH=0;
@@ -55,7 +56,6 @@ class SettingsHandler {
     double MODIFIER_WEIGHT=0.0;
     double PROCESS_THRESHOLD=0.0;
     double MIN_DIFF_TO_PROCESS=0.0;
-    bool WARM_START=false;
     bool ONLY_NEGATIVE=false;
     size_t WINDOW_SEARCH_TIME = 0;
     double TOP_PERCENT = 1.0;

@@ -85,6 +85,7 @@ qol::Callback::Status STPGCallback::callback(Progress where){
     }
     rhs -= 1;
     addCut(lhs <= rhs);
+    PE("cut added without exception")
   }
 }
 

@@ -14,6 +14,7 @@
 #include "SettingsHandler.h"
 #include <STPGModel.h>
 #include <string>
+#include <sstream>
 #include <util.h>
 
 class STPGMip{
@@ -42,8 +43,9 @@ class STPGCallback : public qol::Callback{
     const std::vector<qol::Variable> &x;
     const std::vector<qol::Variable> &y;
     int *countPtr;
+    qol::MIPSolver *mipPtr;
     public:
-    STPGCallback(STPGModel *_probModel,const std::vector<qol::Variable> &_x, const std::vector<qol::Variable> &_y,int *_countPtr):probModel(_probModel),x(_x),y(_y),countPtr(_countPtr){};
+    STPGCallback(STPGModel *_probModel,const std::vector<qol::Variable> &_x, const std::vector<qol::Variable> &_y,int *_countPtr,qol::MIPSolver *_mipPtr):probModel(_probModel),x(_x),y(_y),countPtr(_countPtr),mipPtr(_mipPtr){};
     ~STPGCallback(){};
     Status callback(Progress where);
 };

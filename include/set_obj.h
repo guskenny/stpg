@@ -26,16 +26,16 @@ class set_obj{
     };
 
     void fill(){
-      idx_data = std::vector<int>(num_elements, 1);
-      set_data = std::vector<int>(num_elements);
-      std::iota (std::begin(set_data), std::end(set_data), 0);
+      idx_data = std::vector<int>(num_elements);
+      std::iota (std::begin(idx_data), std::end(idx_data), 0);
+      set_data = idx_data;
     };
 
     void fill(int _num_elements){
       num_elements = _num_elements;
-      idx_data = std::vector<int>(num_elements, 1);
-      set_data = std::vector<int>(num_elements);
-      std::iota(std::begin(set_data), std::end(set_data), 0);
+      idx_data = std::vector<int>(num_elements);
+      std::iota (std::begin(idx_data), std::end(idx_data), 0);
+      set_data = idx_data;
     };
 
     void clear(int num_elements_){
@@ -140,11 +140,11 @@ class set_obj{
       }
     };
 
-    // void setMinus(const SetObj &src){
-    //   for (int i = 0; i < src.set_data.size(); ++i){
-    //     removeElement(src.set_data[i]);
-    //   }
-    // };
+    void subtract(const set_obj &src){
+      for (int i = 0; i < src.size(); ++i){
+        removeElement(src.get(i));
+      }
+    };
 
     // SetObj getIntersection(const SetObj &src){
     //   SetObj temp(num_elements);
