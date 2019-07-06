@@ -8,8 +8,9 @@ source/STPGSolver.o: source/STPGSolver.cpp include/STPGSolver.h \
  /opt/ibm/ILOG/CPLEX_Studio127/cplex/include/ilcplex/cpxconst.h \
  QOL/QolMIPSolver.h QOL/QolSolutionPrimal.h QOL/QolSolutionBase.h \
  QOL/QolSolutionFull.h QOL/QolParams.h QOL/QolColFormulation.h \
- QOL/GurobiFormulation.h include/SettingsHandler.h include/LocalSearch.h \
- include/SolutionMerger.h
+ QOL/GurobiFormulation.h include/STPGMergeMip.h include/merge_sol.h \
+ include/set_obj.h include/SettingsHandler.h include/LocalSearch.h \
+ include/SolutionMerger.h include/merge_sol.h
 
 include/STPGSolver.h:
 
@@ -65,8 +66,16 @@ QOL/QolColFormulation.h:
 
 QOL/GurobiFormulation.h:
 
+include/STPGMergeMip.h:
+
+include/merge_sol.h:
+
+include/set_obj.h:
+
 include/SettingsHandler.h:
 
 include/LocalSearch.h:
 
 include/SolutionMerger.h:
+
+include/merge_sol.h:

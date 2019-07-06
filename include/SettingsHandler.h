@@ -18,8 +18,10 @@ class SettingsHandler {
     bool RECORD_DATA=1;
     bool TEST_GROUPS=0;
     bool WARM_START=false;
+    size_t MIP_TIME=0;
+    size_t NUM_ITER=1;
 
-
+    size_t TIMER_LENGTH=0;
     int RANDOM_SEARCH=0;
     int NUM_TOTAL_RUNS=1;
     bool QUIET=0;
@@ -36,13 +38,11 @@ class SettingsHandler {
     int SA_ITER=100;
     int FULL_RUNS=10;
     bool GREEDY_PLUS=0;
-    size_t TIMER_LENGTH=0;
     bool LOAD_SEEDS=1;
     size_t SOL_IDX=0;
     bool AUTO_REPAIR=0;
     size_t INIT_SEEDS=1;
     size_t NUM_SEEDS=1;
-    size_t NUM_ITER=1;
     size_t MERGE_TYPE=1;
     size_t ITER_INCR=0;
     size_t FIX_BEST_GROUP=false;
@@ -111,6 +111,10 @@ class SettingsHandler {
         }
         else if (setting.compare("PREPROCESS") == 0){
           PREPROCESS = stoi(value);
+          continue;
+        }
+        else if (setting.compare("MIP_TIME") == 0){
+          MIP_TIME = stoi(value);
           continue;
         }
         else if (setting.compare("INIT_SOL_TYPE") == 0){
@@ -270,10 +274,6 @@ class SettingsHandler {
         }
         else if (setting.compare("ONLY_NEGATIVE") == 0){
           ONLY_NEGATIVE = stoi(value);
-          continue;
-        }
-        else if (setting.compare("WINDOW_SEARCH_TIME") == 0){
-          WINDOW_SEARCH_TIME = stoi(value);
           continue;
         }
         else if (setting.compare("TOP_PERCENT") == 0){

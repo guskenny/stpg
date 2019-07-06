@@ -3,6 +3,7 @@
 
 void floyd_warshall(const U_Graph &graph, std::vector<std::vector<int> > &dist, std::vector<std::vector<int> > &next){
 	
+
 	const int n_nodes = graph.getNumNodes();
 	const int n_edges = graph.getNumEdges();
 
@@ -14,13 +15,24 @@ void floyd_warshall(const U_Graph &graph, std::vector<std::vector<int> > &dist, 
 		dist[i][i] = 0;
 	}
 
+	for (int e = 0; e < n_edges; ++e){
+		const Edge *edge = graph.getEdge(e);
+		int src = edge->getSrc()->getID();
+		int tgt = edge->getTgt()->getID();
+		if (src >= n_nodes || tgt >= n_nodes){
+			PE("error found in ("<<src<<", "<<tgt<<")")
+		}
+	}
+
 
 	for (int e = 0; e < n_edges; ++e){
 		const Edge *edge = graph.getEdge(e);
 		int src = edge->getSrc()->getID();
 		int tgt = edge->getTgt()->getID();
+		// PF("setting weight for ("<<src<<", "<<tgt<<").. ")
 		dist[src][tgt] = edge->getWt();
 		dist[tgt][src] = edge->getWt();
+		// PE("done!")
 		next[src][tgt] = tgt;
 		next[tgt][src] = src;
 	}
@@ -121,14 +133,17 @@ void get_mst(const U_Graph &graph, set_obj &sol){
 	}
 }
 
-void get_components(const U_Graph &graph, const set_obj &x,const set_obj &y, std::vector<set_obj> &components){
+void get_components(const U_Graph &graph, const set_obj &x,const set_obj &y, std::vector<set_obj> &comp_edges, std::vector<set_obj> &comp_nodes, std::vector<int> &comp_type){
 
 
 	// clear components vector
-	components.clear();
+	comp_edges.clear();
+	comp_nodes.clear();
+	comp_type.clear();
 
-	// filled set_obj for visited vertices
+	// set_obj for visited vertices
 	set_obj visited(graph.getNumNodes());
+
 	// visited.fill();
 
 	// set_obj y(graph.getNumNodes());
@@ -144,16 +159,22 @@ void get_components(const U_Graph &graph, const set_obj &x,const set_obj &y, std
 		int src = e->getSrcID();
 		int tgt = e->getTgtID();
 
-		set_obj temp_comp(graph.getNumEdges());
+		set_obj temp_comp_e(graph.getNumEdges());
+		set_obj temp_comp_n(graph.getNumNodes());
+
+		// // if edge doesnt have both endpoints, add as separate component
 		if (!y.is_element(src) || !y.is_element(tgt)){
-			temp_comp.addElement(x.get(i));
-			components.push_back(temp_comp);
+			temp_comp_e.addElement(x.get(i));
+			temp_comp_n.addElement(src);
+			temp_comp_n.addElement(tgt);
+			comp_nodes.push_back(temp_comp_n);
+			comp_edges.push_back(temp_comp_e);
+			comp_type.push_back(graph.getNode(src)->isTerm() || graph.getNode(tgt)->isTerm());
 		}
 
-		visited.addElement(e->getSrcID());
-		visited.addElement(e->getTgtID());
+		visited.addElement(src);
+		visited.addElement(tgt);
 	}
-
 
 		while (!visited.empty()){
 		std::vector<int> stack;
@@ -184,6 +205,7 @@ void get_components(const U_Graph &graph, const set_obj &x,const set_obj &y, std
 			temp_y.addElement(curr_idx);
 
 			Node *node = graph.getNode(curr_idx);
+
 			std::vector<Edge*> adj_edges;
 			node->getEdges(adj_edges);
 			
@@ -221,18 +243,34 @@ void get_components(const U_Graph &graph, const set_obj &x,const set_obj &y, std
 		// 	continue;
 		// }
 
+
 		// prune the subgraph to remove all but the cycle
 		prune_subgraph_noterm(graph,temp_x);
 
+		for (int e=0; e < temp_x.size(); ++e){
+			if (temp_x.get(e) < 0){
+				CHECK(temp_x.get(e))
+				std::cin.get();
+			}
+		}
 
 		// reset temp_y to store nodes of pruned subgraph
 		temp_y.clear();
 
+// TODO: check if any src or tgt on any edges are -1.. otherwise find what the -1 is!
+
+		bool term = false;
 		// add all nodes from new subgraph
 		for (int e=0; e < temp_x.size(); ++e){
+	// PF("setting up.. " << e << " from size " << temp_x.size() << "/" << temp_x.set_data.size() << ": " << temp_x.get(e) << ".. ")
 			Edge * edge = graph.getEdge(temp_x.get(e));
+	// PE("done!")
 			temp_y.addElement(edge->getSrcID());
 			temp_y.addElement(edge->getTgtID());
+			// check if there is a terminal in the component
+			if (edge->getSrc()->isTerm() || edge->getTgt()->isTerm()){
+				term = true;
+			}
 		}
 
 		// find all extra edges that bridge component
@@ -248,7 +286,9 @@ void get_components(const U_Graph &graph, const set_obj &x,const set_obj &y, std
 		// CHECK(temp_x.size())
 		// CHECK(temp_y.size())
 		if (temp_x.size() > 0){
-			components.push_back(temp_x);
+			comp_nodes.push_back(temp_y);
+			comp_edges.push_back(temp_x);
+			comp_type.push_back(term);
 		}
 
 	} // end visit while
@@ -269,22 +309,33 @@ void prune_subgraph_noterm(const U_Graph &graph, set_obj &subgraph){
 		degree[tgt]++;
 	}
 
+	std::vector<int> edges_to_remove;
+	std::vector<int> edges_to_skip(subgraph.size(),0);
+
 	// loop while there are still edges to remove
 	while (subgraph_size - subgraph.size() != 0){
 		subgraph_size = subgraph.size();
 
 		// delete edges with endpoint with only one degree
 		for (int e = 0; e < subgraph.size(); ++e){
+			if (edges_to_skip[e]){
+				continue;
+			}
 			int src = graph.getEdge(subgraph.get(e))->getSrcID();
 			int tgt = graph.getEdge(subgraph.get(e))->getTgtID();
 			if (degree[src] < 2 || degree[tgt] < 2){
-				subgraph.removeElement(subgraph.get(e));
+				int edge = subgraph.get(e);
+				edges_to_remove.push_back(edge);
+				edges_to_skip[e]++;
+				// subgraph.removeElement(subgraph.get(e));
 				degree[src]--;
 				degree[tgt]--;
 				break;
 			}
 		}
 	}
+	// remove edges
+	subgraph.removeElements(edges_to_remove);
 }
 
 // removes "dangling" edges that arent terminals
@@ -375,16 +426,16 @@ bool verify(const U_Graph &graph, const std::vector<int> &terms, const set_obj &
 		VE("\nAll terminals visited!")
 	}
 	else{
-		VF("Error! Terminals missed: ")
+		PE("Error! Terminals missed: ")
 		for (int t=0;t<missed_terms.size();++t){
-			VF(missed_terms[t] << " ")
+			PF(missed_terms[t] << " ")
 		}
-		VE("")
+		PE("")
 		return false;
 	}
 
 	VE("\n*****************************************")
-    VE("heuristic solution:")
+    VE("tested solution:")
     VE("*****************************************")
 
     std::ostringstream latex_x;

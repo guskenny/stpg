@@ -8,18 +8,22 @@
 #include <queue>
 #include "SettingsHandler.h"
 #include <set_obj.h>
+#include <merge_sol.h>
 #include <STPGModel.h>
 #include "QOL/CpuTimer.h"
 
 class SolutionMerger{
   private:
+    // int temp;
     SettingsHandler sh;
-    STPGModel *probModel;
+    // STPGModel *probModel;
 
   public:
-    SolutionMerger(const SettingsHandler sh, const STPGModel *probModel) : sh(sh),probModel(probModel) {std::cout << "solution merger initialised" << std::endl;};
+    // SolutionMerger(const SettingsHandler sh, const STPGModel *probModel) : sh(sh),probModel(probModel) {std::cout << "solution merger initialised" << std::endl;};
+    SolutionMerger(const SettingsHandler sh){std::cout << "solution merger initialised" << std::endl;};
 
-    void merge(const std::vector<set_obj>&sols, std::vector<std::vector<int> > &groups, std::vector<int> &group_map);
+    void merge(const std::vector<set_obj>&sols, merge_sol &merged_sols);
+    void test(){std::cout << "test" << std::endl;};
 
     ~SolutionMerger(){};
 

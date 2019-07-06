@@ -10,7 +10,7 @@
 class set_obj{
   public:
     int num_elements;
-    std::vector<int> idx_data;
+    std::vector<int> idx_data; // holds index of elements in set data (-1 if not in set)
     std::vector<int> set_data;
 
     set_obj(){};
@@ -81,6 +81,10 @@ class set_obj{
       }
     };
 
+    const int& operator[] (int idx) {
+        return set_data[idx];
+    }
+
     int getRandomElement(std::mt19937 &rng){
       if (set_data.empty()){
         return -1;
@@ -90,10 +94,13 @@ class set_obj{
       return set_data[idx];
     };
 
-    void addElement(const int idx){
-      if (idx_data[idx] < 0){
-        idx_data[idx] = set_data.size();
-        set_data.push_back(idx);
+    void addElement(const int val){
+      if (val > idx_data.size() || val < 0){
+        std::cout << "something's wrong! trying to insert " << val << std::endl;
+      }
+      if (idx_data[val] < 0){
+        idx_data[val] = set_data.size();
+        set_data.push_back(val);
       }
     };
 
@@ -106,14 +113,14 @@ class set_obj{
       }
     };
 
-    void removeElement(const int idx){
-      if (idx_data[idx] > -1){
+    void removeElement(const int val){
+      if (idx_data[val] > -1){
         // replace current element with back element
-        set_data[idx_data[idx]] = set_data.back();
+        set_data[idx_data[val]] = set_data.back();
         // change idx_data for back element
-        idx_data[set_data.back()] = idx_data[idx];
+        idx_data[set_data.back()] = idx_data[val];
         // remove from idx data
-        idx_data[idx] = -1;
+        idx_data[val] = -1;
         // remove back element
         set_data.pop_back();
       }

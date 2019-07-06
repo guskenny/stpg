@@ -2,5 +2,5 @@ OBJECTIVE TRACKING - tiny_test
 ! NAME tiny_test
 ! CPU_TIME 0
 ! SWAPS 1
-! JUMP_FREQ 4
+! JUMP_FREQ 0
 ! POP_SIZE 117

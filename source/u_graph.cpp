@@ -117,7 +117,9 @@ void U_Graph::deleteNodes(std::vector<NodeID> &nodeIDs){
   std::sort(nodeIDs.rbegin(), nodeIDs.rend());
 
   for (int i = 0; i < nodeIDs.size(); ++i){
+    Node* temp = getNode(nodeIDs[i]);
     nodes.erase(nodes.begin() + nodeIDs[i]);
+    delete(temp);
     // nodes[nodeIDs[i]] = nodes.back();
     // nodes.pop_back();
   }
@@ -164,17 +166,34 @@ void U_Graph::resizeNodes(int n)
 */
 
 
+const int Node::getConnectedIDs (std::vector<int> &connected){
+  connected.clear();
+
+  
+  for (size_t prev_edge = 0; prev_edge < this->getInDegree(); ++prev_edge){
+    int prev_idx = this->getInEdge(prev_edge)->getSrc()->getID();
+    connected.push_back(prev_idx);
+  }
+  for (size_t next_edge = 0; next_edge < this->getOutDegree(); ++next_edge){
+    int next_idx = this->getOutEdge(next_edge)->getTgt()->getID();
+    connected.push_back(next_idx);
+  }
+
+  return connected.size();
+}
+
 const int Node::getConnected (std::vector<Node*> &connected){
   connected.clear();
+
   
-    for (size_t prev_edge = 0; prev_edge < this->getInDegree(); ++prev_edge){
-      int prev_idx = this->getInEdge(prev_edge)->getSrc()->getID();
-      connected.push_back(g->getNode(prev_idx));
-    }
-    for (size_t next_edge = 0; next_edge < this->getOutDegree(); ++next_edge){
-      int next_idx = this->getOutEdge(next_edge)->getTgt()->getID();
-      connected.push_back(g->getNode(next_idx));
-    }
+  for (size_t prev_edge = 0; prev_edge < this->getInDegree(); ++prev_edge){
+    int prev_idx = this->getInEdge(prev_edge)->getSrc()->getID();
+    connected.push_back(g->getNode(prev_idx));
+  }
+  for (size_t next_edge = 0; next_edge < this->getOutDegree(); ++next_edge){
+    int next_idx = this->getOutEdge(next_edge)->getTgt()->getID();
+    connected.push_back(g->getNode(next_idx));
+  }
 
   return connected.size();
 }
@@ -200,6 +219,28 @@ void Node::deleteInEdge(int edge_idx){
 void Node::deleteOutEdge(int edge_idx){
   outEdges[edge_idx] = outEdges.back();
   outEdges.pop_back();
+}
+
+void Edge::setSrc(Node* new_src){
+  for (int e = 0; e < src->getOutDegree(); ++e){
+    if (src->getOutEdge(e)->getID() == id){
+      // PE("deleting edge: "<<id)
+      src->deleteOutEdge(e);
+      break;
+    }
+  }
+  src = new_src;
+}
+
+void Edge::setTgt(Node* new_tgt){
+  for (int e = 0; e < tgt->getInDegree(); ++e){
+    if (tgt->getInEdge(e)->getID() == id){
+      // PE("deleting edge: "<<id)
+      tgt->deleteInEdge(e);
+      break;
+    }
+  }
+  tgt = new_tgt;
 }
 
 /*

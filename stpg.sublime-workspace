@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"ant_",
+				"ant_node_id"
+			],
+			[
+				"group",
+				"group_map"
+			],
+			[
+				"find",
+				"find_group"
+			],
+			[
+				"probMo",
+				"probModel-"
+			],
+			[
+				"edges_t",
+				"edges_to_remove"
+			],
+			[
+				"comp",
+				"comp_type"
+			],
+			[
+				"prob",
+				"prob_graph"
+			],
+			[
 				"callback",
 				"Callback"
 			],
@@ -14,10 +42,6 @@
 			[
 				"getT",
 				"getTgtID"
-			],
-			[
-				"prob",
-				"prob_graph"
 			],
 			[
 				"getNum",
@@ -82,10 +106,6 @@
 			[
 				"getS",
 				"getSolValue"
-			],
-			[
-				"find",
-				"findKeys"
 			],
 			[
 				"pro",
@@ -208,7 +228,43 @@
 			"file": "source/LocalSearch.cpp",
 			"settings":
 			{
-				"buffer_size": 7995,
+				"buffer_size": 8004,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/STPGMergeMip.cpp",
+			"settings":
+			{
+				"buffer_size": 8508,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/STPGSolver.cpp",
+			"settings":
+			{
+				"buffer_size": 8493,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/STPGModel.cpp",
+			"settings":
+			{
+				"buffer_size": 11072,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "source/u_graph.cpp",
+			"settings":
+			{
+				"buffer_size": 8160,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -222,28 +278,11 @@
 			}
 		},
 		{
-			"file": "source/STPGMip_cutdown.cpp",
-			"settings":
-			{
-				"buffer_size": 4203,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "source/STPGMip.cpp",
-			"settings":
-			{
-				"buffer_size": 9211,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "Makefile",
 			"settings":
 			{
-				"buffer_size": 2777,
+				"buffer_size": 2801,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -251,26 +290,17 @@
 			"file": "source/SolutionMerger.cpp",
 			"settings":
 			{
-				"buffer_size": 3289,
+				"buffer_size": 5458,
 				"encoding": "UTF-8",
 				"line_ending": "Unix",
 				"name": "#include <SolutionMerger.h>"
 			}
 		},
 		{
-			"file": "source/STPGSolver.cpp",
+			"file": "source/STPGMip.cpp",
 			"settings":
 			{
-				"buffer_size": 6153,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "source/u_graph.cpp",
-			"settings":
-			{
-				"buffer_size": 7171,
+				"buffer_size": 11341,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -279,16 +309,7 @@
 			"file": "source/util.cpp",
 			"settings":
 			{
-				"buffer_size": 11485,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "include/SolutionMerger.h",
-			"settings":
-			{
-				"buffer_size": 655,
+				"buffer_size": 13053,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -297,7 +318,7 @@
 			"file": "include/STPGSolver.h",
 			"settings":
 			{
-				"buffer_size": 635,
+				"buffer_size": 661,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -341,7 +362,7 @@
 			"file": "include/SettingsHandler.h",
 			"settings":
 			{
-				"buffer_size": 13820,
+				"buffer_size": 13822,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -422,10 +443,19 @@
 			}
 		},
 		{
+			"file": "include/STPGMergeMip.h",
+			"settings":
+			{
+				"buffer_size": 1415,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "settings.ini",
 			"settings":
 			{
-				"buffer_size": 136,
+				"buffer_size": 202,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -461,7 +491,7 @@
 			"file": "include/u_graph.h",
 			"settings":
 			{
-				"buffer_size": 4808,
+				"buffer_size": 4978,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -470,7 +500,7 @@
 			"file": "include/util.h",
 			"settings":
 			{
-				"buffer_size": 836,
+				"buffer_size": 941,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -479,7 +509,25 @@
 			"file": "include/set_obj.h",
 			"settings":
 			{
-				"buffer_size": 4080,
+				"buffer_size": 4347,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/SolutionMerger.h",
+			"settings":
+			{
+				"buffer_size": 812,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "include/merge_sol.h",
+			"settings":
+			{
+				"buffer_size": 1455,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -597,14 +645,18 @@
 	[
 		"/home/gus/Documents/PhD/stpg",
 		"/home/gus/Documents/PhD/stpg/data",
+		"/home/gus/Documents/PhD/stpg/data/B",
 		"/home/gus/Documents/PhD/stpg/include",
-		"/home/gus/Documents/PhD/stpg/QOL",
 		"/home/gus/Documents/PhD/stpg/source",
 		"/home/gus/Documents/PhD/stpg/tracking_data",
 		"/home/gus/Documents/PhD/stpg/tracking_data/B"
 	],
 	"file_history":
 	[
+		"/home/gus/Documents/PhD/stpg/source/STPGModel.cpp",
+		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_07_18-GECCO18/gecco18.tex",
+		"/home/gus/angus.kenny@rmit.edu.au/tutoring/DS_2019/test_3/test3_notes.tex",
+		"/home/gus/Documents/PhD/stpg/source/STPGMip_cutdown.cpp",
 		"/home/gus/Documents/PhD/mine-project/source/MergeSolverCompact.cpp",
 		"/home/gus/angus.kenny@rmit.edu.au/PhD/notes/MIP_traces/trace_2/mip_trace_2.tex",
 		"/home/gus/Documents/PhD/stpg/data/teeny_test.stp",
@@ -612,7 +664,6 @@
 		"/home/gus/Documents/PhD/stpg/include/Solution.h",
 		"/home/gus/Documents/PhD/stpg/QOL/QolMIP.h",
 		"/home/gus/Documents/PhD/stpg/QOL/CplexFormulation.cpp",
-		"/home/gus/Documents/PhD/stpg/source/STPGModel.cpp",
 		"/home/gus/Documents/PhD/stpg/QOL/Makefile",
 		"/home/gus/Documents/PhD/mine-project/Makefile",
 		"/home/gus/Documents/PhD/stpg/Makefile",
@@ -637,7 +688,6 @@
 		"/home/gus/Documents/PhD/mine_base_code/Makefile",
 		"/home/gus/Dropbox/2018-DS18ii-TutorialSources/animation_stuff/truth_table/tangocolors.sty",
 		"/home/gus/Dropbox/2018-DS18ii-TutorialSources/animation_stuff/truth_table/blerp.sty",
-		"/home/gus/angus.kenny@rmit.edu.au/PhD/presentations/2018_07_18-GECCO18/gecco18.tex",
 		"/home/gus/Dropbox/2018-DS18ii-TutorialSources/class_test_4/DS18_S2_test_4.tex",
 		"/home/gus/Documents/teaching_stuff/2018/ct18/asg2/old/Assignment2-COSC1107-1105-CT17.tex",
 		"/home/gus/angus.kenny@rmit.edu.au/CT18-assignment2/EmmaLemma/emma-6.tex",
@@ -748,6 +798,15 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"(\"\")",
+			"TODO",
+			"CHECK",
+			"-1",
+			"TIMER_",
+			"row",
+			"addConstraint",
+			"start",
+			"is_term",
 			"addCut",
 			"Expre",
 			"Callback",
@@ -791,7 +850,7 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -813,6 +872,9 @@
 						],
 						"settings":
 						{
+							"SL.14.region_keys":
+							[
+							],
 							"syntax": "Packages/C++/C++.sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
@@ -821,7 +883,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 21,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -830,19 +892,22 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7995,
+						"buffer_size": 8004,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								238,
-								238
+								267,
+								267
 							]
 						],
 						"settings":
 						{
+							"SL.15.region_keys":
+							[
+							],
 							"syntax": "Packages/C++/C++.sublime-syntax",
 							"translate_tabs_to_spaces": false,
 							"word_wrap": true
@@ -851,11 +916,161 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 20,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
+					"file": "source/STPGMergeMip.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8508,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5896,
+								5896
+							]
+						],
+						"settings":
+						{
+							"SL.23.region_keys":
+							[
+							],
+							"SL.38.region_keys":
+							[
+							],
+							"SL.50.region_keys":
+							[
+							],
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "source/STPGSolver.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8493,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1506,
+								1506
+							]
+						],
+						"settings":
+						{
+							"SL.19.region_keys":
+							[
+							],
+							"WordCount":
+							{
+								"changes": 0,
+								"count": 468,
+								"modified": false,
+								"selection": false,
+								"status": -1,
+								"syntax": "plain text"
+							},
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 720.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "source/STPGModel.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11072,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4867,
+								4867
+							]
+						],
+						"settings":
+						{
+							"SL.51.region_keys":
+							[
+							],
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 831.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "source/u_graph.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8160,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2384,
+								2384
+							]
+						],
+						"settings":
+						{
+							"SL.21.region_keys":
+							[
+							],
+							"SL.22.region_keys":
+							[
+							],
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 45.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
 					"file": "/home/gus/angus.kenny@rmit.edu.au/PhD/notes/steiner_formulation/graph.tikz",
 					"semi_transient": false,
 					"settings":
@@ -873,7 +1088,48 @@
 						],
 						"settings":
 						{
+							"SL.16.region_keys":
+							[
+							],
+							"SL.30.region_keys":
+							[
+							],
+							"SL.35.region_keys":
+							[
+							],
 							"syntax": "Packages/LaTeX/LaTeX.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 21,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "Makefile",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2801,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1580,
+								1580
+							]
+						],
+						"settings":
+						{
+							"SL.17.region_keys":
+							[
+							],
+							"syntax": "Packages/Makefile/Makefile.sublime-syntax",
+							"word_wrap": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -883,114 +1139,27 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "source/STPGMip_cutdown.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4203,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2997,
-								2997
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true,
-							"word_wrap": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 735.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 17,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "source/STPGMip.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 9211,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								7753,
-								7753
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true,
-							"word_wrap": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 450.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "Makefile",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2777,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1534,
-								1534
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Makefile/Makefile.sublime-syntax"
-						},
-						"translation.x": 896.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 31,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
+					"buffer": 8,
 					"file": "source/SolutionMerger.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3289,
+						"buffer_size": 5458,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								18,
-								18
+								594,
+								594
 							]
 						],
 						"settings":
 						{
+							"SL.18.region_keys":
+							[
+							],
 							"auto_name": "#include <SolutionMerger.h>",
 							"syntax": "Packages/C++/C++.sublime-syntax",
 							"tab_size": 4,
@@ -998,129 +1167,45 @@
 							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 870.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "source/STPGSolver.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6153,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								664,
-								664
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"translate_tabs_to_spaces": false,
-							"word_wrap": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "source/u_graph.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7171,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1633,
-								1633
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1845.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 29,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
 					"buffer": 9,
-					"file": "source/util.cpp",
+					"file": "source/STPGMip.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11485,
+						"buffer_size": 11341,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3830,
-								3830
+								805,
+								805
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"translate_tabs_to_spaces": false,
-							"word_wrap": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 5580.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 22,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 20,
-			"sheets":
-			[
-				{
-					"buffer": 10,
-					"file": "include/SolutionMerger.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 655,
-						"regions":
-						{
-						},
-						"selection":
-						[
+							"SL.17.region_keys":
 							[
-								632,
-								632
-							]
-						],
-						"settings":
-						{
+							],
+							"SL.22.region_keys":
+							[
+							],
+							"SL.36.region_keys":
+							[
+							],
+							"SL.47.region_keys":
+							[
+							],
 							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 4,
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true,
 							"word_wrap": true
 						},
@@ -1128,28 +1213,76 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 32,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
-					"file": "include/STPGSolver.h",
+					"buffer": 10,
+					"file": "source/util.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 635,
+						"buffer_size": 13053,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								271,
-								271
+								655,
+								655
 							]
 						],
 						"settings":
 						{
+							"SL.23.region_keys":
+							[
+							],
+							"SL.24.region_keys":
+							[
+							],
+							"SL.38.region_keys":
+							[
+							],
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 16,
+			"sheets":
+			[
+				{
+					"buffer": 11,
+					"file": "include/STPGSolver.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 661,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								136,
+								136
+							]
+						],
+						"settings":
+						{
+							"SL.26.region_keys":
+							[
+							],
 							"syntax": "Packages/C++/C++.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
@@ -1157,7 +1290,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 24,
+					"stack_index": 18,
 					"type": "text"
 				},
 				{
@@ -1179,13 +1312,16 @@
 						],
 						"settings":
 						{
+							"SL.27.region_keys":
+							[
+							],
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 23,
+					"stack_index": 32,
 					"type": "text"
 				},
 				{
@@ -1207,13 +1343,16 @@
 						],
 						"settings":
 						{
+							"SL.28.region_keys":
+							[
+							],
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 25,
+					"stack_index": 33,
 					"type": "text"
 				},
 				{
@@ -1235,13 +1374,16 @@
 						],
 						"settings":
 						{
+							"SL.29.region_keys":
+							[
+							],
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 26,
+					"stack_index": 34,
 					"type": "text"
 				},
 				{
@@ -1263,6 +1405,9 @@
 						],
 						"settings":
 						{
+							"SL.30.region_keys":
+							[
+							],
 							"syntax": "Packages/Python/Python.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true,
@@ -1272,7 +1417,7 @@
 						"translation.y": 210.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 30,
+					"stack_index": 35,
 					"type": "text"
 				},
 				{
@@ -1281,25 +1426,28 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 13820,
+						"buffer_size": 13822,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								408,
-								408
+								460,
+								460
 							]
 						],
 						"settings":
 						{
+							"SL.31.region_keys":
+							[
+							],
 							"syntax": "Packages/C++/C++.sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3735.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 15,
@@ -1324,13 +1472,16 @@
 						],
 						"settings":
 						{
+							"SL.32.region_keys":
+							[
+							],
 							"syntax": "Packages/C++/C++.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 4725.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 31,
 					"type": "text"
 				},
 				{
@@ -1352,13 +1503,16 @@
 						],
 						"settings":
 						{
+							"SL.33.region_keys":
+							[
+							],
 							"syntax": "Packages/C++/C++.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 6009.0,
+						"translation.y": 945.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 24,
 					"type": "text"
 				},
 				{
@@ -1374,20 +1528,23 @@
 						"selection":
 						[
 							[
-								5746,
-								5746
+								2882,
+								2882
 							]
 						],
 						"settings":
 						{
+							"SL.34.region_keys":
+							[
+							],
 							"syntax": "Packages/C++/C++.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1674.0,
+						"translation.y": 580.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 29,
 					"type": "text"
 				},
 				{
@@ -1409,6 +1566,9 @@
 						],
 						"settings":
 						{
+							"SL.35.region_keys":
+							[
+							],
 							"syntax": "Packages/C++/C++.sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
@@ -1417,7 +1577,7 @@
 						"translation.y": 1355.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 26,
 					"type": "text"
 				},
 				{
@@ -1433,21 +1593,24 @@
 						"selection":
 						[
 							[
-								3305,
-								3305
+								1778,
+								1778
 							]
 						],
 						"settings":
 						{
+							"SL.36.region_keys":
+							[
+							],
 							"syntax": "Packages/C++/C++.sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 0.0,
+						"translation.x": 127.0,
 						"translation.y": 810.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 28,
 					"type": "text"
 				},
 				{
@@ -1463,21 +1626,24 @@
 						"selection":
 						[
 							[
-								9121,
-								9121
+								23800,
+								23800
 							]
 						],
 						"settings":
 						{
+							"SL.37.region_keys":
+							[
+							],
 							"syntax": "Packages/C++/C++.sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 5011.0,
+						"translation.y": 8605.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 27,
 					"type": "text"
 				},
 				{
@@ -1493,19 +1659,22 @@
 						"selection":
 						[
 							[
-								11961,
-								11961
+								5548,
+								5548
 							]
 						],
 						"settings":
 						{
+							"SL.38.region_keys":
+							[
+							],
 							"syntax": "Packages/C++/C++.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 4770.0,
+						"translation.y": 1968.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 30,
 					"type": "text"
 				},
 				{
@@ -1527,15 +1696,18 @@
 						],
 						"settings":
 						{
+							"SL.39.region_keys":
+							[
+							],
 							"syntax": "Packages/C++/C++.sublime-syntax",
 							"tab_size": 3,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2475.0,
+						"translation.y": 2459.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 16,
+					"stack_index": 25,
 					"type": "text"
 				},
 				{
@@ -1551,12 +1723,15 @@
 						"selection":
 						[
 							[
-								1134,
-								1134
+								1277,
+								1277
 							]
 						],
 						"settings":
 						{
+							"SL.40.region_keys":
+							[
+							],
 							"syntax": "Packages/C++/C++.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true,
@@ -1566,39 +1741,82 @@
 						"translation.y": 225.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 18,
+					"stack_index": 22,
 					"type": "text"
 				},
 				{
 					"buffer": 26,
-					"file": "settings.ini",
+					"file": "include/STPGMergeMip.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 136,
+						"buffer_size": 1415,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								12,
-								12
+								1335,
+								1335
 							]
 						],
 						"settings":
 						{
+							"SL.41.region_keys":
+							[
+							],
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 180.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 17,
+					"type": "text"
+				},
+				{
+					"buffer": 27,
+					"file": "settings.ini",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 202,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								187,
+								187
+							]
+						],
+						"settings":
+						{
+							"SL.41.region_keys":
+							[
+							],
+							"SL.42.region_keys":
+							[
+							],
+							"SL.55.region_keys":
+							[
+							],
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 27,
+					"buffer": 28,
 					"file": "include/STPGModel.h",
 					"semi_transient": false,
 					"settings":
@@ -1610,24 +1828,27 @@
 						"selection":
 						[
 							[
-								247,
-								247
+								1037,
+								1037
 							]
 						],
 						"settings":
 						{
+							"SL.43.region_keys":
+							[
+							],
 							"syntax": "Packages/C++/C++.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 540.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
-					"buffer": 28,
+					"buffer": 29,
 					"file": "include/LocalSearch.h",
 					"semi_transient": false,
 					"settings":
@@ -1645,6 +1866,9 @@
 						],
 						"settings":
 						{
+							"SL.44.region_keys":
+							[
+							],
 							"syntax": "Packages/C++/C++.sublime-syntax",
 							"translate_tabs_to_spaces": false,
 							"word_wrap": true
@@ -1653,11 +1877,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 23,
 					"type": "text"
 				},
 				{
-					"buffer": 29,
+					"buffer": 30,
 					"file": "include/debug.h",
 					"semi_transient": false,
 					"settings":
@@ -1669,12 +1893,15 @@
 						"selection":
 						[
 							[
-								85,
-								85
+								1008,
+								1008
 							]
 						],
 						"settings":
 						{
+							"SL.45.region_keys":
+							[
+							],
 							"auto_name": "",
 							"syntax": "Packages/C++/C++.sublime-syntax"
 						},
@@ -1682,58 +1909,70 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
-					"buffer": 30,
+					"buffer": 31,
 					"file": "include/u_graph.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4808,
+						"buffer_size": 4978,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2270,
-								2270
+								1466,
+								1466
 							]
 						],
 						"settings":
 						{
+							"SL.45.region_keys":
+							[
+							],
+							"SL.46.region_keys":
+							[
+							],
 							"syntax": "Packages/C++/C++.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 405.0,
+						"translation.y": 90.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 31,
+					"buffer": 32,
 					"file": "include/util.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 836,
+						"buffer_size": 941,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								157,
-								157
+								220,
+								220
 							]
 						],
 						"settings":
 						{
+							"SL.45.region_keys":
+							[
+							],
+							"SL.47.region_keys":
+							[
+							],
 							"syntax": "Packages/C++/C++.sublime-syntax",
 							"word_wrap": true
 						},
@@ -1741,37 +1980,111 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 28,
+					"stack_index": 20,
 					"type": "text"
 				},
 				{
-					"buffer": 32,
+					"buffer": 33,
 					"file": "include/set_obj.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4080,
+						"buffer_size": 4347,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3478,
-								3478
+								2190,
+								2190
 							]
 						],
 						"settings":
 						{
+							"SL.48.region_keys":
+							[
+							],
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1035.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 34,
+					"file": "include/SolutionMerger.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 812,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								588,
+								588
+							]
+						],
+						"settings":
+						{
+							"SL.25.region_keys":
+							[
+							],
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 16,
+					"type": "text"
+				},
+				{
+					"buffer": 35,
+					"file": "include/merge_sol.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1455,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								877,
+								877
+							]
+						],
+						"settings":
+						{
+							"SL.48.region_keys":
+							[
+							],
+							"SL.49.region_keys":
+							[
+							],
 							"syntax": "Packages/C++/C++.sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1620.0,
+						"translation.y": 540.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 27,
+					"stack_index": 12,
 					"type": "text"
 				}
 			]
@@ -1779,7 +2092,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 27.0
+		"height": 24.0
 	},
 	"input":
 	{
@@ -1805,7 +2118,7 @@
 		"cols":
 		[
 			0.0,
-			0.5,
+			0.509215912027,
 			1.0
 		],
 		"rows":
@@ -1815,6 +2128,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
@@ -1827,7 +2144,7 @@
 	"project": "stpg.sublime-project",
 	"replace":
 	{
-		"height": 69.0
+		"height": 44.0
 	},
 	"save_all_on_build": true,
 	"select_file":

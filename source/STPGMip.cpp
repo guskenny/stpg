@@ -6,6 +6,22 @@ STPGMip::STPGMip(const SettingsHandler sh, STPGModel *probModel, set_obj &best_s
 }
 
 void STPGMip::solve(set_obj &sol){
+
+  // PE("Testing terminals:")
+  // std::vector<int> terms = probModel->getTerms();
+  // PF("getTerms terminals: ")
+  // for (int i = 0; i < terms.size(); ++i){
+  //   PF(terms[i] << " ")
+  // }
+  // PE(" ")
+  // PF("isTerm terminals: ")
+  // for (int i = 0; i < probModel->n_nodes(); ++i){
+  //   if (probModel->prob_graph.getNode(i)->isTerm()){
+  //     PF(i << " ")
+  //   }
+  // }
+  // PE(" ")
+
   qol::CpuTimer timer;
 
   qol::MIPSolver *mipPtr=0; // pointer to qol MIP solver
@@ -15,7 +31,11 @@ void STPGMip::solve(set_obj &sol){
     qol::Parameters param;
     param.setParamVal(qol::VERBOSITY,2);
     param.setParamVal(qol::RELGAP,0.001);
+    if (sh.MIP_TIME){
+      param.setParamVal(qol::TIMELIMIT,sh.MIP_TIME);
+    }
 
+    PE("initialising MIP..")
 	  mipPtr = new qol::CplexFormulation();
 
     // create MIPSolver object
@@ -129,16 +149,19 @@ qol::Callback::Status STPGCallback::callback(Progress where){
 
   set_obj test_y(probModel->n_nodes());
 
-  // PE("\n*****************************************")
-  // PE("MIP solution " << ++(*countPtr))
-  // PE("*****************************************")
+  VE("\n*****************************************")
+  VE("MIP solution " << ++(*countPtr))
+  VE("*****************************************")
 
   int cost = 0;
+  double frac_cost = 0;
 
-  // PF("x = { ")
+  VF("x = { ")
 
   std::ostringstream latex_x;
   std::ostringstream latex_y;
+  std::ostringstream latex_cut_x;
+  std::ostringstream latex_cut_y;
 
   for (int e = 0; e < primal_x.idx_size(); ++e){
     if (primalSolution[x[e]] > 0){
@@ -147,8 +170,9 @@ qol::Callback::Status STPGCallback::callback(Progress where){
       Edge * edge = probModel->prob_graph.getEdge(e);
 
       cost += edge->getWt();
+      frac_cost += primalSolution[x[e]]*edge->getWt();
 
-      // PF("(" << edge->getSrcID()+1 << "," << edge->getTgtID()+1 << ") ")
+      VF(primalSolution[x[e]]<<"(" << edge->getSrcID()+1 << "," << edge->getTgtID()+1 << ") ")
 
       latex_x << std::to_string(edge->getSrcID()+1) << "/" << std::to_string(edge->getTgtID()+1)<< ",";
 
@@ -157,35 +181,50 @@ qol::Callback::Status STPGCallback::callback(Progress where){
     }
   }
 
-  // PE("}")
-  // PF("y = { ")
+  VE("}")
+  VF("y = { ")
 
   for (int n = 0; n < primal_y.idx_size(); ++n){
     if (primalSolution[y[n]] > 0){
       primal_y.addElement(n);
-      // PF(n+1 << " ")
-      // latex_y << n+1 << ",";
+      VF(n+1 << " ")
+      latex_y << n+1 << ",";
     }
   }
 
-  // PE("}")
+  VE("}")
 
-  // PE("cost: " << cost << std::endl)
+  VE("full cost: " << cost << std::endl)
+  VE("solution cost: " << frac_cost << std::endl)
   // CHECK(test_y.size())
   // CHECK(primal_y.size())
   // CHECK(test_y.size()-primal_y.size())
   // test_y.subtract(primal_y);
   // CHECK(test_y.size())
-  // PE("")
+  // VE("")
 
-  std::vector<set_obj> components;
+  VE("x = " <<latex_x.str())
+  VE("y = " << latex_y.str()<<std::endl)
+
+  std::vector<set_obj> comp_edges;
+  std::vector<set_obj> comp_nodes;
+  std::vector<int> comp_type; // if component contains a terminal
 
   // get connected components with cycles, each component is a set of edges
-  get_components(probModel->prob_graph,primal_x,primal_y,components);
+  // CHECK(x.size())
+  // PF("getting components.. ")
+  get_components(probModel->prob_graph,primal_x,primal_y,comp_edges,comp_nodes,comp_type);
+  // PE("done!")
+
+  // CHECK(comp_edges.size())
+  // CHECK(comp_nodes.size())
+  // CHECK(is_term.size())
 
   // for each component, add a cut to the model using addCut()
-  for (int c = 0; c < components.size(); ++c){
-    std::vector<int> component = components[c].getSet();
+  for (int c = 0; c < comp_edges.size(); ++c){
+    std::vector<int> comp_edge = comp_edges[c].getSet();
+    std::vector<int> comp_node = comp_nodes[c].getSet();
+    
     qol::Expression lhs;
     qol::Expression rhs;
 
@@ -195,38 +234,80 @@ qol::Callback::Status STPGCallback::callback(Progress where){
     // vector to make sure we dont double up on node variables
     std::vector<int> added(probModel->n_nodes(),0);
 
-    for (std::vector<int>::iterator e = component.begin() ; e != component.end(); ++e){
+    int coeff = 1;
+
+    // CHECK(comp_type[c])
+    // switch (comp_type[c]) {
+    //     case NOTERM_CYCLE: comp_node.pop_back(); break;
+    //     case TERM_CYCLE:  rhs += -1;rhs_os << "(-1)"; break;
+    //     case SINGLE_EDGE: rhs += -1;rhs_os << "(-1)"; break;
+    //     default: {rhs += -1;rhs_os << "(-1) +";}
+    // }
+
+    if (comp_type[c] == NOTERM){
+      comp_node.pop_back();
+    }
+    else{
+      rhs += -1;
+      rhs_os << "(-1)";
+    }
+
+
+    // add edges to cut
+    for (std::vector<int>::iterator e = comp_edge.begin() ; e != comp_edge.end(); ++e){
       Edge* edge = probModel->prob_graph.getEdge(*e);
 
-      lhs += x[*e];
+      lhs += coeff*x[*e];
 
       lhs_os << "x[" + std::to_string(edge->getSrcID()+1) + "," + std::to_string(edge->getTgtID()+1) + "]";
+      latex_cut_x << std::to_string(edge->getSrcID()+1) << "/" << std::to_string(edge->getTgtID()+1)<< ",";
 
-      if(e != component.end()-1)
+      if(e != comp_edge.end()-1)
         lhs_os << " + ";
 
-      std::vector<int> endpoints{edge->getSrcID(),edge->getTgtID()};
-
-      for (std::vector<int>::iterator i = endpoints.begin() ; i != endpoints.end(); ++i){
-        if (!added[*i]){
-          rhs += y[*i];
-          rhs_os << "y[" + std::to_string((*i)+1) + "] + ";
-          added[*i] = 1;
-        }
-      }
     }
-    rhs -= 1;
-    rhs_os << "(-1)";
-    // PE("adding cut: " << lhs_os.str() << " <= " << rhs_os.str()<< std::endl)
+
+
+    // bool term = false;
+
+    // for (int i = 0; i < comp_node.size(); ++i){
+    //   if (probModel->prob_graph.getNode(comp_node[i])->isTerm())
+    //     term = true;
+    // }
+
+    // if no terminals in component, remove one arbitrary node (back node)
+     // add nodes to cut
+    for (std::vector<int>::iterator n = comp_node.begin() ; n != comp_node.end(); ++n){
+      rhs += y[*n];
+      rhs_os << " + y[" + std::to_string((*n)+1) + "]";
+      latex_cut_y << *n+1 << ",";
+    }
+
+    //   std::vector<int> endpoints{edge->getSrcID(),edge->getTgtID()};
+
+    //   for (std::vector<int>::iterator i = endpoints.begin() ; i != endpoints.end(); ++i){
+    //     if (!added[*i]){
+    //       rhs += y[*i];
+    //       rhs_os << "y[" + std::to_string((*i)+1) + "] + ";
+    //       added[*i] = 1;
+    //     }
+    //   }
+    // }
+
+    // rhs -= 1;
+    // rhs_os << "(-1)";
+    VE("adding cut: " << lhs_os.str() << " <= " << rhs_os.str()<< std::endl)
+
 
     addCut(lhs <= rhs);
 
   }
 
   // CHECK(getBound())
+  VE("\ncut_x = " <<latex_cut_x.str())
+  VE("cut_y = " << latex_cut_y.str()<<std::endl)
 
-  // PE("x = " <<latex_x.str())
-  // PE("y = " << latex_y.str()<<std::endl)
+
     return OK;
 }
 
@@ -265,29 +346,38 @@ void STPGMip::initMIPModel(qol::MIPSolver &mip){
 
     std::vector<int> sol_edges = best_sol.getSet();
 
+    double init_sum = 0;
+
     std::ostringstream x_start;
     std::ostringstream y_start;
 
-    x_start << "x = { ";
+    x_start << "x = {";
 
     y_start << "y = { ";
 
     for (std::vector<int>::iterator e = sol_edges.begin() ; e != sol_edges.end() && sh.WARM_START; ++e){
       Edge* edge = probModel->prob_graph.getEdge(*e);
 
+      mip.setPrimalStart(x[*e],1);
+      mip.setPrimalStart(y[edge->getSrcID()],1);
+      mip.setPrimalStart(y[edge->getTgtID()],1);
 
       y_start << edge->getSrcID()+1 << ", " << edge->getTgtID()+1 << ", ";
 
-      x_start << "(" << edge->getSrcID()+1 << "," << edge->getTgtID()+1 << ") ";     
+      x_start << " (" << edge->getSrcID()+1 << "," << edge->getTgtID()+1 << "): " << edge->getWt();
+
+      init_sum += edge->getWt();
     }
 
     x_start << "}";
     y_start << "}";
 
-    VE("\n" << x_start.str())
-    VE("\n" << y_start.str())
+
+    PE("\n" << x_start.str())
+    PE("\n" << y_start.str())
 
     PE("done!")
+    CHECK(init_sum)
     PF("setting up initial constraints.. ")
 
     qol::Expression lhs;
@@ -297,32 +387,23 @@ void STPGMip::initMIPModel(qol::MIPSolver &mip){
 
       // edge constraints
       Edge * edge = probModel->prob_graph.getEdge(e);
-      qol::Expression e_lhs = 2*x[e];
-      qol::Expression e_rhs = y[edge->getTgtID()] + y[edge->getSrcID()];
-      std::string var_name("e_" + e);
-      mip.addConstraint(e_lhs <= e_rhs).setName(var_name);      
+      qol::Expression e_lhs = x[e];
+      qol::Expression n1_rhs = y[edge->getTgtID()]; 
+      qol::Expression n2_rhs = y[edge->getSrcID()];
+
+      std::string var_name1("e1_" + e);
+      std::string var_name2("e2_" + e);
+      mip.addConstraint(e_lhs <= n1_rhs).setName(var_name1);
+      mip.addConstraint(e_lhs <= n2_rhs).setName(var_name2);      
     }
     for (int n = 0; n < probModel->n_nodes(); ++n){
       rhs += y[n];
-
-      // // node constraints
-      // Node * node = probModel->prob_graph.getNode(n);
-      // qol::Expression n_lhs = y[n];
-      // qol::Expression n_rhs;
-
-      // std::vector<Edge*> adj_edges; 
-      // node->getEdges(adj_edges);
-      // for (std::vector<Edge*>::iterator e = adj_edges.begin(); e != adj_edges.end(); ++e){
-      //   n_rhs += x[(*e)->getID()];
-      // }
-      // std::string var_name("n_" + n);
-      // mip.addConstraint(n_lhs <= n_rhs).setName(var_name); 
     }
 
-    rhs -= 1;
+    rhs += -1;
 
-    mip.addConstraint(lhs <= rhs).setName("init_lt");
-    mip.addConstraint(lhs >= rhs).setName("init_gt");
+    mip.addConstraint(lhs == rhs).setName("init_main");
+    // mip.addConstraint(lhs >= rhs).setName("init_gt");
 
     PE("done!")
 }

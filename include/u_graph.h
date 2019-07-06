@@ -85,6 +85,7 @@ class Node{
     Edge * getOutEdge(int index) { return outEdges[index];}
     const int getEdges (std::vector<Edge*> &edges);
     const int getConnected (std::vector<Node*> &connected);
+    const int getConnectedIDs (std::vector<int> &connected);
     void deleteInEdge(int edge_idx);
     void deleteOutEdge(int edge_idx);
     void deleteEdges() { inEdges.clear(); outEdges.clear();}
@@ -125,6 +126,9 @@ class Edge{
     int getWt() const {return wt;}
     EdgeID getID() const { return id;}
     void setID(EdgeID id_) {id=id_;}
+    void setWt(EdgeID new_wt) {wt = new_wt;}
+    void setSrc(Node* new_src);
+    void setTgt(Node* new_tgt);
 
   protected:
     Node *src;

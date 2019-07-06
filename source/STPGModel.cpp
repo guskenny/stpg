@@ -150,7 +150,7 @@ void STPGModel::pre_process(){
 				del_edges.push_back(edges[0]->getID());
 				PE1("removing edge (" << edges[0]->getSrc()->getID() << ", " << edges[0]->getTgt()->getID() << ", " << edges[0]->getWt() << ")")
 				pp_moves.push_back(Move(edges[0]->getSrc()->getID(),edges[0]->getTgt()->getID(), edges[0]->getWt()));
-				// del_nodes.push_back(n);
+				del_nodes.push_back(n);
 			}
 		}
 
@@ -174,49 +174,57 @@ void STPGModel::pre_process(){
 		del_edges.clear();
 		// del_nodes.clear();
 
-		e_count = prob_graph.getNumEdges();
+		// e_count = prob_graph.getNumEdges();
 
-		PF1("removing nodes of degree 2... ")
-		PE1(" ")
-		// removing vertices of degree 1 or 2
-		for (int n = 0; n < prob_graph.getNumNodes(); ++n){
-			const Node *node = prob_graph.getNode(n);
-			if (node->isTerm()){
-				continue;
-			}
-			if (node->getDegree() == 2){
-				std::vector<Edge*> edges;
-				node->getEdges(edges);
-				int src_0 = edges[0]->getSrc()->getID();
-				int tgt_0 = edges[0]->getTgt()->getID(); 
-				int wt_0 = edges[0]->getWt();
-				int src_1 = edges[1]->getSrc()->getID();
-				int tgt_1 = edges[1]->getTgt()->getID();
-				int wt_1 = edges[1]->getWt();
+		// PF1("removing nodes of degree 2... ")
+		// PE1(" ")
+		// // removing vertices of degree 1 or 2
+		// for (int n = 0; n < prob_graph.getNumNodes(); ++n){
+		// 	const Node *node = prob_graph.getNode(n);
+		// 	if (node->isTerm()){
+		// 		continue;
+		// 	}
+		// 	if (node->getDegree() == 2){
+		// 		std::vector<Edge*> edges;
+		// 		node->getEdges(edges);
+		// 		int src_0 = edges[0]->getSrc()->getID();
+		// 		int tgt_0 = edges[0]->getTgt()->getID(); 
+		// 		int wt_0 = edges[0]->getWt();
+		// 		int src_1 = edges[1]->getSrc()->getID();
+		// 		int tgt_1 = edges[1]->getTgt()->getID();
+		// 		int wt_1 = edges[1]->getWt();
 
-				int n1 = (src_0 != n) ? src_0 : tgt_0;
-				int n2 = (src_1 != n) ? src_1 : tgt_1;
+		// 		int n1 = (src_0 != n) ? src_0 : tgt_0;
+		// 		int n2 = (src_1 != n) ? src_1 : tgt_1;
 
-				int new_src = std::min(n1,n2);
-				int new_tgt = std::max(n1,n2);
+		// 		int new_src = std::min(n1,n2);
+		// 		int new_tgt = std::max(n1,n2);
 				
+		// 		edges[0]->setSrc(prob_graph.getNode(new_src));
+		// 		edges[0]->setTgt(prob_graph.getNode(new_tgt));
+		// 		edges[0]->setWt(wt_0 + wt_1);
 
-				// delete edges and nodes
-				PE1("removing edge (" << src_0 << ", " << tgt_0 << ", " << wt_0 << ")")
-				PE1("removing edge (" << src_1 << ", " << tgt_1 << ", " << wt_1 << ")")
-				pp_moves.push_back(Move(src_0,tgt_0,wt_0));
-				pp_moves.push_back(Move(src_1,tgt_1,wt_1));
-				del_edges.push_back(edges[0]->getID());
-				del_edges.push_back(edges[1]->getID());
+		// 		// delete edges and nodes
+		// 		PE1("removing edge (" << src_0 << ", " << tgt_0 << ", " << wt_0 << ")")
+		// 		PE1("removing edge (" << src_1 << ", " << tgt_1 << ", " << wt_1 << ")")
+		// 		pp_moves.push_back(Move(src_0,tgt_0,wt_0));
+		// 		pp_moves.push_back(Move(src_1,tgt_1,wt_1));
 
-				prob_graph.addEdge(new_src,new_tgt,wt_0+wt_1);				
-				pp_moves.push_back(Move(new_src,new_tgt,-1));
-				PE1("adding edge (" << new_src << ", " << new_tgt << ", " << wt_0+wt_1 << ")")
-				// del_nodes.push_back(n);
-			}
-		}
+		// 		// del_edges.push_back(edges[0]->getID());
+		// 		del_edges.push_back(edges[1]->getID());
 
-		prob_graph.deleteEdges(del_edges);
+
+		// 		// prob_graph.addEdge(edges[0]->getID(),new_src,new_tgt,wt_0+wt_1);				
+		// 		pp_moves.push_back(Move(new_src,new_tgt,-1));
+		// 		PE1("adding edge (" << new_src << ", " << new_tgt << ", " << wt_0+wt_1 << ")")
+		// 		// del_nodes.push_back(n);
+		// 		n=0
+		// 	}
+		// }
+
+		// prob_graph.deleteEdges(del_edges);				
+		// prob_graph.deleteEdges(del_edges);
+
 		// prob_graph.deleteNodes(del_nodes);		
 		// for (int i = 0; i < del_nodes.size(); ++i){
 		// 	pp_moves.push_back(Move(del_nodes[i],-1, -1));

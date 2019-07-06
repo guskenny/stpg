@@ -33,7 +33,7 @@ $(QOL_LIB): $(wildcard $(QOL_DIR)/*.h $(QOL_DIR)/*.cpp)
 # LAPSO_SRC=source/Particle.cpp $(wildcard QOL/lagrangian/[^d]*.cpp)
 CPPFLAGS+= -I QOL/lagrangian
 #anyoption.cpp QOL/lagrangian/VolVolume.cpp QOL/lagrangian/CpuTime
-SRC=source/u_graph.cpp source/STPGModel.cpp source/util.cpp source/STPGSolver.cpp source/LocalSearch.cpp source/SolutionMerger.cpp source/STPGMip.cpp
+SRC=source/u_graph.cpp source/STPGModel.cpp source/util.cpp source/STPGSolver.cpp source/LocalSearch.cpp source/SolutionMerger.cpp source/STPGMip.cpp source/STPGMergeMip.cpp
 
 # SRC=source/daten.cpp source/network.cpp source/boostMaxFlow.cpp source/CumulativeModel.cpp source/util.cpp source/MaxClosure_PP.cpp $(wildcard source/MaxClosure_B*.cpp) source/MaxClosureFactory.cpp source/UpitSolver.cpp source/graph.cpp source/SinglePSolver.cpp source/Preprocess.cpp source/SinglePModel.cpp source/SolutionMerger.cpp source/MergeSolver.cpp source/MergeSolverSimple.cpp source/MergeSolverCompact.cpp source/RandomSearch.cpp source/LocalSearch.cpp source/ConeMiner.cpp #$(LAPSO_SRC) #$(LR)/solver.cpp $(LR)/mip.cpp $(LR)/ACO_solution.cpp $(LR)/Timer.cc $(LR)/Random.cc $(LR)/MaxClosure_NetworkFlow_LR.cpp $(LR)/pheromones.cpp source/lr_graph.cpp $(LR)/solver_functions.cpp source/solver_interface.cpp source/MaxClosure_NetworkFlow.cpp $(LAPSO_SRC)
 OBJ=$(patsubst %.cpp,%.o,$(SRC))

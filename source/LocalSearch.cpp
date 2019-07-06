@@ -9,7 +9,7 @@ int LocalSearch::singleSwaps(set_obj &sol, std::vector<int> &obj_vals){
 
 	set_obj best_sol = sol;
 
-	PE(" ")
+	// PE(" ")
 
 	// initial jump away from the start
 	for (int i = 0; i < sh.NUM_JUMPS; ++i){
@@ -26,7 +26,7 @@ int LocalSearch::singleSwaps(set_obj &sol, std::vector<int> &obj_vals){
 	}
 
 	while (dead_count < sh.DEAD_MOVES){
-		PF("\rdead count: " << dead_count << " of " << sh.DEAD_MOVES)
+		// PF("\rdead count: " << dead_count << " of " << sh.DEAD_MOVES)
 		// get keypath
 		std::vector<int> kp_edges;
 		std::vector<int> kp_ends;
@@ -52,7 +52,7 @@ int LocalSearch::singleSwaps(set_obj &sol, std::vector<int> &obj_vals){
 		obj_vals.push_back(new_obj);
 	}
 
-	PE("\nbest_obj: " << best_obj)
+	// PE("\nbest_obj: " << best_obj)
 
 	return best_obj;
 }

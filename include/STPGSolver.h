@@ -4,6 +4,7 @@
 #include <debug.h>
 #include <STPGModel.h>
 #include <STPGMip.h>
+#include <STPGMergeMip.h>
 #include <SettingsHandler.h>
 #include <util.h>
 #include <random>
