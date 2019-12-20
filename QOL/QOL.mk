@@ -2,12 +2,12 @@
 ifndef USE_CPLEX
 USE_CPLEX=1
 endif
-ifndef USE_GUROBI
-USE_GUROBI=1
-endif
-ifndef USE_COIN
-USE_COIN=0
-endif
+# ifndef USE_GUROBI
+# USE_GUROBI=1
+# endif
+# ifndef USE_COIN
+# USE_COIN=0
+# endif
 
 CXXFLAGS+=-std=c++11
 
@@ -43,25 +43,25 @@ ifeq ($(USE_CPLEX),1)
   CplexFormulation.cpp \
 
 endif
-################## FIND GUROBI DIRECTORY ############################
-ifdef GUROBI_HOME
-   CPPFLAGS+=-D_USE_GUROBI_ -I$(GUROBI_HOME)/include
-   # set GUROBI_VER=65 (for version 6.5.1 or whatever
-   GUROBI_VER=$(patsubst $(GUROBI_HOME)/lib/libgurobi%.so,%,$(wildcard $(GUROBI_HOME)/lib/libgurobi*.so))
-   QOL_LIBS+= -L$(GUROBI_HOME)/lib -lgurobi_c++ -lgurobi$(GUROBI_VER)
-else
-   USE_GUROBI:=0
-endif
-################## FIND COIN DIRECTORY ############################
-ifeq ($(USE_COIN),1)
-  ifneq ($(wildcard /mos/software/gcc4.6.1/lib/libOsiCbc*),)
-    QOL_LIBS+= -L/mos/software/gcc4.6.1/lib/ \
-	-lOsi -lOsiCbc -lOsiClp -lCbc -lCgl -lClp -lCoinUtils -lz
-    CPPFLAGS+=-I/mos/software/gcc4.6.1/include -D_USE_COIN_
-  else
-    $(warning "Cannot find COIN")
-    USE_COIN:=0
-  endif
-  QOL_SRC+=CoinFormulation.cpp
-endif
+# ################## FIND GUROBI DIRECTORY ############################
+# ifdef GUROBI_HOME
+#    CPPFLAGS+=-D_USE_GUROBI_ -I$(GUROBI_HOME)/include
+#    # set GUROBI_VER=65 (for version 6.5.1 or whatever
+#    GUROBI_VER=$(patsubst $(GUROBI_HOME)/lib/libgurobi%.so,%,$(wildcard $(GUROBI_HOME)/lib/libgurobi*.so))
+#    QOL_LIBS+= -L$(GUROBI_HOME)/lib -lgurobi_c++ -lgurobi$(GUROBI_VER)
+# else
+#    USE_GUROBI:=0
+# endif
+# ################## FIND COIN DIRECTORY ############################
+# ifeq ($(USE_COIN),1)
+#   ifneq ($(wildcard /mos/software/gcc4.6.1/lib/libOsiCbc*),)
+#     QOL_LIBS+= -L/mos/software/gcc4.6.1/lib/ \
+# 	-lOsi -lOsiCbc -lOsiClp -lCbc -lCgl -lClp -lCoinUtils -lz
+#     CPPFLAGS+=-I/mos/software/gcc4.6.1/include -D_USE_COIN_
+#   else
+#     $(warning "Cannot find COIN")
+#     USE_COIN:=0
+#   endif
+#   QOL_SRC+=CoinFormulation.cpp
+# endif
 

@@ -49,6 +49,9 @@ public:
     void addEdge(EdgeID edgeID, NodeID n1, NodeID n2, EdgeID wt);
     void deleteEdges(std::vector<EdgeID> &edgeIDs);
     void deleteNodes(std::vector<NodeID> &nodeIDs);
+    void clear(){nodes.clear();edges.clear();pred.clear();}
+    void setTerm(NodeID nodeID, bool val);
+    void setKey(NodeID nodeID, bool val);
     //AE: This looks like a really bad idea - why store predecessors
     //    here when we already have them stored as  inEdges for each node?
     //    Seems to increase memory use for little/no benefit
@@ -84,6 +87,8 @@ class Node{
     Edge * getInEdge(int index)  { return inEdges[index];}
     Edge * getOutEdge(int index) { return outEdges[index];}
     const int getEdges (std::vector<Edge*> &edges);
+    const std::vector<Edge*> getOutEdges(){return outEdges;}
+    const std::vector<Edge*> getInEdges(){return inEdges;}
     const int getConnected (std::vector<Node*> &connected);
     const int getConnectedIDs (std::vector<int> &connected);
     void deleteInEdge(int edge_idx);

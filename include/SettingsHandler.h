@@ -10,16 +10,25 @@ class SettingsHandler {
   public:
     std::string SETTINGS_FILE = "settings.ini";
     bool PREPROCESS=1;
-    bool INIT_SOL_TYPE=0;
+    int INIT_SOL_TYPE=0;
     int  NUM_MOVES=1000;
     int  JUMP_FREQ=0;
     int  NUM_JUMPS=1;
+    int  NUM_INIT_JUMPS=1;
     int  DEAD_MOVES=1;
     bool RECORD_DATA=1;
     bool TEST_GROUPS=0;
     bool WARM_START=false;
     size_t MIP_TIME=0;
     size_t NUM_ITER=1;
+    size_t NUM_SPLITS=0;
+    bool STOP_OPTIMAL=true;
+    bool SOLVE_MIP=true;
+    bool RAND_SPLIT=true;
+    bool HEURISTIC_SEARCH=false;
+    int  NUM_SWAPS=1;
+    int PRESOLVE=1;
+    int SPLIT_FACTOR=1;
 
     size_t TIMER_LENGTH=0;
     int RANDOM_SEARCH=0;
@@ -101,8 +110,24 @@ class SettingsHandler {
           NUM_JUMPS = stoi(value);
           continue;
         }
+        else if (setting.compare("PRESOLVE") == 0){
+          PRESOLVE = stoi(value);
+          continue;
+        }
+        else if (setting.compare("NUM_INIT_JUMPS") == 0){
+          NUM_JUMPS = stoi(value);
+          continue;
+        }
+        else if (setting.compare("NUM_SWAPS") == 0){
+          NUM_SWAPS = stoi(value);
+          continue;
+        }
         else if (setting.compare("DEAD_MOVES") == 0){
           DEAD_MOVES = stoi(value);
+          continue;
+        }
+        else if (setting.compare("SPLIT_FACTOR") == 0){
+          SPLIT_FACTOR = stoi(value);
           continue;
         }
         else if (setting.compare("TEST_GROUPS") == 0){
@@ -236,6 +261,10 @@ class SettingsHandler {
           NUM_ITER = stoi(value);
           continue;
         }
+        else if (setting.compare("NUM_SPLITS") == 0){
+          NUM_SPLITS = stoi(value);
+          continue;
+        }
         else if (setting.compare("MERGE_TYPE") == 0){
           MERGE_TYPE = stoi(value);
           continue;
@@ -270,6 +299,22 @@ class SettingsHandler {
         }
         else if (setting.compare("WARM_START") == 0){
           WARM_START = stoi(value);
+          continue;
+        }
+        else if (setting.compare("STOP_OPTIMAL") == 0){
+          STOP_OPTIMAL = stoi(value);
+          continue;
+        }
+        else if (setting.compare("SOLVE_MIP") == 0){
+          SOLVE_MIP = stoi(value);
+          continue;
+        }
+        else if (setting.compare("RAND_SPLIT") == 0){
+          RAND_SPLIT = stoi(value);
+          continue;
+        }
+        else if (setting.compare("HEURISTIC_SEARCH") == 0){
+          HEURISTIC_SEARCH = stoi(value);
           continue;
         }
         else if (setting.compare("ONLY_NEGATIVE") == 0){
@@ -401,6 +446,7 @@ class SettingsHandler {
                 << "INIT_SEEDS: " << INIT_SEEDS << std::endl
                 << "NUM_SEEDS: " << NUM_SEEDS << std::endl
                 << "NUM_ITER: " << NUM_ITER << std::endl
+                << "NUM_SPLITS: " << NUM_SPLITS << std::endl
                 << "MERGE_TYPE: " << MERGE_TYPE << std::endl
                 << "ITER_INCR: " << ITER_INCR << std::endl
                 << "WINDOW_SIZE: " << WINDOW_SIZE << std::endl

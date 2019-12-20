@@ -12,6 +12,7 @@
 #include <LocalSearch.h>
 #include <SolutionMerger.h>
 #include <sstream>
+#include <ctime>
 
 class STPGSolver{
 	private:
@@ -22,6 +23,9 @@ class STPGSolver{
 		STPGSolver(int argc, const char **argv);
 		~STPGSolver(){ free(probModel);}
 		void solve();
+		void DFSsplit(const merge_sol &merged_sols, const int group, std::vector<int> &connected_vars, std::mt19937 &rng);
+		void split(merge_sol &merged_sols);
+		void splitFactor(merge_sol &merged_sols);
 		void getInitSol(set_obj &sol);
 		void getRandSol(set_obj &sol);
 		// int getSolValue(const set_obj &sol);

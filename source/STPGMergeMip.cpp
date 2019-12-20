@@ -15,7 +15,7 @@ void STPGMergeMip::solve(set_obj &sol){
     // set verbosity
     qol::Parameters param;
     param.setParamVal(qol::VERBOSITY,1);
-    param.setParamVal(qol::RELGAP,0.001);
+    // param.setParamVal(qol::RELGAP,0.001);
     if (sh.MIP_TIME){
       param.setParamVal(qol::TIMELIMIT,sh.MIP_TIME);
     }
@@ -37,7 +37,9 @@ void STPGMergeMip::solve(set_obj &sol){
     // mip.setCallback(&cb);
 
     CPXENVptr env=(dynamic_cast<qol::CplexFormulation *>(mipPtr))->env;
-    CPXsetintparam(env,CPX_PARAM_PREIND,0);
+    
+    CPXsetintparam(env,CPX_PARAM_PREIND,sh.PRESOLVE);
+
     //masterCplex.setParam(IloCplex::PreInd, IloFalse); 
     // Set the maximum number of threads to 1. 
     // This instruction is redundant: If MIP control callbacks are registered, 
@@ -54,8 +56,21 @@ void STPGMergeMip::solve(set_obj &sol){
     // Turn on traditional search for use with control callbacks
     //masterCplex.setParam(IloCplex::MIPSearch, IloCplex::Traditional);
     CPXsetintparam(env,CPX_PARAM_MIPSEARCH,CPX_MIPSEARCH_TRADITIONAL);
+
+    // if (sh.STOP_OPTIMAL){
+    //   CPXsetdblparam(env,CPX_PARAM_CUTUP,probModel->getOptimal());
+    // }
+
+    if (sh.HEURISTIC_SEARCH){
+      CPXsetdblparam(env,CPX_PARAM_CUTSFACTOR,1.0);
+      CPXsetintparam(env,CPX_PARAM_HEURFREQ,1);
+      // CPXsetintparam(env,CPX_PARAM_POLISHAFTEREPAGAP,0.1);
+      CPXsetintparam(env,CPX_PARAM_RINSHEUR,1);
+      CPXsetintparam(env,CPX_PARAM_POLISHAFTERINTSOL,1);
+    }    
   
-    CHECK(mip.nConstr())  
+    CHECK(mip.nConstr()) 
+    CHECK(mip.nVar())  
 
     bool solveRelaxed = false;
 
@@ -90,6 +105,7 @@ qol::Callback::Status STPGMergeCallback::callback(Progress where){
 
   set_obj primal_x(probModel->n_edges());
   set_obj primal_y(probModel->n_nodes());
+
 
   // extract primal x (edge) and primal y (node) information from z variables
   for (int g = 0; g < groups.size(); ++g){
@@ -155,6 +171,8 @@ void STPGMergeMip::initMIPModel(qol::MIPSolver &mip){
     // cost of each edge within that group
     for (int g = 0; g < groups.size(); ++g){
       int cost = 0;
+      int count = 0;
+      // PF("\nSetting vars for group " << g << ":")
       // iterate over all variables in the group
       for (int v = 0; v < groups[g].size(); ++v){
         int var_idx = groups[g][v];
@@ -162,12 +180,15 @@ void STPGMergeMip::initMIPModel(qol::MIPSolver &mip){
         if (var_idx < probModel->n_edges()){
           cost += probModel->prob_graph.getEdge(var_idx)->getWt();
         }
+        // PF(" " << var_idx)
+        count++;
       }
 
       // create binary variable for group
       z.push_back(mip.addVar(0,1,cost,qol::Variable::BINARY));
       std::string var_name("z_" + g);
-      mip.setVarName(z[g],var_name);      
+      mip.setVarName(z[g],var_name);
+      // PF(" - group: " << z.size()-1 << ", cost: "<< cost << ", count: " << count)
     }
 
     // set warm start values

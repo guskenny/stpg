@@ -12,7 +12,7 @@ int LocalSearch::singleSwaps(set_obj &sol, std::vector<int> &obj_vals){
 	// PE(" ")
 
 	// initial jump away from the start
-	for (int i = 0; i < sh.NUM_JUMPS; ++i){
+	for (int i = 0; i < sh.NUM_INIT_JUMPS; ++i){
 		// get keypath
 		std::vector<int> kp_edges;
 		std::vector<int> kp_ends;
@@ -57,77 +57,91 @@ int LocalSearch::singleSwaps(set_obj &sol, std::vector<int> &obj_vals){
 	return best_obj;
 }
 
-void LocalSearch::doSwaps(set_obj &sol){
+int LocalSearch::doSwaps(set_obj &sol, std::vector<int> &obj_vals){
 
 	int dead_count = 0;
 	int curr_obj = 0;
 	int best_obj = get_sol_value(probModel->prob_graph, sol);
 
-	std::ofstream _out;
+	// std::ofstream _out;
 
-	if (sh.RECORD_DATA){
-		_out.open("tracking_data/" + probModel->getInstGrp() + probModel->getName() + ".out");
-		_out << "OBJECTIVE TRACKING - " << probModel->getName() << std::endl;
-	}
+	// if (sh.RECORD_DATA){
+	// 	_out.open("tracking_data/" + probModel->getInstGrp() + probModel->getName() + ".out");
+	// 	_out << "OBJECTIVE TRACKING - " << probModel->getName() << std::endl;
+	// }
 
-	qol::CpuTimer solve_timer;
+	// qol::CpuTimer solve_timer;
 
-	std::vector<int> obj_vals;
+	// std::vector<int> obj_vals;
 
 	obj_vals.push_back(best_obj);
 
 	set_obj best_sol = sol;
 
-	PE(" ")
+	// PE(" ")
+	int new_obj = 0;
 
-	for (int move = 0; move < sh.NUM_MOVES; ++move){
+	for (int swap = 0; swap < sh.NUM_SWAPS; ++swap){
 
-		PF("\rmove: " << move << " of " << sh.NUM_MOVES)
-		
-		// repair solution
-		if (sh.JUMP_FREQ > 0 && dead_count > (sh.NUM_MOVES/sh.JUMP_FREQ)){
-			sol = best_sol;
-			for (int i = 0; i < sh.NUM_JUMPS; ++i){
-				// get keypath
-				std::vector<int> kp_edges;
-				std::vector<int> kp_ends;
-				get_keypath(sol, kp_edges, kp_ends);
-				// remove keypath from solution
-				sol.removeElements(kp_edges);
-				// PF("blerp.. ")
-				repairRandom(sol,kp_ends);
-				// PF(" done.. ")
-			}
-			// PE("jump")
-		}
-		else{
+		// initial jump away from the start
+		for (int i = 0; i < sh.NUM_INIT_JUMPS; ++i){
 			// get keypath
+			std::vector<int> kp_edges;
+			std::vector<int> kp_ends;
+			get_keypath(sol, kp_edges, kp_ends);
+			// PE("keypath: (" << kp_ends[0] <<  ", " << kp_ends[1] << ")")
+			// remove keypath from solution
+			sol.removeElements(kp_edges);
+			// PF("blerp.. ")
+			repairRandom(sol,kp_ends);
+			// PF(" done.. ")
+		}
+
+		// PF("\rmove: " << swap << " of " << sh.NUM_SWAPS)
+
+		while (dead_count < sh.DEAD_MOVES){
+
+			// // jump and repair solution
+			// if (sh.JUMP_FREQ > 0 && dead_count > (sh.NUM_SWAPS/sh.JUMP_FREQ)){
+			// 	sol = best_sol;
+			// 	for (int i = 0; i < sh.NUM_JUMPS; ++i){
+			// 		// get keypath
+			// 		std::vector<int> kp_edges;
+			// 		std::vector<int> kp_ends;
+			// 		get_keypath(sol, kp_edges, kp_ends);
+			// 		// remove keypath from solution
+			// 		sol.removeElements(kp_edges);
+			// 		repairRandom(sol,kp_ends);
+			// 		// PF(" done.. ")
+			// 	}
+			// 	// PE("jump")
+			// }
+			// else{
+				// get keypath
 			std::vector<int> kp_edges;
 			std::vector<int> kp_ends;
 			get_keypath(sol, kp_edges, kp_ends);
 			// remove keypath from solution
 			sol.removeElements(kp_edges);
 			repairBest(sol,kp_ends);
-		}		
+			// }		
 
-		int new_obj = get_sol_value(probModel->prob_graph, sol);
+			new_obj = get_sol_value(probModel->prob_graph, sol);
 
-		
+			if (new_obj < best_obj){
+				best_obj = new_obj;
+				best_sol = sol;
+			}
 
-		if (new_obj < best_obj){
-			best_obj = new_obj;
-			best_sol = sol;
-		}
+			if (curr_obj != new_obj){
+				dead_count = 0;
+				curr_obj = new_obj;
+			}
+			else{
+				dead_count++;
+			}
+		// }
 
-		if (curr_obj != new_obj){
-			dead_count = 0;
-			curr_obj = new_obj;
-		}
-		else{
-			dead_count++;
-		}
-
-		obj_vals.push_back(new_obj);
 
 		// // repair solution
 		// if (sh.JUMP_FREQ > 0 && (move % (sh.NUM_MOVES/sh.JUMP_FREQ) == 0)){
@@ -143,22 +157,26 @@ void LocalSearch::doSwaps(set_obj &sol){
 		// repair is not working properly.. check node sets
 
 
+		}
+		obj_vals.push_back(new_obj);
 	}
 
-	_out << "! NAME " << probModel->getName() << std::endl;
-	_out << "! CPU_TIME " << solve_timer.elapsedSeconds() << std::endl;
-	_out << "! SWAPS " << sh.NUM_MOVES << std::endl;
-	_out << "! JUMP_FREQ " << sh.JUMP_FREQ << std::endl;
+	// _out << "! NAME " << probModel->getName() << std::endl;
+	// _out << "! CPU_TIME " << solve_timer.elapsedSeconds() << std::endl;
+	// _out << "! SWAPS " << sh.NUM_SWAPS << std::endl;
+	// _out << "! JUMP_FREQ " << sh.JUMP_FREQ << std::endl;
 
-	for (int i = 0; i < obj_vals.size(); ++i){
-		_out << obj_vals[i] << std::endl;		
-	}
+	// for (int i = 0; i < obj_vals.size(); ++i){
+	// 	_out << obj_vals[i] << std::endl;		
+	// }
 
-	_out.close();
+	// _out.close();
 
-	PE("\nbest_obj: " << best_obj)
+	// PE("\nbest_obj: " << best_obj)
 
-	PE("solve timer: " << solve_timer.elapsedSeconds())
+	// PE("solve timer: " << solve_timer.elapsedSeconds())
+
+	return best_obj;
 
 }
 
@@ -310,7 +328,7 @@ void LocalSearch::get_keypath(const set_obj &sol, std::vector<int> &path_edges, 
 				std::vector<Edge*> edges;
 				const int n_edges = node->getEdges(edges);
 				for (int e = 0; e < n_edges; ++e){
-					if (sol.is_element(edges[e]->getID()) && !visited[edges[e]->getID()]){
+					if (sol.is_element(edges[e]->getID()) && (visited[edges[e]->getID()] == 0)){
 						edge_stack.push_back(edges[e]->getID());
 						break;
 					}

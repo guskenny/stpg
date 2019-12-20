@@ -1,0 +1,48 @@
+#!/bin/bash
+for ((num_runs=1;num_runs<2;num_runs++)); do
+	echo " " >> results_log.csv
+	echo " **************** STARTING RUN $num_runs **************** " >> results_log.csv
+	echo "          $(date)" >> results_log.csv
+	if [ $num_runs -lt 10 ]
+	then
+		echo " ************************************************ " >> results_log.csv
+	else
+		echo " ************************************************* " >> results_log.csv
+	fi
+
+
+	testsets=("b" "c" "d" "e")
+
+	for t in ${testsets[@]}; do
+		echo "" >> results_log.csv
+		echo "###### TESTSET: ${t^^} ######" >> results_log.csv
+		echo "" >> results_log.csv
+		for ((i=1;i<21;i++)); do
+			echo " "
+			if [ $i -lt 10 ]
+			then
+				./merge_stpg -g ./data/${t^^}/${t}0$i.stp
+			else
+				./merge_stpg -g ./data/${t^^}/${t}$i.stp
+			fi
+		done
+	done
+	# for ((i=1;i<9;i++)) do
+	# echo " "
+	# ./merge_stpg -g ./data/MC/mc$i.stp
+	# done
+
+	# ./merge_stpg -g ./data/MC/mc11.stp
+	# ./merge_stpg -g ./data/MC/mc13.stp
+	# ./merge_stpg -g ./data/MC/mc2.stp
+	# ./merge_stpg -g ./data/MC/mc3.stp
+	# ./merge_stpg -g ./data/MC/mc7.stp
+	# ./merge_stpg -g ./data/MC/mc8.stp
+
+	echo " " >> results_log.csv
+	echo " **************** FINISHED RUN **************** " >> results_log.csv
+	echo "          $(date)" >> results_log.csv
+	echo " ********************************************** " >> results_log.csv
+	echo " " >> results_log.csv
+done
+paplay /usr/share/sounds/freedesktop/stereo/suspend-error.oga

@@ -6,6 +6,7 @@ Remark  "Complete graph with random weights"
 End
 
 Section Graph
+Optimal 47 
 Nodes 97
 Edges 4656
 E 1 2 10

@@ -60,10 +60,12 @@ void U_Graph::addEdge(EdgeID edgeID, NodeID n1, NodeID n2, EdgeID wt) {
   // order source and target
   NodeID srcID = std::min(n1,n2);
   NodeID tgtID = std::max(n1,n2);
-
+  // PE("("<< edgeID << "," << nodes[srcID]->getID() << "," << nodes[tgtID]->getID() << "," << wt<< ")")
   Edge * newEdge = new Edge(edgeID, nodes[srcID], nodes[tgtID], wt);
   edges.push_back(newEdge);
+  // PF("creating edge: " << nodes[srcID]->getOutDegree())
   nodes[srcID]->insertOutEdge(newEdge);
+  // PE("done!")
   nodes[tgtID]->insertInEdge(newEdge);
 }
 
@@ -156,6 +158,13 @@ void U_Graph::resizeNodes(int n)
       nodes.push_back(new Node(this,i));
 }
 
+void U_Graph::setTerm(NodeID nodeID, bool val){
+  nodes[nodeID]->setTerm(val);
+}
+
+void U_Graph::setKey(NodeID nodeID, bool val){
+  nodes[nodeID]->setKey(val);
+}
 
 /*const std::vector<int> & Graph::getPreds(int vertex){
   return pred[vertex];
@@ -199,14 +208,12 @@ const int Node::getConnected (std::vector<Node*> &connected){
 }
 
 const int Node::getEdges(std::vector<Edge*> &edges){
-
   edges.clear();
-
-  for (int i = 0; i < getInDegree(); ++i){
-    edges.push_back(getInEdge(i));
+  for (int i = 0; i < inEdges.size(); ++i){
+    edges.push_back(inEdges[i]);
   }
-  for (int i = 0; i < getOutDegree(); ++i){
-    edges.push_back(getOutEdge(i));
+  for (int i = 0; i < outEdges.size(); ++i){
+    edges.push_back(outEdges[i]);
   }
   return edges.size();
 }

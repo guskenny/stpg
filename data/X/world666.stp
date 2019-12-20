@@ -8,6 +8,7 @@ End
 Section Graph
 Nodes 666
 Edges 221445
+Optimal 122467
 E 1 2 2084
 E 1 3 2800
 E 1 4 3205

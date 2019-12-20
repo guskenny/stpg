@@ -29,7 +29,7 @@ void STPGMip::solve(set_obj &sol){
    try{
     // set verbosity
     qol::Parameters param;
-    param.setParamVal(qol::VERBOSITY,2);
+    param.setParamVal(qol::VERBOSITY,1);
     param.setParamVal(qol::RELGAP,0.001);
     if (sh.MIP_TIME){
       param.setParamVal(qol::TIMELIMIT,sh.MIP_TIME);

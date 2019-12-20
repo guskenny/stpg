@@ -30,7 +30,7 @@ class LocalSearch{
 		LocalSearch(const char *argv, const SettingsHandler &_sh);
 		void get_keypath(const set_obj &sol, std::vector<int> &path_edges, std::vector<int> &kp_ends);
 		void getNodeSets(const set_obj &sol, const std::vector<int> &kp_ends, std::vector<std::vector<int> >&node_sets);
-		void doSwaps(set_obj &sol);
+		int doSwaps(set_obj &sol, std::vector<int> &obj_vals);
 		int singleSwaps(set_obj &sol, std::vector<int> &obj_vals);
 		void repairBest(set_obj &sol, const std::vector<int> &kp_ends);
 		void repairRandom(set_obj &sol, const std::vector<int> &kp_ends);

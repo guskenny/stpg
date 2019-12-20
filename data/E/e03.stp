@@ -7,6 +7,7 @@ Remark  "Sparse graph with random weights"
 END
 
 SECTION Graph
+Optimal 4013 
 Nodes 2500
 Edges 3125
 E 1338 328 8

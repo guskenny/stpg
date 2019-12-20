@@ -1,5 +1,7 @@
 #include <SolutionMerger.h>
 
+
+
 void SolutionMerger::merge(const std::vector<set_obj> &sols, merge_sol &merged_sols){
 
 	PE("merging " << sols.size() << " STPG solutions using merge()")
@@ -45,7 +47,7 @@ void SolutionMerger::merge(const std::vector<set_obj> &sols, merge_sol &merged_s
     			}
     		}
     		// if new group created, add to list of groups
-    		if (!temp_group.empty()){
+    		if (temp_group.size() > 0){
     			merged_sols.groups.push_back(temp_group);
     		}
     	}
@@ -124,9 +126,14 @@ void SolutionMerger::merge(const std::vector<set_obj> &sols, merge_sol &merged_s
             }
         }
 
+        int empty_count = 0;
 
 	    std::priority_queue<std::pair<double, int>> q;
 	    for (int i = 0; i < merged_sols.groups.size(); ++i) {
+          if (merged_sols.groups[i].size() == 0){
+            empty_count++;
+          }
+
 	      total_vars += merged_sols.groups[i].size();
 	      q.push(std::pair<double, int>(merged_sols.groups[i].size(), i));
 	    }
@@ -144,5 +151,6 @@ void SolutionMerger::merge(const std::vector<set_obj> &sols, merge_sol &merged_s
 	    std::cout << "\nMerge time: " << merge_timer.elapsedSeconds() << std::endl << std::endl;
 
 	    std::cout << "merge finished!" << std::endl << nE << " variables found in " << merged_sols.groups.size() << " groups and " << groups_count << " groups with size greater than 1"<<std::endl;
+        CHECK(empty_count)
 	}
 }

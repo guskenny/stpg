@@ -2,8 +2,8 @@
 all: merge_stpg
 
 LR = LagrangianHeuristic
-INC = /usr/local/gurobi/6.5.1/include/
-LIB = /usr/local/gurobi/6.5.1/lib/
+# INC = /usr/local/gurobi/6.5.1/include/
+# LIB = /usr/local/gurobi/6.5.1/lib/
 
 # dependency generation
 DEPDIR := .d
@@ -49,7 +49,6 @@ merge_stpg: $(OBJ) $(QOL_LIB) source/merge_stpg.o
 
 clean::
 	-rm -f source/*.o QOL/lagrangian/*.o $(LR)/*.o
-
 
 $(DEPDIR)/%.d: ;
 .PRECIOUS: $(DEPDIR)/%.d
